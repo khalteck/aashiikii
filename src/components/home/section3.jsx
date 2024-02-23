@@ -1,4 +1,5 @@
 import ProductCard from "../common/ProductCard";
+import Carousel1 from "./Carousel1";
 
 const Section2 = () => {
   return (
@@ -16,9 +17,7 @@ const Section2 = () => {
           <ProductCard />
         </div>
         <div className="w-full md:w-full md:hidden flex justify-center md:justify-start flex-wrap gap-5">
-          <ProductCard />
-
-          <ProductCard />
+          <Carousel1 />
         </div>
 
         <div className="w-full sm:max-w-[300px] md:w-[30%] md:min-w-[250px] md:max-w-full">

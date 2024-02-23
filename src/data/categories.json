@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Homegoods",
+    "child": [
+      { "name": "Beddings" },
+      { "name": "Towels" },
+      { "name": "Bathrobes" },
+      { "name": "Napkins" },
+      { "name": "Aprons" }
+    ]
+  },
+  { "name": "Wedding dresses", "child": [] },
+  { "name": "Culture dresses", "child": [] },
+  { "name": "Structured pieces", "child": [] },
+  { "name": "Workwear", "child": [] },
+  { "name": "Cocktail dresses", "child": [] },
+  { "name": "Party dresses", "child": [] },
+  { "name": "Wedding guest dresses", "child": [] },
+  { "name": "bridesmaid dresses ", "child": [] },
+  { "name": "Evening dresses", "child": [] },
+  { "name": "Prom dresses", "child": [] },
+  { "name": "Skirts and skirts", "child": [] },
+  { "name": "Shirts and tops", "child": [] },
+  { "name": "Shorts and trousers", "child": [] },
+  { "name": "Corsets", "child": [] }
+]

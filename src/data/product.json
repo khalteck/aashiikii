@@ -1,0 +1,44 @@
+[
+  {
+    "image": "/images/dress2.png",
+    "category": "wedding dress",
+    "name": "Aashiikii 540 Dress",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/dress2.png",
+    "category": "wedding dress",
+    "name": "Aashiikii 540 Dress",
+    "wishlist": true,
+    "price": 5000
+  },
+  {
+    "image": "/images/dress2.png",
+    "category": "wedding dress",
+    "name": "Aashiikii 540 Dress",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/dress2.png",
+    "category": "wedding dress",
+    "name": "Aashiikii 540 Dress",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/dress2.png",
+    "category": "wedding dress",
+    "name": "Aashiikii 540 Dress",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/dress2.png",
+    "category": "wedding dress",
+    "name": "Aashiikii 540 Dress",
+    "wishlist": false,
+    "price": 5000
+  }
+]

@@ -39,10 +39,10 @@ const Carousel2 = () => {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Autoplay, Pagination, EffectCreative, Navigation]}
+        // pagination={{
+        //   clickable: true,
+        // }}
+        modules={[Autoplay, EffectCreative, Navigation]}
         onSlideChange={(swiper) => handleSlideChange(swiper)}
         ref={swiperRef}
       >

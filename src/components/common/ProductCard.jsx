@@ -10,7 +10,7 @@ const ProductCard = () => {
     <div
       onMouseOver={() => setHoverProduct(true)}
       onMouseOut={() => setHoverProduct(false)}
-      className="w-full min-w-[250px] sm:min-w-[280px] sm:max-w-[280px] xl:max-w-[350px] flex flex-col justify-center items-center gap-2"
+      className="w-full min-w-[250px] sm:min-w-[280px] sm:max-w-[280px] xl:max-w-[350px] flex flex-col justify-center items-center gap-2 pb-4"
     >
       <div className="w-full h-fit relative">
         {!hoverProduct && (
