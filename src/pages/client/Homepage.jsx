@@ -1,6 +1,5 @@
 import { useState } from "react";
 import ScrollToTop from "../../ScrollToTop";
-import Header from "../../components/common/Header";
 import Loader from "../../components/common/Loader";
 import ProductCard from "../../components/common/ProductCard";
 import Section1 from "../../components/home/Section1";
@@ -15,6 +14,7 @@ import Section5 from "../../components/home/Section5";
 import { AiOutlineSearch } from "react-icons/ai";
 import Section6 from "../../components/home/Section6";
 import Footer from "../../components/common/Footer";
+import Header from "../../components/common/header/Header";
 
 const Homepage = () => {
   //   const [hoverProduct, setHoverProduct] = useState(null);

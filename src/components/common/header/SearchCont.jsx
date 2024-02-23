@@ -3,7 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { HiMenuAlt2 } from "react-icons/hi";
 
-const SearchCont = () => {
+const SearchCont = ({ handleMenu }) => {
   return (
     <div className="w-full bg-neutral-950 text-white px-5 md:px-[100px] flex gap-4 md:gap-12 items-center pt-4 pb-4 md:pb-5">
       <div>
@@ -12,7 +12,7 @@ const SearchCont = () => {
           src="/images/logo-white-no-bg.png"
           className="min-w-[100px] w-[150px] h-auto hidden md:block"
         />
-        <div className="md:hidden">
+        <div onClick={handleMenu} className="md:hidden">
           <HiMenuAlt2 size="25px" color="white" />
         </div>
       </div>
@@ -22,7 +22,7 @@ const SearchCont = () => {
         </div>
         <input
           type="text"
-          className="bg-white w-full text-black p-2 md:p-4 outline-none text-[.85rem] placeholder:text-black"
+          className="bg-white w-full text-black p-2 md:p-4 outline-none rounded-none text-[.85rem] placeholder:text-black"
           placeholder="SEARCH.."
         />
       </div>

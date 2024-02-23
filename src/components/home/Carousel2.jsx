@@ -1,14 +1,13 @@
 import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay, Pagination, EffectCoverflow, Navigation } from "swiper";
-// import "swiper/css/effect-fade";
-import "swiper/css/effect-coverflow";
+import { Autoplay, Pagination, EffectCreative, Navigation } from "swiper";
+import "swiper/css/effect-creative";
 
 import "swiper/css/navigation";
 import carousel1Data from "../../data/carousel1.json";
 
-const Slider = () => {
+const Carousel2 = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const swiperRef = useRef(null);
 
@@ -19,9 +18,21 @@ const Slider = () => {
   return (
     <>
       <Swiper
-        effect={"coverflow"}
         grabCursor={true}
-        centeredSlides={true}
+        effect={"creative"}
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            translate: ["-125%", 0, -800],
+            rotate: [0, 0, -90],
+          },
+          next: {
+            shadow: true,
+            translate: ["125%", 0, -800],
+            rotate: [0, 0, 90],
+          },
+          duration: 1000, // Set the speed to 1000 milliseconds (1 second)
+        }}
         slidesPerView={1}
         spaceBetween={30}
         autoplay={{
@@ -31,14 +42,7 @@ const Slider = () => {
         pagination={{
           clickable: true,
         }}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        modules={[Autoplay, Pagination, EffectCoverflow, Navigation]}
+        modules={[Autoplay, Pagination, EffectCreative, Navigation]}
         onSlideChange={(swiper) => handleSlideChange(swiper)}
         ref={swiperRef}
       >
@@ -62,4 +66,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default Carousel2;

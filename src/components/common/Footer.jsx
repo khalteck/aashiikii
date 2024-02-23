@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="mr-12 hidden lg:block">
           <span>Get connected with us on social networks:</span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-start md:justify-center">
           <a href="#!" className="mr-6 text-neutral-600 dark:text-neutral-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -73,20 +73,20 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mx-6 py-[80px] text-center md:text-left px-5 md:px-[100px]">
+      <div className="mx-6 py-[80px] text-left px-5 md:px-[100px]">
         <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="">
-            <h6 className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
+            <h6 className="mb-4 flex items-center font-semibold uppercase justify-start">
               <img
                 alt="logo"
                 src="/images/logo-white-no-bg.png"
-                className="min-w-[100px] w-[150px] h-auto hidden md:block"
+                className="min-w-[100px] w-[150px] h-auto block"
               />
             </h6>
             <p className="mb-5">
               Address: Independent street, road 54, Yaba Lagos
             </p>
-            <p className="mb-4 flex items-center justify-center md:justify-start">
+            <p className="mb-4 flex items-center justify-start">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -98,7 +98,7 @@ const Footer = () => {
               </svg>
               info@example.com
             </p>
-            <p className="mb-4 flex items-center justify-center md:justify-start">
+            <p className="mb-4 flex items-center justify-start">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -115,7 +115,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="">
-            <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
+            <h6 className="mb-4 flex font-semibold uppercase justify-start">
               INFO
             </h6>
             <p className="mb-4">
@@ -145,7 +145,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="">
-            <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
+            <h6 className="mb-4 flex font-semibold uppercase justify-start">
               MY ACCOUNT
             </h6>
             <p className="mb-4">
@@ -160,20 +160,20 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
+            <h6 className="mb-4 flex font-semibold uppercase justify-start">
               Connect
             </h6>
             <p className="mb-5">
               Subscribe to receive updates, access to exclusive deals, and more.{" "}
             </p>
 
-            <div>
+            <div className="flex flex-col gap-4">
               <input
                 type="text"
                 className="p-3 w-[200px] md:w-[300px] border-white border outline-none bg-transparent"
                 placeholder="Email Address"
               />
-              <button className="px-10 py-3 mt-4 bg-[#C2A284] text-black">
+              <button className="px-10 py-3 w-fit bg-[#C2A284] text-black">
                 SUBSCRIBE
               </button>
             </div>

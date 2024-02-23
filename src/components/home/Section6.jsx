@@ -22,7 +22,7 @@ const Section6 = () => {
           <div className="w-full flex bg-white rounded-r-full">
             <input
               type="text"
-              className="bg-white w-full text-black p-2 md:p-4 outline-none text-[.85rem] placeholder:text-black/50"
+              className="bg-white w-full text-black p-4 outline-none text-[.85rem] placeholder:text-black/50"
               placeholder="Email address"
             />
             <div className="w-[150px] md:h-[55px] p-2 md:p-3 text-[.85rem] md:text-[1rem] flex items-center justify-center bg-neutral-950 text-white rounded-r-full rounded-bl-full">
