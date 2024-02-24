@@ -11,18 +11,20 @@
   .swiper-pagination {
     display: flex;
     justify-content: center;
-    position: relative;
-    bottom: 50px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 100;
   }
 }
 
 /* Style for the pagination bullet (inactive) */
 .swiper-pagination-bullet {
-  width: 18px;
-  height: 18px;
+  width: 10px;
+  height: 10px;
   border-radius: 100%;
-  border: 1px solid #f7c30d;
+  /* border: 1px solid #f7c30d; */
   background-color: #d9d9d9;
   margin: 0 5px;
   cursor: pointer;
@@ -30,5 +32,8 @@
 
 /* Style for the active pagination bullet */
 .swiper-pagination-bullet-active {
-  background-color: #f7c30d;
+  background-color: #0a0a0a;
+  width: 50px;
+  height: 10px;
+  border-radius: 10px;
 }

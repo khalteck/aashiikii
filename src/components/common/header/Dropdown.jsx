@@ -18,6 +18,11 @@ const Dropdown = ({ handleMenu }) => {
     setShowCategories((prev) => !prev);
   }
 
+  const [showChildren, setShowChildren] = useState(null);
+  function handleChild(param) {
+    setShowChildren((prev) => (prev ? null : param));
+  }
+
   return (
     <div
       onClick={handleMenu}
@@ -63,21 +68,45 @@ const Dropdown = ({ handleMenu }) => {
                       )}
                     </div>
                     {item?.name === "Categories" && showCategories && (
-                      <div className="w-full h-[300px] overflow-y-auto cateslide border-b border-neutral-50 pb-3 px-2 flex flex-col gap-4 text-[.75rem] uppercase">
+                      <div
+                        onClick={(e) => e.stopPropagation()}
+                        className="w-full h-[300px] overflow-y-auto cateslide border-b border-neutral-50 pb-3 px-2 flex flex-col gap-4 text-[.75rem] uppercase"
+                      >
                         {categories?.map((itm, ind) => {
                           return (
                             <div
                               key={ind}
-                              className="w-full flex justify-between text-white/70"
+                              onClick={() => handleChild(itm)}
+                              className="w-full text-white/70 px-3"
                             >
-                              <p>{itm?.name}</p>
-                              {itm?.child?.length > 0 && (
-                                <FaPlus
-                                  size="15px"
-                                  color="white"
-                                  style={{ opacity: 0.5 }}
-                                />
-                              )}
+                              <div className="w-full flex justify-between">
+                                <p>{itm?.name}</p>
+                                {itm?.child?.length > 0 && (
+                                  <div>
+                                    {showChildren?.name === itm?.name ? (
+                                      <FaMinus
+                                        size="15px"
+                                        color="white"
+                                        style={{ opacity: 0.5 }}
+                                      />
+                                    ) : (
+                                      <FaPlus
+                                        size="15px"
+                                        color="white"
+                                        style={{ opacity: 0.5 }}
+                                      />
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                              {itm?.child?.length > 0 &&
+                                showChildren?.name === itm?.name && (
+                                  <div className="w-[90%] mx-auto h-fit mt-2 px-3 border-l border-neutral-100/50 flex flex-col gap-2">
+                                    {itm?.child?.map((x, idx) => {
+                                      return <div key={idx}>{x?.name}</div>;
+                                    })}
+                                  </div>
+                                )}
                             </div>
                           );
                         })}

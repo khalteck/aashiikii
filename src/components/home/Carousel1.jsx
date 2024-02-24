@@ -5,15 +5,28 @@ import { Autoplay, Pagination, EffectCoverflow, Navigation } from "swiper";
 import "swiper/css/effect-coverflow";
 import "../../swiper-pagination.css";
 import "swiper/css/navigation";
-import productData from "../../data/product.json";
 import ProductCard from "../common/ProductCard";
+import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronLeft } from "react-icons/fa";
 
-const Carousel1 = () => {
+const Carousel1 = ({ array }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const swiperRef = useRef(null);
 
   const handleSlideChange = (swiper) => {
     setCurrentSlide(swiper.activeIndex);
+  };
+
+  const slideNext = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+    }
+  };
+
+  const slidePrev = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
   };
 
   return (
@@ -28,9 +41,6 @@ const Carousel1 = () => {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        // pagination={{
-        //   clickable: true,
-        // }}
         coverflowEffect={{
           rotate: 50,
           stretch: 0,
@@ -38,20 +48,49 @@ const Carousel1 = () => {
           modifier: 1,
           slideShadows: true,
         }}
-        modules={[Autoplay, EffectCoverflow, Navigation]}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Autoplay, EffectCoverflow, Pagination, Navigation]}
         onSlideChange={(swiper) => handleSlideChange(swiper)}
         ref={swiperRef}
+        className="h-[680px]"
       >
-        {productData?.map((item, index) => {
+        {array?.map((item, index) => {
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className="">
               <ProductCard item={item} />
             </SwiperSlide>
           );
         })}
+        <div className="w-full h-[200px] flex items-center justify-between gap-3 absolute bottom-[-70px] z-[100]">
+          <div onClick={slidePrev} className="p-3 border border-neutral-950">
+            <FaChevronLeft size="20px" color="black" />
+          </div>
+          <div>
+            {/* <Pagination
+              className="swiper-pagination"
+              clickable={true}
+              bulletActiveClass="swiper-pagination-bullet-active"
+              bulletClass="swiper-pagination-bullet"
+            /> */}
+          </div>
+          <div onClick={slideNext} className="p-3 border border-neutral-950">
+            <FaChevronRight size="20px" color="black" />
+          </div>
+        </div>
       </Swiper>
     </>
   );
 };
 
 export default Carousel1;
+
+{
+  /* <div className="flex gap-2 items-center">
+            <div className="w-[50px] h-2 bg-neutral-950 rounded-full"></div>
+            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+          </div> */
+}

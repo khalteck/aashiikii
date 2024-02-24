@@ -1,7 +1,12 @@
 import ProductCard from "../common/ProductCard";
 import Carousel1 from "./Carousel1";
+import products from "../../data/product.json";
 
 const Section4 = () => {
+  const categoryDresses = products?.filter(
+    (x) => x?.category === "Shorts and trousers"
+  );
+
   return (
     <section className="w-full px-5 md:px-[100px] my-[80px]">
       <div className="w-full flex md:flex-row items-center md:items-start flex-col gap-5 mt-10">
@@ -15,25 +20,19 @@ const Section4 = () => {
             </div>
             <img
               alt="logo"
-              src="/images/dress0.png"
+              src="/images/trouser1.png"
               className="w-full min-h-[500px] md:h-[700px] md:max-h-[800px] object-cover object-top"
             />
           </div>
         </div>
 
         <div className="w-full md:w-full hidden md:flex justify-center md:justify-start flex-wrap gap-5">
-          <ProductCard />
-
-          <ProductCard />
-
-          <ProductCard />
-
-          <ProductCard />
-
-          <ProductCard />
+          {categoryDresses?.map((item, index) => {
+            return <ProductCard key={index} item={item} />;
+          })}
         </div>
         <div className="w-full md:w-full md:hidden flex justify-center md:justify-start flex-wrap gap-5">
-          <Carousel1 />
+          <Carousel1 array={categoryDresses} />
         </div>
       </div>
     </section>

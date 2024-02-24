@@ -10,7 +10,7 @@ const SearchCont = ({ handleMenu }) => {
         <img
           alt="logo"
           src="/images/logo-white-no-bg.png"
-          className="min-w-[100px] w-[150px] h-auto hidden md:block"
+          className="w-[200px] h-auto hidden md:block"
         />
         <div onClick={handleMenu} className="md:hidden">
           <HiMenuAlt2 size="25px" color="white" />

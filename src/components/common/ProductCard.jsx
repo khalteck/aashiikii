@@ -3,14 +3,14 @@ import { FaHeart } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 
-const ProductCard = () => {
+const ProductCard = ({ item }) => {
   const [hoverProduct, setHoverProduct] = useState(false);
 
   return (
     <div
       onMouseOver={() => setHoverProduct(true)}
       onMouseOut={() => setHoverProduct(false)}
-      className="w-full min-w-[250px] sm:min-w-[280px] sm:max-w-[280px] xl:max-w-[350px] flex flex-col justify-center items-center gap-2 pb-4"
+      className="w-full h-fit min-w-[250px] sm:min-w-[280px] sm:max-w-[280px] lg:w-[300px] xl:max-w-[350px] flex flex-col justify-center items-center gap-2 pb-4"
     >
       <div className="w-full h-fit relative">
         {!hoverProduct && (
@@ -20,15 +20,15 @@ const ProductCard = () => {
         )}
         <div className="w-full h-fit p-4 bg-[#F1E4D8]">
           <img
-            alt="logo"
-            src="/images/dress2.png"
+            alt="product-image"
+            src={item?.image}
             className="w-full h-[450px] sm:h-[400px] object-cover object-top border-[#F1E4D8]"
           />
         </div>
         {hoverProduct && (
           <div className="quickview w-full h-[120px] bg-transparent absolute bottom-0 left-0 p-8 flex gap-4">
-            <div className="w-[80px] max-h-[60px] cursor-pointer bg-white/50 flex justify-center items-center">
-              <FaRegHeart size="20px" color="red" />
+            <div className="w-[80px] max-h-[60px] cursor-pointer bg-[#F1E4D8] flex justify-center items-center">
+              <FaHeart size="20px" color={item?.wishlist ? "red" : "white"} />
             </div>
             <div className="w-full max-h-[60px] bg-white flex justify-center items-center gap-[5%] cursor-pointer hover:bg-neutral-100">
               <FaPlus size="20px" color="black" />
@@ -37,11 +37,13 @@ const ProductCard = () => {
           </div>
         )}
       </div>
-      <p className="uppercase opacity-60">DRESS</p>
+      <p className="uppercase opacity-60">{item?.category}</p>
       <p className="font-bold text-[1.25rem] cursor-pointer hover:underline">
-        Aashiikii 540 Dress
+        {item?.name}
       </p>
-      <p className="text-[#C2A284]">NGN 5,000</p>
+      <p className="text-[#C2A284] font-bold">
+        NGN {item?.price?.toLocaleString()}
+      </p>
     </div>
   );
 };

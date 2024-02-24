@@ -1,42 +1,128 @@
 [
   {
     "image": "/images/dress2.png",
-    "category": "wedding dress",
+    "category": "Cocktail dresses",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
     "price": 5000
   },
   {
-    "image": "/images/dress2.png",
-    "category": "wedding dress",
-    "name": "Aashiikii 540 Dress",
+    "image": "/images/dress3.png",
+    "category": "Cocktail dresses",
+    "name": "Melbourne C",
     "wishlist": true,
     "price": 5000
   },
   {
+    "image": "/images/dress4.png",
+    "category": "Cocktail dresses",
+    "name": "Drezzier",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/dress5.png",
+    "category": "Cocktail dresses",
+    "name": "Aashiikii 740 Dress",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
     "image": "/images/dress2.png",
-    "category": "wedding dress",
+    "category": "Cocktail dresses",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
     "price": 5000
   },
   {
     "image": "/images/dress2.png",
-    "category": "wedding dress",
+    "category": "Cocktail dresses",
+    "name": "Aashiikii 540 Dress",
+    "wishlist": false,
+    "price": 5000
+  },
+
+  {
+    "image": "/images/Top2.png",
+    "category": "Shirts and tops",
+    "name": "Aashiikii top 34",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/Top3.png",
+    "category": "Shirts and tops",
+    "name": "Melbourne V",
+    "wishlist": true,
+    "price": 5000
+  },
+  {
+    "image": "/images/Top4.png",
+    "category": "Shirts and tops",
+    "name": "Drezzier",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/Top5.png",
+    "category": "Shirts and tops",
+    "name": "Aashiikii 740 Dress",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/Tops.png",
+    "category": "Shirts and tops",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
     "price": 5000
   },
   {
-    "image": "/images/dress2.png",
-    "category": "wedding dress",
+    "image": "/images/Top2.png",
+    "category": "Shirts and tops",
+    "name": "Aashiikii 540 Dress",
+    "wishlist": false,
+    "price": 5000
+  },
+
+  {
+    "image": "/images/trouser2.png",
+    "category": "Shorts and trousers",
+    "name": "Aashiikii top 34",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/trouser3.png",
+    "category": "Shorts and trousers",
+    "name": "Melbourne V",
+    "wishlist": true,
+    "price": 5000
+  },
+  {
+    "image": "/images/trouser4.png",
+    "category": "Shorts and trousers",
+    "name": "Drezzier",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/trouser5.png",
+    "category": "Shorts and trousers",
+    "name": "Aashiikii 740 Dress",
+    "wishlist": false,
+    "price": 5000
+  },
+  {
+    "image": "/images/trouser1.png",
+    "category": "Shorts and trousers",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
     "price": 5000
   },
   {
-    "image": "/images/dress2.png",
-    "category": "wedding dress",
+    "image": "/images/trouser2.png",
+    "category": "Shorts and trousers",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
     "price": 5000
