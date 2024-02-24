@@ -31,7 +31,7 @@ const Dropdown = ({ handleMenu }) => {
       {showList && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className="w-[80%] h-[100%] min-h-[500px] overflow-y-auto bg-neutral-950 px-5 pt-10 pb-[80px] flex flex-col gap-5 dropslide"
+          className="w-[80%] max-w-[400px] h-[100%] min-h-[500px] overflow-y-auto bg-neutral-950 px-5 pt-10 pb-[80px] flex flex-col gap-5 dropslide"
         >
           <div onClick={handleMenu} className="">
             <IoClose size="35px" color="white" />
