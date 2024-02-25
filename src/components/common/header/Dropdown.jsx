@@ -4,8 +4,11 @@ import categories from "../../../data/categories.json";
 import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const Dropdown = ({ handleMenu }) => {
+  const navigate = useNavigate();
+
   const [showList, setShowList] = useState(false);
   useEffect(() => {
     setTimeout(() => {
@@ -21,6 +24,16 @@ const Dropdown = ({ handleMenu }) => {
   const [showChildren, setShowChildren] = useState(null);
   function handleChild(param) {
     setShowChildren((prev) => (prev ? null : param));
+  }
+
+  function link(param) {
+    navigate(param);
+    handleMenu();
+  }
+
+  function linkCate(param) {
+    navigate(`/categories/${param}`);
+    handleMenu();
   }
 
   return (
@@ -43,7 +56,9 @@ const Dropdown = ({ handleMenu }) => {
                 <React.Fragment key={index}>
                   <li
                     onClick={() => {
-                      item?.name === "Categories" && hamdleCategories();
+                      item?.name === "Categories"
+                        ? hamdleCategories()
+                        : link(item?.link);
                     }}
                     className={`w-full pb-5 text-[1.5rem] flex flex-col gap-3 ${
                       item?.name === "Categories" && !showCategories
@@ -76,7 +91,11 @@ const Dropdown = ({ handleMenu }) => {
                           return (
                             <div
                               key={ind}
-                              onClick={() => handleChild(itm)}
+                              onClick={() => {
+                                itm?.child?.length > 0
+                                  ? handleChild(itm)
+                                  : linkCate(itm?.slug);
+                              }}
                               className="w-full text-white/70 px-3"
                             >
                               <div className="w-full flex justify-between">

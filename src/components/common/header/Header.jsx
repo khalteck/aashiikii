@@ -12,7 +12,7 @@ const Header = () => {
     setOpenMenu((prev) => !prev);
   }
   return (
-    <div>
+    <div className="relative">
       <TopStrip />
 
       <SearchCont handleMenu={handleMenu} />

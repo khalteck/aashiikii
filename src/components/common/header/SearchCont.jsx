@@ -5,7 +5,7 @@ import { HiMenuAlt2 } from "react-icons/hi";
 
 const SearchCont = ({ handleMenu }) => {
   return (
-    <div className="w-full bg-neutral-950 text-white px-5 md:px-[100px] flex gap-4 md:gap-12 items-center pt-4 pb-4 md:pb-5">
+    <div className="w-full bg-neutral-950 text-white text-[.9rem] px-5 md:px-[100px] flex gap-4 md:gap-12 items-center pt-4 pb-4 md:pb-5">
       <div>
         <img
           alt="logo"

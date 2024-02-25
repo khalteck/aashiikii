@@ -1,6 +1,7 @@
 [
   {
     "name": "Homegoods",
+    "slug": "homegoods",
     "child": [
       { "name": "Beddings" },
       { "name": "Towels" },
@@ -9,18 +10,22 @@
       { "name": "Aprons" }
     ]
   },
-  { "name": "Wedding dresses", "child": [] },
-  { "name": "Culture dresses", "child": [] },
-  { "name": "Structured pieces", "child": [] },
-  { "name": "Workwear", "child": [] },
-  { "name": "Cocktail dresses", "child": [] },
-  { "name": "Party dresses", "child": [] },
-  { "name": "Wedding guest dresses", "child": [] },
-  { "name": "bridesmaid dresses ", "child": [] },
-  { "name": "Evening dresses", "child": [] },
-  { "name": "Prom dresses", "child": [] },
-  { "name": "Skirts and skirts", "child": [] },
-  { "name": "Shirts and tops", "child": [] },
-  { "name": "Shorts and trousers", "child": [] },
-  { "name": "Corsets", "child": [] }
+  { "name": "Wedding dresses", "slug": "wedding-dresses", "child": [] },
+  { "name": "Culture dresses", "slug": "culture-dresses", "child": [] },
+  { "name": "Structured pieces", "slug": "structured-pieces", "child": [] },
+  { "name": "Workwear", "slug": "workwear", "child": [] },
+  { "name": "Cocktail dresses", "slug": "cocktail-dresses", "child": [] },
+  { "name": "Party dresses", "slug": "party-dresses", "child": [] },
+  {
+    "name": "Wedding guest dresses",
+    "slug": "wedding-guest-dresses",
+    "child": []
+  },
+  { "name": "bridesmaid dresses", "slug": "bridesmaid-dresses", "child": [] },
+  { "name": "Evening dresses", "slug": "evening-dresses", "child": [] },
+  { "name": "Prom dresses", "slug": "prom-dresses", "child": [] },
+  { "name": "Skirts", "slug": "skirts", "child": [] },
+  { "name": "Shirts and tops", "slug": "shirts-and-tops", "child": [] },
+  { "name": "Shorts and trousers", "slug": "shorts-and-trousers", "child": [] },
+  { "name": "Corsets", "slug": "corsets", "child": [] }
 ]

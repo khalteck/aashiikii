@@ -1,5 +1,5 @@
 [
   { "name": "Home", "link": "/" },
-  { "name": "Categories", "link": "/" },
-  { "name": "Contact", "link": "/" }
+  { "name": "Categories", "link": "/categories/:slug" },
+  { "name": "Contact", "link": "/contact" }
 ]

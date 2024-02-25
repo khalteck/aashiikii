@@ -5,6 +5,7 @@ import Loader from "./components/common/Loader";
 import { useAppContext } from "./contexts/AppContext";
 
 const Homepage = lazy(() => import("./pages/client/Homepage"));
+const Categories = lazy(() => import("./pages/client/Categories"));
 const PageNotFound = lazy(() => import("./pages/common/404"));
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/categories/:slug" element={<Categories />} />
 
         {/* page not found */}
         <Route path="*" element={<PageNotFound />} />
