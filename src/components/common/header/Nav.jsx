@@ -3,8 +3,10 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import categories from "../../../data/categories.json";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../../contexts/AppContext";
 
 const Nav = () => {
+  const { currentPage } = useAppContext();
   const navigate = useNavigate();
   const [hover, setHover] = useState(false);
 
@@ -24,7 +26,12 @@ const Nav = () => {
   return (
     <>
       <ul className="w-full bg-neutral-950 text-white text-[.9rem] px-5 md:px-[100px] hidden md:flex gap-3 items-center pb-3">
-        <li className="px-5 py-2 transition-all duration-300 bg-[#F1E4D8] text-black cursor-pointer">
+        <li
+          onClick={() => navigate("/")}
+          className={`px-5 py-2 transition-all duration-300 hover:bg-[#F1E4D8]/70 hover:text-black cursor-pointer ${
+            currentPage === "/" && "bg-[#F1E4D8] text-black"
+          }`}
+        >
           HOME
         </li>
         <li
@@ -36,7 +43,7 @@ const Nav = () => {
             setHover(false);
             hamdleClose();
           }}
-          className="px-5 py-2 transition-all duration-300 bg-transparent flex gap-2 items-center hover:bg-[#F1E4D8]/70 hover:text-black cursor-pointer"
+          className={`px-5 py-2 transition-all duration-300 bg-transparent flex gap-2 items-center hover:bg-[#F1E4D8]/70 hover:text-black cursor-pointer`}
         >
           CATEGORIES
           <div className="">
@@ -46,7 +53,12 @@ const Nav = () => {
             />
           </div>
         </li>
-        <li className="px-5 py-2 transition-all duration-300 bg-transparent hover:bg-[#F1E4D8]/70 hover:text-black cursor-pointer">
+        <li
+          onClick={() => navigate("/contact")}
+          className={`px-5 py-2 transition-all duration-300 hover:bg-[#F1E4D8]/70 hover:text-black cursor-pointer ${
+            currentPage?.includes("contact") && "bg-[#F1E4D8] text-black"
+          }`}
+        >
           CONTACT
         </li>
       </ul>

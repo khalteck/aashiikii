@@ -2,8 +2,11 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { HiMenuAlt2 } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 const SearchCont = ({ handleMenu }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-full bg-neutral-950 text-white text-[.9rem] px-5 md:px-[100px] flex gap-4 md:gap-12 items-center pt-4 pb-4 md:pb-5">
       <div>
@@ -27,14 +30,14 @@ const SearchCont = ({ handleMenu }) => {
         />
       </div>
 
-      <div className="ml-auto">
+      <div onClick={() => navigate("/cart")} className="ml-auto cursor-pointer">
         <p className="hidden md:block whitespace-nowrap">CART (0)</p>
         <div className="md:hidden">
           <FaShoppingCart size="20px" color="white" />
         </div>
       </div>
 
-      <div className="">
+      <div onClick={() => navigate("/wishlist")} className="cursor-pointer">
         <p className="hidden md:block">WISHLIST</p>
         <div className="md:hidden">
           <FaHeart size="20px" color="white" />

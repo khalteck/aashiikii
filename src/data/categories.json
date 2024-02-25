@@ -10,18 +10,18 @@
       { "name": "Aprons" }
     ]
   },
+  { "name": "Cocktail dresses", "slug": "cocktail-dresses", "child": [] },
   { "name": "Wedding dresses", "slug": "wedding-dresses", "child": [] },
   { "name": "Culture dresses", "slug": "culture-dresses", "child": [] },
   { "name": "Structured pieces", "slug": "structured-pieces", "child": [] },
   { "name": "Workwear", "slug": "workwear", "child": [] },
-  { "name": "Cocktail dresses", "slug": "cocktail-dresses", "child": [] },
   { "name": "Party dresses", "slug": "party-dresses", "child": [] },
   {
     "name": "Wedding guest dresses",
     "slug": "wedding-guest-dresses",
     "child": []
   },
-  { "name": "bridesmaid dresses", "slug": "bridesmaid-dresses", "child": [] },
+  { "name": "Bridesmaid dresses", "slug": "bridesmaid-dresses", "child": [] },
   { "name": "Evening dresses", "slug": "evening-dresses", "child": [] },
   { "name": "Prom dresses", "slug": "prom-dresses", "child": [] },
   { "name": "Skirts", "slug": "skirts", "child": [] },

@@ -83,4 +83,36 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    color: black;
+  }
+
+  .pagination a {
+    color: #333;
+    font-size: 15px;
+    line-height: 15px;
+    padding: 8px 12px;
+    text-decoration: none;
+    border: 1px solid rgb(172, 168, 168);
+    border-radius: 100%;
+    margin: 0 5px;
+  }
+
+  .pagination a:hover {
+    background-color: #f2f2f2;
+  }
+
+  .pagination .active a {
+    background-color: #f1e4d8;
+    border: 1px solid rgb(172, 168, 168);
+  }
+
+  .pagination .break-me {
+    padding: 8px 12px;
+  }
 }
