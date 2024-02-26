@@ -13,11 +13,15 @@ const AppContextProvider = ({ children }) => {
 
   const [loader, setLoader] = useState(false);
 
+  const [openSearch, setOpenSearch] = useState(false);
+
   return (
     <AppContext.Provider
       value={{
         currentPage,
         loader,
+        openSearch,
+        setOpenSearch,
       }}
     >
       {children}

@@ -4,11 +4,14 @@ import { FaHeart } from "react-icons/fa6";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
-const SearchCont = ({ handleMenu }) => {
+const SearchCont = ({ handleMenu, toggleSearch }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full bg-neutral-950 text-white text-[.9rem] px-5 md:px-[100px] flex gap-4 md:gap-12 items-center pt-4 pb-4 md:pb-5">
+    <div
+      onClick={toggleSearch}
+      className="w-full bg-neutral-950 text-white text-[.9rem] px-5 md:px-[100px] flex gap-4 md:gap-12 items-center pt-4 pb-4 md:pb-5"
+    >
       <div>
         <img
           alt="logo"

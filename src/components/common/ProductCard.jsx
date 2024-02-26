@@ -18,7 +18,10 @@ const ProductCard = ({ item }) => {
             <FaHeart size="20px" color="white" />
           </div>
         )}
-        <div className="w-full h-fit p-4 bg-[#F1E4D8]">
+        <div
+          onClick={() => setHoverProduct(true)}
+          className="w-full h-fit p-4 bg-[#F1E4D8]"
+        >
           <img
             alt="product-image"
             src={item?.image}
@@ -38,7 +41,10 @@ const ProductCard = ({ item }) => {
         )}
       </div>
       <p className="uppercase opacity-60">{item?.category}</p>
-      <p className="font-bold text-[1.25rem] cursor-pointer hover:underline">
+      <p
+        onClick={() => setHoverProduct(true)}
+        className="font-bold text-[1.25rem] cursor-pointer hover:underline"
+      >
         {item?.name}
       </p>
       <p className="text-[#C2A284] font-bold">

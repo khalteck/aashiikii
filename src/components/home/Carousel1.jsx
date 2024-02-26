@@ -67,14 +67,7 @@ const Carousel1 = ({ array }) => {
           <div onClick={slidePrev} className="p-3 border border-neutral-950">
             <FaChevronLeft size="20px" color="black" />
           </div>
-          <div>
-            {/* <Pagination
-              className="swiper-pagination"
-              clickable={true}
-              bulletActiveClass="swiper-pagination-bullet-active"
-              bulletClass="swiper-pagination-bullet"
-            /> */}
-          </div>
+
           <div onClick={slideNext} className="p-3 border border-neutral-950">
             <FaChevronRight size="20px" color="black" />
           </div>
@@ -85,12 +78,3 @@ const Carousel1 = ({ array }) => {
 };
 
 export default Carousel1;
-
-{
-  /* <div className="flex gap-2 items-center">
-            <div className="w-[50px] h-2 bg-neutral-950 rounded-full"></div>
-            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-          </div> */
-}

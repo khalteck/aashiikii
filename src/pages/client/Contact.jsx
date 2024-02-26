@@ -18,7 +18,7 @@ const Contact = () => {
           />
         </div>
 
-        <div className="w-full max-w-[1500px] mx-auto bg-[#F1E4D8] md:p-[80px]">
+        <div className="w-full max-w-[1500px] mx-auto bg-[#F1E4D8] pt-[70px] md:p-[80px]">
           <div className="w-full flex md:flex-row flex-col-reverse">
             <Form />
             <img
