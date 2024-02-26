@@ -7,6 +7,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import CartCard from "../../components/cart/CartCard";
 import SummaryList from "../../components/cart/SummaryList";
 import { FaLocationDot } from "react-icons/fa6";
+import ScrollToTopButton from "../../components/common/ScrollToTopButton";
 
 const Cart = () => {
   return (
@@ -74,6 +75,7 @@ const Cart = () => {
         </div>
       </section>
 
+      <ScrollToTopButton />
       <Footer />
       <ScrollToTop />
     </>
