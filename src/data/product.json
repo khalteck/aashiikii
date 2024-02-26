@@ -1,130 +1,164 @@
 [
   {
+    "id": 1,
     "image": "/images/dress2.png",
     "category": "Cocktail dresses",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-540-Dress-1"
   },
   {
+    "id": 2,
     "image": "/images/dress3.png",
     "category": "Cocktail dresses",
     "name": "Melbourne C",
     "wishlist": true,
-    "price": 5000
+    "price": 5000,
+    "slug": "Melbourne-C-2"
   },
   {
+    "id": 3,
     "image": "/images/dress4.png",
     "category": "Cocktail dresses",
     "name": "Drezzier",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Drezzier-3"
   },
   {
+    "id": 4,
     "image": "/images/dress5.png",
     "category": "Cocktail dresses",
     "name": "Aashiikii 740 Dress",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-740-Dress-4"
   },
   {
+    "id": 5,
     "image": "/images/dress2.png",
     "category": "Cocktail dresses",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-540-Dress-5"
   },
   {
+    "id": 6,
     "image": "/images/dress2.png",
     "category": "Cocktail dresses",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-540-Dress-6"
   },
-
   {
+    "id": 7,
     "image": "/images/Top2.png",
     "category": "Shirts and tops",
     "name": "Aashiikii top 34",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-top-34-7"
   },
   {
+    "id": 8,
     "image": "/images/Top3.png",
     "category": "Shirts and tops",
     "name": "Melbourne V",
     "wishlist": true,
-    "price": 5000
+    "price": 5000,
+    "slug": "Melbourne-V-8"
   },
   {
+    "id": 9,
     "image": "/images/Top4.png",
     "category": "Shirts and tops",
     "name": "Drezzier",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Drezzier-9"
   },
   {
+    "id": 10,
     "image": "/images/Top5.png",
     "category": "Shirts and tops",
     "name": "Aashiikii 740 Dress",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-740-Dress-10"
   },
   {
+    "id": 11,
     "image": "/images/Tops.png",
     "category": "Shirts and tops",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-540-Dress-11"
   },
   {
+    "id": 12,
     "image": "/images/Top2.png",
     "category": "Shirts and tops",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-540-Dress-12"
   },
-
   {
+    "id": 13,
     "image": "/images/trouser2.png",
     "category": "Shorts and trousers",
     "name": "Aashiikii top 34",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-top-34-13"
   },
   {
+    "id": 14,
     "image": "/images/trouser3.png",
     "category": "Shorts and trousers",
     "name": "Melbourne V",
     "wishlist": true,
-    "price": 5000
+    "price": 5000,
+    "slug": "Melbourne-V-14"
   },
   {
+    "id": 15,
     "image": "/images/trouser4.png",
     "category": "Shorts and trousers",
     "name": "Drezzier",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Drezzier-15"
   },
   {
+    "id": 16,
     "image": "/images/trouser5.png",
     "category": "Shorts and trousers",
     "name": "Aashiikii 740 Dress",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-740-Dress-16"
   },
   {
+    "id": 17,
     "image": "/images/trouser1.png",
     "category": "Shorts and trousers",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-540-Dress-17"
   },
   {
+    "id": 18,
     "image": "/images/trouser2.png",
     "category": "Shorts and trousers",
     "name": "Aashiikii 540 Dress",
     "wishlist": false,
-    "price": 5000
+    "price": 5000,
+    "slug": "Aashiikii-540-Dress-18"
   }
 ]

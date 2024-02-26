@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { FaHeart } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
-import { FaRegHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ item }) => {
+  const navigate = useNavigate();
+
   const [hoverProduct, setHoverProduct] = useState(false);
 
   return (
@@ -33,7 +35,10 @@ const ProductCard = ({ item }) => {
             <div className="w-[80px] max-h-[60px] cursor-pointer bg-[#F1E4D8] flex justify-center items-center">
               <FaHeart size="20px" color={item?.wishlist ? "red" : "white"} />
             </div>
-            <div className="w-full max-h-[60px] bg-white flex justify-center items-center gap-[5%] cursor-pointer hover:bg-neutral-100">
+            <div
+              onClick={() => navigate(`/products/${item?.slug}`)}
+              className="w-full max-h-[60px] bg-white flex justify-center items-center gap-[5%] cursor-pointer hover:bg-neutral-100"
+            >
               <FaPlus size="20px" color="black" />
               <p>Quick View</p>
             </div>

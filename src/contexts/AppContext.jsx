@@ -14,6 +14,9 @@ const AppContextProvider = ({ children }) => {
   const [loader, setLoader] = useState(false);
 
   const [openSearch, setOpenSearch] = useState(false);
+  useEffect(() => {
+    setOpenSearch(false);
+  }, [currentPage]);
 
   return (
     <AppContext.Provider
@@ -22,6 +25,7 @@ const AppContextProvider = ({ children }) => {
         loader,
         openSearch,
         setOpenSearch,
+        navigate,
       }}
     >
       {children}
