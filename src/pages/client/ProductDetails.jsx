@@ -7,6 +7,7 @@ import Form from "../../components/contact/Form";
 import WorkInProgress from "../../components/common/WorkInProgress";
 import products from "../../data/product.json";
 import { useParams } from "react-router-dom";
+import ScrollToTopButton from "../../components/common/ScrollToTopButton";
 
 const ProductDetails = () => {
   const { slug } = useParams();
@@ -32,6 +33,7 @@ const ProductDetails = () => {
         </div>
       </section>
 
+      <ScrollToTopButton />
       <Footer />
       <ScrollToTop />
     </>

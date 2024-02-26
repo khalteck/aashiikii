@@ -15,6 +15,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Section6 from "../../components/home/Section6";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/header/Header";
+import ScrollToTopButton from "../../components/common/ScrollToTopButton";
 
 const Homepage = () => {
   //   const [hoverProduct, setHoverProduct] = useState(null);
@@ -43,6 +44,8 @@ const Homepage = () => {
         <Section5 />
 
         <Section6 />
+
+        <ScrollToTopButton />
 
         <Footer />
       </div>

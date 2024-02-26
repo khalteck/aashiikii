@@ -5,6 +5,7 @@ import Header from "../../components/common/header/Header";
 import Header2 from "../../components/common/header/Header2";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import WishlistCard from "../../components/wishlist/WishlistCard";
+import ScrollToTopButton from "../../components/common/ScrollToTopButton";
 
 const Wishlist = () => {
   return (
@@ -27,6 +28,7 @@ const Wishlist = () => {
         </div>
       </section>
 
+      <ScrollToTopButton />
       <Footer />
       <ScrollToTop />
     </>

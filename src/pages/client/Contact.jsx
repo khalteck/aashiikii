@@ -4,6 +4,7 @@ import Footer from "../../components/common/Footer";
 import Header from "../../components/common/header/Header";
 import { IoIosSend } from "react-icons/io";
 import Form from "../../components/contact/Form";
+import ScrollToTopButton from "../../components/common/ScrollToTopButton";
 
 const Contact = () => {
   return (
@@ -30,6 +31,7 @@ const Contact = () => {
         </div>
       </section>
 
+      <ScrollToTopButton />
       <Footer />
       <ScrollToTop />
     </>
