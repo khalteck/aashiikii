@@ -18,6 +18,49 @@ const AppContextProvider = ({ children }) => {
     setOpenSearch(false);
   }, [currentPage]);
 
+  //=================================================to hadle cart data
+  const [cartData, setCartData] = useState(
+    JSON.parse(localStorage.getItem("cartData")) || []
+  );
+  console.log("cartData", cartData);
+
+  function addToCart(newItem) {
+    const newCartData = [...cartData];
+    newCartData?.push(newItem);
+    setCartData(newCartData);
+    localStorage.setItem("cartData", JSON.stringify(newCartData));
+  }
+
+  function removeFromCart(item) {
+    const newCartData = [...cartData]?.filter((x) => x?.id !== item?.id);
+    setCartData(newCartData);
+    localStorage.setItem("cartData", JSON.stringify(newCartData));
+  }
+
+  function plusQuantity(item) {
+    const newCartData = [...cartData];
+    const updatedCartData = newCartData.map((product) => {
+      if (product.id === item.id) {
+        return { ...product, quantity: product.quantity + 1 };
+      }
+      return product;
+    });
+    setCartData(updatedCartData);
+    localStorage.setItem("cartData", JSON.stringify(updatedCartData));
+  }
+
+  function minusQuantity(item) {
+    const newCartData = [...cartData];
+    const updatedCartData = newCartData.map((product) => {
+      if (product.id === item.id) {
+        return { ...product, quantity: product.quantity - 1 };
+      }
+      return product;
+    });
+    setCartData(updatedCartData);
+    localStorage.setItem("cartData", JSON.stringify(updatedCartData));
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -26,6 +69,11 @@ const AppContextProvider = ({ children }) => {
         openSearch,
         setOpenSearch,
         navigate,
+        cartData,
+        addToCart,
+        removeFromCart,
+        plusQuantity,
+        minusQuantity,
       }}
     >
       {children}

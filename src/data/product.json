@@ -1,164 +1,218 @@
 [
   {
     "id": 1,
-    "image": "/images/dress2.png",
+    "image": ["/images/dress2.png"],
     "category": "Cocktail dresses",
-    "name": "Aashiikii 540 Dress",
+    "name": "Elegant Evening Dress",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-540-Dress-1"
+    "slug": "elegant-evening-dress-1",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff0000", "#0000ff", "#ff00ff"],
+    "stock_quantity": 5
   },
   {
     "id": 2,
-    "image": "/images/dress3.png",
+    "image": ["/images/dress3.png"],
     "category": "Cocktail dresses",
-    "name": "Melbourne C",
+    "name": "Midnight Glamour Dress",
     "wishlist": true,
     "price": 5000,
-    "slug": "Melbourne-C-2"
+    "slug": "midnight-glamour-dress-2",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff00ff", "#0000ff", "#ffff00"],
+    "stock_quantity": 10
   },
   {
     "id": 3,
-    "image": "/images/dress4.png",
+    "image": ["/images/dress4.png"],
     "category": "Cocktail dresses",
-    "name": "Drezzier",
+    "name": "Chic Cocktail Dress",
     "wishlist": false,
     "price": 5000,
-    "slug": "Drezzier-3"
+    "slug": "chic-cocktail-dress-3",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff0000", "#00ff00", "#ffff00", "#ff00ff"],
+    "stock_quantity": 15
   },
   {
     "id": 4,
-    "image": "/images/dress5.png",
+    "image": ["/images/dress5.png"],
     "category": "Cocktail dresses",
-    "name": "Aashiikii 740 Dress",
+    "name": "Sophisticated Soiree Dress",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-740-Dress-4"
+    "slug": "sophisticated-soiree-dress-4",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff00ff", "#0000ff", "#ffff00", "#ff0000"],
+    "stock_quantity": 20
   },
   {
     "id": 5,
-    "image": "/images/dress2.png",
+    "image": ["/images/dress2.png"],
     "category": "Cocktail dresses",
-    "name": "Aashiikii 540 Dress",
+    "name": "Glamorous Gala Gown",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-540-Dress-5"
+    "slug": "glamorous-gala-gown-5",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff0000", "#00ff00", "#ffff00", "#ff00ff"],
+    "stock_quantity": 25
   },
   {
     "id": 6,
-    "image": "/images/dress2.png",
+    "image": ["/images/dress2.png"],
     "category": "Cocktail dresses",
-    "name": "Aashiikii 540 Dress",
+    "name": "Stylish Soiree Dress",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-540-Dress-6"
+    "slug": "stylish-soiree-dress-6",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff00ff", "#0000ff", "#ffff00", "#ff0000"],
+    "stock_quantity": 30
   },
   {
     "id": 7,
-    "image": "/images/Top2.png",
+    "image": ["/images/Top2.png"],
     "category": "Shirts and tops",
-    "name": "Aashiikii top 34",
+    "name": "Casual Cotton Top",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-top-34-7"
+    "slug": "casual-cotton-top-7",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff0000", "#00ff00", "#ffff00", "#ff00ff"],
+    "stock_quantity": 35
   },
   {
     "id": 8,
-    "image": "/images/Top3.png",
+    "image": ["/images/Top3.png"],
     "category": "Shirts and tops",
-    "name": "Melbourne V",
+    "name": "Formal Silk Blouse",
     "wishlist": true,
     "price": 5000,
-    "slug": "Melbourne-V-8"
+    "slug": "formal-silk-blouse-8",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff00ff", "#0000ff", "#ffff00", "#ff0000"],
+    "stock_quantity": 40
   },
   {
     "id": 9,
-    "image": "/images/Top4.png",
+    "image": ["/images/Top4.png"],
     "category": "Shirts and tops",
-    "name": "Drezzier",
+    "name": "Chic Chiffon Blouse",
     "wishlist": false,
     "price": 5000,
-    "slug": "Drezzier-9"
+    "slug": "chic-chiffon-blouse-9",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff0000", "#00ff00", "#ffff00", "#ff00ff"],
+    "stock_quantity": 45
   },
   {
     "id": 10,
-    "image": "/images/Top5.png",
+    "image": ["/images/Top5.png"],
     "category": "Shirts and tops",
-    "name": "Aashiikii 740 Dress",
+    "name": "Elegant Evening Top",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-740-Dress-10"
+    "slug": "elegant-evening-top-10",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff00ff", "#0000ff", "#ffff00", "#ff0000"],
+    "stock_quantity": 50
   },
   {
     "id": 11,
-    "image": "/images/Tops.png",
+    "image": ["/images/Tops.png"],
     "category": "Shirts and tops",
-    "name": "Aashiikii 540 Dress",
+    "name": "Stylish Satin Blouse",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-540-Dress-11"
+    "slug": "stylish-satin-blouse-11",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff0000", "#00ff00", "#ffff00", "#ff00ff"],
+    "stock_quantity": 55
   },
   {
     "id": 12,
-    "image": "/images/Top2.png",
+    "image": ["/images/Top2.png"],
     "category": "Shirts and tops",
-    "name": "Aashiikii 540 Dress",
+    "name": "Casual Cotton Top",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-540-Dress-12"
+    "slug": "casual-cotton-top-12",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff00ff", "#0000ff", "#ffff00", "#ff0000"],
+    "stock_quantity": 60
   },
   {
     "id": 13,
-    "image": "/images/trouser2.png",
+    "image": ["/images/trouser2.png"],
     "category": "Shorts and trousers",
-    "name": "Aashiikii top 34",
+    "name": "Comfy Cotton Shorts",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-top-34-13"
+    "slug": "comfy-cotton-shorts-13",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff0000", "#00ff00", "#ffff00", "#ff00ff"],
+    "stock_quantity": 65
   },
   {
     "id": 14,
-    "image": "/images/trouser3.png",
+    "image": ["/images/trouser3.png"],
     "category": "Shorts and trousers",
-    "name": "Melbourne V",
+    "name": "Formal Flared Trousers",
     "wishlist": true,
     "price": 5000,
-    "slug": "Melbourne-V-14"
+    "slug": "formal-flared-trousers-14",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff00ff", "#0000ff", "#ffff00", "#ff0000"],
+    "stock_quantity": 70
   },
   {
     "id": 15,
-    "image": "/images/trouser4.png",
+    "image": ["/images/trouser4.png"],
     "category": "Shorts and trousers",
-    "name": "Drezzier",
+    "name": "Chic Chino Shorts",
     "wishlist": false,
     "price": 5000,
-    "slug": "Drezzier-15"
+    "slug": "chic-chino-shorts-15",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff0000", "#00ff00", "#ffff00", "#ff00ff"],
+    "stock_quantity": 75
   },
   {
     "id": 16,
-    "image": "/images/trouser5.png",
+    "image": ["/images/trouser5.png"],
     "category": "Shorts and trousers",
-    "name": "Aashiikii 740 Dress",
+    "name": "Elegant Evening Trousers",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-740-Dress-16"
+    "slug": "elegant-evening-trousers-16",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff00ff", "#0000ff", "#ffff00", "#ff0000"],
+    "stock_quantity": 80
   },
   {
     "id": 17,
-    "image": "/images/trouser1.png",
+    "image": ["/images/trouser1.png"],
     "category": "Shorts and trousers",
-    "name": "Aashiikii 540 Dress",
+    "name": "Stylish Satin Shorts",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-540-Dress-17"
+    "slug": "stylish-satin-shorts-17",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff0000", "#00ff00", "#ffff00", "#ff00ff"],
+    "stock_quantity": 85
   },
   {
     "id": 18,
-    "image": "/images/trouser2.png",
+    "image": ["/images/trouser2.png"],
     "category": "Shorts and trousers",
-    "name": "Aashiikii 540 Dress",
+    "name": "Comfy Cotton Trousers",
     "wishlist": false,
     "price": 5000,
-    "slug": "Aashiikii-540-Dress-18"
+    "slug": "comfy-cotton-trousers-18",
+    "size": ["4", "6", "8", "12", "14"],
+    "color": ["#ff00ff", "#0000ff", "#ffff00", "#ff0000"],
+    "stock_quantity": 90
   }
 ]

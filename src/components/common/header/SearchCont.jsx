@@ -3,9 +3,11 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../../contexts/AppContext";
 
 const SearchCont = ({ handleMenu, toggleSearch }) => {
   const navigate = useNavigate();
+  const { cartData } = useAppContext();
 
   return (
     <div className="w-full bg-neutral-950 text-white text-[.9rem] px-5 md:px-[100px] flex gap-4 md:gap-12 items-center pt-4 pb-4 md:pb-5">
@@ -35,8 +37,15 @@ const SearchCont = ({ handleMenu, toggleSearch }) => {
       </div>
 
       <div onClick={() => navigate("/cart")} className="ml-auto cursor-pointer">
-        <p className="hidden md:block whitespace-nowrap">CART (0)</p>
-        <div className="md:hidden">
+        <p className="hidden md:block whitespace-nowrap">
+          CART <span className="font-medium">({cartData?.length})</span>
+        </p>
+        <div className="md:hidden relative">
+          {cartData?.length > 0 && (
+            <div className="w-4 h-4 absolute -top-2 -right-2 bg-red-500 rounded-full flex justify-center items-center text-[.75em] text-white leading-tight">
+              <p className="block leading-3 font-bold">{cartData?.length}</p>
+            </div>
+          )}
           <FaShoppingCart size="20px" color="white" />
         </div>
       </div>
