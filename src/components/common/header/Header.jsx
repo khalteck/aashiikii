@@ -25,12 +25,12 @@ const Header = () => {
   }, [openSearch]);
 
   function toggleSearch() {
+    setShowList(false);
     setOpenSearch((prev) => !prev);
-    setShowList((prev) => !prev);
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full overflow-x-hidden">
       <TopStrip />
 
       <SearchCont handleMenu={handleMenu} toggleSearch={toggleSearch} />

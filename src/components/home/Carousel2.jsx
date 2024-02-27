@@ -54,7 +54,7 @@ const Carousel2 = () => {
                   index === currentSlide ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <div className="w-full p-5 max-w-[400px] md:w-[500px] h-[150px] md:h-[200px] border-4 md:border-8 border-[#F1E4D8] flex justify-center items-center text-white text-[1.75rem] md:text-[2rem] font-bold text-center">
+                <div className="w-full p-5 sm:max-w-[400px] md:w-[500px] h-[120px] md:h-[200px] border-4 md:border-8 border-[#F1E4D8] flex justify-center items-center text-white text-[1.5rem] md:text-[2rem] font-bold text-center">
                   Explore {item}
                 </div>
               </div>
