@@ -14,6 +14,19 @@ import WorkInProgress from "../../components/common/WorkInProgress";
 const Cart = () => {
   const { cartData } = useAppContext();
 
+  const totalPriceArray = [];
+  cartData?.map((item) => {
+    const price = item?.itemData?.price * item?.quantity;
+    totalPriceArray?.push(price);
+  });
+
+  const tax = 300;
+
+  const total = totalPriceArray?.reduce((acc, curr) => acc + curr, 0);
+  const totalAfterTax = total + tax;
+
+  console.log("total", total);
+
   return (
     <>
       <Header2 />
@@ -39,15 +52,16 @@ const Cart = () => {
               })}
             </div>
             <div className="w-full md:w-[40%] h-fit pb-6 mt-10 md:mt-0 border border-neutral-950/20 rounded-md">
-              <div className="w-full border-b border-neutral-950/20 p-4 mb-5">
+              <div className="w-full border-b border-neutral-950/20 p-4">
                 <h1 className="font-bold text-[1.5rem]">Order Summary</h1>
 
-                {/* <div className="w-full flex flex-col gap-2 mt-5">
-                  <SummaryList />
-                  <SummaryList />
-                </div> */}
+                <div className="w-full flex flex-col gap-5 mt-5">
+                  {cartData?.map((item, index) => {
+                    return <SummaryList key={index} item={item} />;
+                  })}
+                </div>
               </div>
-              {/* 
+
               <div className="border-b border-neutral-950/20 p-4 flex gap-3 items-center">
                 <FaLocationDot size="20px" color="#9ca3af" />
                 <p className="text-neutral-950/60">
@@ -56,27 +70,33 @@ const Cart = () => {
                     Yaba park Lagos
                   </span>
                 </p>
-              </div> */}
+              </div>
 
-              {/* <div className="w-full border-b border-neutral-950/20 px-4 py-7 flex flex-col gap-2">
-                {/* amount 
+              <div className="w-full border-b border-neutral-950/20 px-4 py-7 flex flex-col gap-2">
+                {/* amount  */}
                 <div className="w-full flex justify-between gap-3 items-center">
                   <p className="text-neutral-950/60">Amount</p>
-                  <p className="text-end text-neutral-950">NGN 30,000</p>
+                  <p className="text-end text-neutral-950">
+                    NGN {total?.toLocaleString()}
+                  </p>
                 </div>
-                {/* tax 
+                {/* tax  */}
                 <div className="w-full flex justify-between gap-3 items-center">
                   <p className="text-neutral-950/60">Tax</p>
-                  <p className="text-end text-neutral-950">NGN 300</p>
+                  <p className="text-end text-neutral-950">
+                    NGN {tax?.toLocaleString()}
+                  </p>
                 </div>
-                {/* total 
+                {/* total  */}
                 <div className="w-full flex justify-between gap-3 items-center font-bold">
                   <p className="">Total</p>
-                  <p className="text-end text-neutral-950">NGN 30,300</p>
+                  <p className="text-end text-neutral-950">
+                    NGN {totalAfterTax?.toLocaleString()}
+                  </p>
                 </div>
-              </div> */}
+              </div>
 
-              <WorkInProgress />
+              {/* <WorkInProgress /> */}
 
               <div className="px-4 pt-[80px]">
                 <button className="w-full px-5 py-3 bg-neutral-950 text-white">

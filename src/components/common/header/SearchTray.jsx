@@ -39,7 +39,7 @@ const SearchTray = ({ toggleSearch, showList }) => {
       {showList && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className="bg-neutral-50 w-full sm:w-[550px] h-[80%] sm:h-[700px] min-h-[400px] mx-auto overflow-y-auto relative dropslide"
+          className="bg-neutral-50 w-full sm:w-[550px] h-[80%] sm:h-[100%] min-h-[400px] mx-auto overflow-y-auto relative dropslide"
         >
           <div className="">
             <div className="w-full min-w-[200px] flex border border-neutral-950/20">

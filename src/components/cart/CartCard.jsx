@@ -1,8 +1,10 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useAppContext } from "../../contexts/AppContext";
+import ColorNameConverter from "../common/ColorNameConverter";
 
 const CartCard = ({ item }) => {
   const { plusQuantity, minusQuantity, removeFromCart } = useAppContext();
+  const price = item?.itemData?.price * item?.quantity;
   return (
     <div className="w-full flex flex-col gap-4 relative pb-3 md:pb-5 border-b border-neutral-950/20">
       <div>
@@ -22,21 +24,26 @@ const CartCard = ({ item }) => {
           />
         </div>
         <div className="w-[60%] sm:w-full h-[100px] md:h-[250px] flex flex-col justify-end gap-3 md:py-5 text-[.85rem] md:text-[1rem]">
+          <div className="w-full flex justify-between items-center">
+            <div className="font-bold">
+              {<ColorNameConverter hexCode={item?.color} />}
+            </div>
+            <div
+              onClick={() => removeFromCart(item)}
+              className="mr-1 md:mr-2 cursor-pointer"
+            >
+              <RiDeleteBin6Line color="#6b7280" size="20px" />
+            </div>
+          </div>
           <button className="w-fit px-3 md:px-5 py-1 md:py-2 bg-[#F1E4D8] font-medium mt-auto">
-            Sixe {item?.size}
+            Size {item?.size}
           </button>
 
           <div className="mt-auto w-full flex justify-between">
             <p className="font-bold text-[.9rem] md:text-[1.25rem]">
-              NGN {item?.itemData?.price?.toLocaleString()}
+              NGN {price?.toLocaleString()}
             </p>
             <div className="ml-auto flex gap-2 md:gap-3 items-center">
-              <div
-                onClick={() => removeFromCart(item)}
-                className="mr-1 md:mr-2 cursor-pointer"
-              >
-                <RiDeleteBin6Line color="#6b7280" size="22px" />
-              </div>
               <div
                 onClick={() => {
                   item?.quantity !== 0 && minusQuantity(item);

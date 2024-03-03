@@ -28,5 +28,6 @@
   { "name": "Prom dresses", "slug": "prom-dresses", "child": [] },
   { "name": "Skirts", "slug": "skirts", "child": [] },
 
-  { "name": "Corsets", "slug": "corsets", "child": [] }
+  { "name": "Corsets", "slug": "corsets", "child": [] },
+  { "name": "Bubus and kaftans", "slug": "bubus-and-kaftans", "child": [] }
 ]

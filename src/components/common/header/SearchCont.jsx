@@ -50,9 +50,12 @@ const SearchCont = ({ handleMenu, toggleSearch }) => {
         </div>
       </div>
 
-      <div onClick={() => navigate("/wishlist")} className="cursor-pointer">
+      <div
+        onClick={() => navigate("/wishlist")}
+        className="cursor-pointer flex items-center gap-2"
+      >
         <p className="hidden md:block">WISHLIST</p>
-        <div className="md:hidden">
+        <div className="">
           <FaHeart size="20px" color="white" />
         </div>
       </div>
