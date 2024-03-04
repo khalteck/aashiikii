@@ -22,7 +22,7 @@ const AppContextProvider = ({ children }) => {
   const [cartData, setCartData] = useState(
     JSON.parse(localStorage.getItem("cartData")) || []
   );
-  console.log("cartData", cartData);
+  // console.log("cartData", cartData);
 
   function addToCart(newItem) {
     const newCartData = [...cartData];

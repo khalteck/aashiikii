@@ -6,6 +6,7 @@ export default {
       backgroundImage: {
         hero1: "url('/images/hero1.jpg')",
         cate: "url('/images/category.jpg')",
+        login: "url('/images/Top2.png')",
       },
       fontFamily: {
         // poppins: ["Poppins", "sans-serif"],
