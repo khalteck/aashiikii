@@ -18,11 +18,10 @@ const AppContextProvider = ({ children }) => {
     setOpenSearch(false);
   }, [currentPage]);
 
-  //=================================================to hadle cart data
+  //=================================================to handle cart data
   const [cartData, setCartData] = useState(
     JSON.parse(localStorage.getItem("cartData")) || []
   );
-  // console.log("cartData", cartData);
 
   function addToCart(newItem) {
     const newCartData = [...cartData];
