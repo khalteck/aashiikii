@@ -47,6 +47,7 @@ const Login = () => {
         </div>
         <div className="w-full h-full bg-white p-5 md:p-14">
           <img
+            onClick={() => navigate("/")}
             alt=""
             src="/images/logo.png"
             className="w-[130px] h-auto md:w-[200px] rounded-sm md:rounded-b-lg mx-auto md:mx-0 mt-5 md:mt-0"
