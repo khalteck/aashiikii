@@ -85,7 +85,7 @@ const Login = () => {
         >
           <div className="w-full h-full absolute top-0 left-0 p-5 md:p-10 bg-gradient-to-t from-black/90 to-transparent flex flex-col"></div>
         </div>
-        <div className="w-full h-full bg-white p-5 md:p-14">
+        <div className="w-full h-full bg-neutral-50 p-5 md:p-14 md:overflow-y-auto">
           <img
             onClick={() => navigate("/")}
             alt=""

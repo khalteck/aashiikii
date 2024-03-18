@@ -1,0 +1,32 @@
+[
+  {
+    "stars": 4,
+    "comment": "Great quality clothing, love their designs!",
+    "name": "Alice Johnson"
+  },
+  {
+    "stars": 5,
+    "comment": "Fantastic customer service and fast shipping!",
+    "name": "Bob Smith"
+  },
+  {
+    "stars": 5,
+    "comment": "Best clothing brand I've ever tried! Amazing fit and style.",
+    "name": "Emma Davis"
+  },
+  {
+    "stars": 4,
+    "comment": "Good variety of options, would recommend to others.",
+    "name": "Frank Wilson"
+  },
+  {
+    "stars": 3,
+    "comment": "Not bad, but could be better.",
+    "name": "Grace Turner"
+  },
+  {
+    "stars": 4,
+    "comment": "Really satisfied with my purchase!",
+    "name": "Henry Carter"
+  }
+]

@@ -38,11 +38,25 @@ const Section2 = () => {
     setPageNumber(selected);
   };
 
-  return (
-    <section id="section2" className="w-full px-3 md:px-[100px] py-[80px]">
-      <SortCard />
+  const [sortNumber, setSortNumber] = useState(3);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 lg:gap-10 mt-[80px]">
+  return (
+    <section
+      onClick={() => setShowDropdown(false)}
+      id="section2"
+      className="w-full px-3 md:px-[100px] py-[80px]"
+    >
+      <SortCard
+        sortNumber={sortNumber}
+        setSortNumber={setSortNumber}
+        showDropdown={showDropdown}
+        setShowDropdown={setShowDropdown}
+      />
+
+      <div
+        className={`w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-${sortNumber} gap-4 md:gap-5 lg:gap-10 mt-[80px]`}
+      >
         {displayProducts}
       </div>
       {categoryDresses?.length > 0 && (

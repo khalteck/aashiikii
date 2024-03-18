@@ -63,11 +63,22 @@ const AppContextProvider = ({ children }) => {
 
   //========================================================================to handle registration
   const [firstStepError, setFirstStepError] = useState(null);
+  const [firstStepErrorSource, setFirstStepErrorSource] = useState(null);
   const [secondStepError, setSecondStepError] = useState(null);
+  const [secondStepErrorSource, setSecondStepErrorSource] = useState(null);
+
+  useEffect(() => {
+    setFirstStepError(null);
+    setFirstStepErrorSource(null);
+    setSecondStepError(null);
+  }, [currentPage]);
 
   const [loading1, setloading1] = useState(false);
 
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
+  // const url = `${baseUrl}/register/`;
+  // console.log("endpoint url => ", url);
 
   async function handleRegisterFirstStep(data) {
     try {
@@ -77,7 +88,15 @@ const AppContextProvider = ({ children }) => {
       navigate("/register/step=2");
     } catch (error) {
       console.log("error", error);
-      setFirstStepError("An error occured!");
+      const errorArray = Object?.values(error?.response?.data || {});
+      const errorSourceArray = Object?.keys(error?.response?.data || {});
+      const networkError = [["An error occured!"]];
+      const errorRecieved =
+        error?.response?.status >= 500 || error?.message === "Network Error"
+          ? networkError
+          : errorArray;
+      setFirstStepError(errorRecieved);
+      setFirstStepErrorSource(errorSourceArray);
     } finally {
       setloading1(false);
     }
@@ -87,10 +106,19 @@ const AppContextProvider = ({ children }) => {
     try {
       setloading1(true);
       const response = await axios.put(`${baseUrl}/register/`, data);
+      navigate("/");
       console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
-      setSecondStepError("An error occured!");
+      const errorArray = Object?.values(error?.response?.data || {});
+      const errorSourceArray = Object?.keys(error?.response?.data || {});
+      const networkError = [["An error occured!"]];
+      const errorRecieved =
+        error?.response?.status >= 500 || error?.message === "Network Error"
+          ? networkError
+          : errorArray;
+      setSecondStepError(errorRecieved);
+      setSecondStepErrorSource(errorSourceArray);
     } finally {
       setloading1(false);
     }
@@ -128,6 +156,8 @@ const AppContextProvider = ({ children }) => {
         firstStepError,
         handleRegisterSecondStep,
         secondStepError,
+        firstStepErrorSource,
+        secondStepErrorSource,
       }}
     >
       {children}

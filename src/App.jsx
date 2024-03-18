@@ -15,6 +15,9 @@ const RegisterAdditional = lazy(() =>
   import("./pages/client/RegisterAdditional")
 );
 const Login = lazy(() => import("./pages/client/Login"));
+const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
+const Products = lazy(() => import("./pages/admin/Products"));
+const Reviews = lazy(() => import("./pages/admin/Reviews"));
 
 const PageNotFound = lazy(() => import("./pages/common/404"));
 
@@ -34,6 +37,9 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* admin */}
+        <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin/products" element={<Products />} />
+        <Route path="/admin/reviews" element={<Reviews />} />
 
         {/* page not found */}
         <Route path="*" element={<PageNotFound />} />
