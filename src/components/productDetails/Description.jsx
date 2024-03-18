@@ -17,12 +17,6 @@ const Description = ({ currentProduct }) => {
   const [addError, setaddError] = useState(false);
   const [track, settrack] = useState(false);
 
-  useEffect(() => {
-    if (customValue) {
-      setSelectedQuantity(customValue);
-    }
-  }, [customValue]);
-
   const [currentItem, setCurrentItem] = useState({
     id: `${currentProduct?.id}_color_size`,
     quantity: 0,
@@ -34,7 +28,7 @@ const Description = ({ currentProduct }) => {
   useEffect(() => {
     setCurrentItem({
       id: `${currentProduct?.id}_${selectedColor}_${selectedSize}`,
-      quantity: selectedQuantity,
+      quantity: selectedQuantity === "Custom" ? customValue : selectedQuantity,
       size: selectedSize,
       color: selectedColor,
       itemData: currentProduct,
@@ -45,7 +39,14 @@ const Description = ({ currentProduct }) => {
       (x) => x?.id === currentItem?.id
     )?.length;
     itemExist ? setItemExistsInCart(true) : setItemExistsInCart(false);
-  }, [selectedQuantity, currentProduct, selectedColor, selectedSize, track]);
+  }, [
+    selectedQuantity,
+    currentProduct,
+    selectedColor,
+    selectedSize,
+    track,
+    customValue,
+  ]);
 
   function handleAdd() {
     settrack((prev) => !prev);

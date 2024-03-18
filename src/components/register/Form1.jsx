@@ -7,20 +7,46 @@ const Form1 = ({
   handlePassword,
   error,
   formData,
+  firstStepError,
 }) => {
   return (
     <form className="mt-8 flex flex-col gap-4 max-w-[700px] mx-auto">
-      <h2 className="text-[1.75rem] md:text-[2em] font-[400] mt-10 md:mt-[100px] text-center">
+      <h2 className="text-[1.75rem] md:text-[2em] font-[400] mt-10 text-center">
         Create an account
       </h2>
       <p className="text-center -mt-2">Lets get started with Aashiikii</p>
+
       <div>
         <input
           type="text"
-          id="name"
+          id="first_name"
           onChange={handleChange}
-          value={formData?.name}
-          placeholder="Name.."
+          value={formData?.first_name}
+          placeholder="First name.."
+          className={`w-full px-3 py-4 border border-neutral-950/50 mt-2 outline-none placeholder:text-neutral-950/70 `}
+          required
+        />
+      </div>
+
+      <div>
+        <input
+          type="text"
+          id="last_name"
+          onChange={handleChange}
+          value={formData?.last_name}
+          placeholder="Last name.."
+          className={`w-full px-3 py-4 border border-neutral-950/50 mt-2 outline-none placeholder:text-neutral-950/70 `}
+          required
+        />
+      </div>
+
+      <div>
+        <input
+          type="text"
+          id="username"
+          onChange={handleChange}
+          value={formData?.username}
+          placeholder="username.."
           className={`w-full px-3 py-4 border border-neutral-950/50 mt-2 outline-none placeholder:text-neutral-950/70 `}
           required
         />
@@ -65,6 +91,12 @@ const Form1 = ({
       {error && (
         <p className="text-red-500 bg-red-500/30 p-3 border-border-red-500 text-[.85rem]">
           All fields are required
+        </p>
+      )}
+
+      {firstStepError && (
+        <p className="text-red-500 bg-red-500/30 p-3 border-border-red-500 text-[.85rem]">
+          {firstStepError}
         </p>
       )}
     </form>

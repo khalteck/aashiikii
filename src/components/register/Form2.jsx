@@ -1,18 +1,13 @@
 import { FaEye } from "react-icons/fa";
 import { MdArrowBack } from "react-icons/md";
+import { useAppContext } from "../../contexts/AppContext";
 
-const Form2 = ({
-  handleChange,
-  isValidEmail,
-  showPassword,
-  handlePassword,
-  setStep,
-  formData,
-}) => {
+const Form2 = ({ handleChange, formData, secondStepError }) => {
+  const { navigate } = useAppContext();
   return (
     <form className="mt-8 flex flex-col gap-4 max-w-[700px] mx-auto">
       <div
-        onClick={() => setStep(1)}
+        onClick={() => navigate(-1)}
         className="flex gap-2 bg-[#F1E4D8] px-3 py-2 w-fit cursor-pointer"
       >
         <MdArrowBack size="25px" />
@@ -89,6 +84,12 @@ const Form2 = ({
           required
         />
       </div>
+
+      {secondStepError && (
+        <p className="text-red-500 bg-red-500/30 p-3 border-border-red-500 text-[.85rem]">
+          An error occurred
+        </p>
+      )}
     </form>
   );
 };

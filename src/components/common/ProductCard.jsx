@@ -26,7 +26,7 @@ const ProductCard = ({ item }) => {
         >
           <img
             alt="product-image"
-            src={item?.image}
+            src={item?.image[0]}
             className="w-full h-[450px] sm:h-[400px] object-cover object-top border-[#F1E4D8]"
           />
         </div>

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -60,6 +61,55 @@ const AppContextProvider = ({ children }) => {
     localStorage.setItem("cartData", JSON.stringify(updatedCartData));
   }
 
+  //========================================================================to handle registration
+  const [firstStepError, setFirstStepError] = useState(null);
+  const [secondStepError, setSecondStepError] = useState(null);
+
+  const [loading1, setloading1] = useState(false);
+
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
+  async function handleRegisterFirstStep(data) {
+    try {
+      setloading1(true);
+      const response = await axios.post(`${baseUrl}/register/`, data);
+      console.log("Response data:", response.data);
+      navigate("/register/step=2");
+    } catch (error) {
+      console.log("error", error);
+      setFirstStepError("An error occured!");
+    } finally {
+      setloading1(false);
+    }
+  }
+
+  async function handleRegisterSecondStep(data) {
+    try {
+      setloading1(true);
+      const response = await axios.put(`${baseUrl}/register/`, data);
+      console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      setSecondStepError("An error occured!");
+    } finally {
+      setloading1(false);
+    }
+  }
+
+  //========================================================================to handle Login
+  // async function loginUser(data) {
+  //   try {
+  //     setloading1(true);
+  //     const response = await axios.put(`${baseUrl}/register/`, data);
+  //     console.log("Response data:", response.data);
+  //   } catch (error) {
+  //     console.log("error", error);
+  //     setSecondStepError("An error occured!");
+  //   } finally {
+  //     setloading1(false);
+  //   }
+  // }
+
   return (
     <AppContext.Provider
       value={{
@@ -73,6 +123,11 @@ const AppContextProvider = ({ children }) => {
         removeFromCart,
         plusQuantity,
         minusQuantity,
+        handleRegisterFirstStep,
+        loading1,
+        firstStepError,
+        handleRegisterSecondStep,
+        secondStepError,
       }}
     >
       {children}

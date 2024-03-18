@@ -10,11 +10,13 @@ const CustomSelect = ({
   const handleSelectChange = (e) => {
     setaddError(false);
     const value = e.target.value;
-    setSelectedQuantity(Number(value));
 
     // If the user selects "Custom", reset the custom value
     if (value === "Custom") {
+      setSelectedQuantity(value);
       setCustomValue("");
+    } else {
+      setSelectedQuantity(Number(value));
     }
   };
 

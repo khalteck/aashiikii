@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": ["/images/dress2.png"],
+    "image": ["/images/dress2.png", "/images/dressImage3.png"],
     "category": "Cocktail dresses",
     "name": "Elegant Evening Dress",
     "wishlist": false,
