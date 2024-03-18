@@ -125,6 +125,8 @@ const AppContextProvider = ({ children }) => {
   }
 
   //========================================================================to handle Login
+  const [loginError, setloginError] = useState(null);
+  const [loginErrorSource, setloginErrorSource] = useState(null);
   // async function loginUser(data) {
   //   try {
   //     setloading1(true);
@@ -158,6 +160,8 @@ const AppContextProvider = ({ children }) => {
         secondStepError,
         firstStepErrorSource,
         secondStepErrorSource,
+        loginError,
+        loginErrorSource,
       }}
     >
       {children}
