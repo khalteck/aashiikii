@@ -8,6 +8,7 @@ import contactData from "../../data/contact.json";
 import orderData from "../../data/orders.json";
 
 import { useAppContext } from "../../contexts/AppContext";
+import Footer from "../../components/admin/common/Footer";
 
 const Dashboard = () => {
   const { navigate } = useAppContext();
@@ -27,7 +28,7 @@ const Dashboard = () => {
           <div>Good morning</div>
         </section>
 
-        <section className="w-full min-h-screen px-5 md:pl-0 md:pr-[100px] pb-[50px]">
+        <section className="w-full min-h-screen max-w-[1800px] px-5 md:pl-0 md:pr-[100px] pb-[50px]">
           <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {totals?.map((item, index) => {
               return <TotalsCard key={index} item={item} index={index} />;
@@ -61,6 +62,7 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
+        <Footer />
       </main>
     </>
   );

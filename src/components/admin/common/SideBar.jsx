@@ -7,7 +7,7 @@ import { IoLogOut } from "react-icons/io5";
 import { useAppContext } from "../../../contexts/AppContext";
 
 const SideBar = () => {
-  const { navigate } = useAppContext();
+  const { navigate, currentPage } = useAppContext();
   return (
     <>
       <div
@@ -28,8 +28,16 @@ const SideBar = () => {
                   onClick={() => {
                     navigate(item?.link);
                   }}
-                  className={`w-full p-3 text-[.85rem] flex flex-col gap-3 bg-white/20 hover:bg-[#C2A284] cursor-pointer rounded-md `}
+                  className={`w-full pl-4 pr-2 py-3 text-[.85rem] flex flex-col gap-3 bg-white/20 hover:bg-[#C2A284] cursor-pointer rounded-md relative`}
                 >
+                  {currentPage
+                    ?.toLowerCase()
+                    ?.includes(item?.name?.toLowerCase()) && (
+                    <div className="absolute w-2 h-full top-0 left-0 bg-[#C2A284] rounded-full"></div>
+                  )}
+                  {currentPage === "/admin" && item?.home && (
+                    <div className="absolute w-2 h-full top-0 left-0 bg-[#C2A284] rounded-full"></div>
+                  )}
                   <div className="w-full flex gap-3 font-medium uppercase">
                     {item?.name === "Dashboard" ? (
                       <MdDashboard size="25px" color="white" />
