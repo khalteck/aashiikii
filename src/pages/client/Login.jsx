@@ -3,23 +3,23 @@ import ScrollToTop from "../../ScrollToTop";
 import ScrollToTopButton from "../../components/common/ScrollToTopButton";
 import { FaEye } from "react-icons/fa";
 import { useAppContext } from "../../contexts/AppContext";
-import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
+import { ClipLoader } from "react-spinners";
 
 const Login = () => {
-  const { navigate, loginError, loginErrorSource } = useAppContext();
+  const { navigate, loginError, loginErrorSource, loginUser, loading1 } =
+    useAppContext();
   const [showPassword, setshowPassword] = useState(false);
   function handlePassword() {
     setshowPassword((prev) => !prev);
   }
 
   const [isValidEmail, setIsValidEmail] = useState(true);
+  const [error, seterror] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
-  console.log("formData", formData);
 
   function handleChange(e) {
     // setSendError("");
@@ -40,13 +40,21 @@ const Login = () => {
     });
     setIsValidEmail(isValidEmail);
   }
+
+  async function handleSubmit() {
+    if (formData?.email && formData?.password) {
+      await loginUser(formData);
+    } else {
+      seterror(true);
+    }
+  }
   return (
     <>
       <div className="w-full min-h-screen flex md:flex-row-reverse flex-col">
         <div className="w-full h-[250px] md:h-screen bg-login bg-no-repeat bg-cover relative">
           <div className="w-full h-full absolute top-0 left-0 p-5 md:p-10 bg-gradient-to-t from-black/90 to-transparent flex flex-col"></div>
         </div>
-        <div className="w-full h-full bg-neutral-50 p-5 md:p-14">
+        <div className="w-full h-full min-h-screen bg-neutral-50 p-5 md:p-14">
           <img
             onClick={() => navigate("/")}
             alt=""
@@ -120,18 +128,15 @@ const Login = () => {
               </div>
             </div>
 
-            {loginErrorSource && (
-              <div className="flex flex-col gap-2">
-                {loginErrorSource?.map((err, ind) => {
-                  return (
-                    <p
-                      key={ind}
-                      className="text-red-500 bg-red-500/30 font-medium px-3 py-[5px] border-border-red-500 text-[.85rem]"
-                    >
-                      {capitalizeFirstLetter(err[0])}
-                    </p>
-                  );
-                })}
+            {error && (
+              <p className="text-red-500 bg-red-500/30 font-medium px-3 py-[5px] border-border-red-500 text-[.85rem]">
+                All fields are required
+              </p>
+            )}
+
+            {loginError && (
+              <div className="text-red-500 bg-red-500/30 font-medium px-3 py-[5px] border-border-red-500 text-[.85rem]">
+                {loginError}
               </div>
             )}
 
@@ -147,7 +152,16 @@ const Login = () => {
 
             <div className="w-full flex justify-center mt-7 md:mt-12">
               {/* <PaystackButton /> */}
-              <button className="w-full h-fit p-4 bg-[#F1E4D8]">Login</button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSubmit();
+                }}
+                className="w-full h-fit p-4 bg-[#F1E4D8] flex gap-2 items-center justify-center"
+              >
+                {loading1 && <ClipLoader color={"#000000"} size={22} />}
+                <p>{loading1 ? "Processing" : "Login"}</p>
+              </button>
             </div>
           </form>
         </div>

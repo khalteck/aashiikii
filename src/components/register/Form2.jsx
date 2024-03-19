@@ -2,7 +2,7 @@ import { FaEye } from "react-icons/fa";
 import { MdArrowBack } from "react-icons/md";
 import { useAppContext } from "../../contexts/AppContext";
 
-const Form2 = ({ handleChange, formData, secondStepError }) => {
+const Form2 = ({ handleChange, formData, secondStepError, error }) => {
   const { navigate, secondStepErrorSource } = useAppContext();
   return (
     <form className="mt-8 flex flex-col gap-4 max-w-[700px] mx-auto">
@@ -151,7 +151,7 @@ const Form2 = ({ handleChange, formData, secondStepError }) => {
               : "text-neutral-950"
           }`}
         >
-          Country
+          Postal code
         </div>
         <input
           type="text"
@@ -168,7 +168,12 @@ const Form2 = ({ handleChange, formData, secondStepError }) => {
         />
       </div>
 
-      {secondStepError && (
+      {error && (
+        <p className="text-red-500 bg-red-500/30 font-medium px-3 py-[5px] border-border-red-500 text-[.85rem]">
+          All fields are required
+        </p>
+      )}
+      {secondStepError && secondStepError?.length > 0 && (
         <div className="flex flex-col gap-2">
           {secondStepError?.map((err, ind) => {
             return (
@@ -176,7 +181,7 @@ const Form2 = ({ handleChange, formData, secondStepError }) => {
                 key={ind}
                 className="text-red-500 bg-red-500/30 font-medium px-3 py-[5px] border-border-red-500 text-[.85rem]"
               >
-                {capitalizeFirstLetter(err[0])}
+                {err[0]}
               </p>
             );
           })}

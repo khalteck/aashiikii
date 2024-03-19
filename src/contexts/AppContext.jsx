@@ -66,12 +66,10 @@ const AppContextProvider = ({ children }) => {
   const [firstStepErrorSource, setFirstStepErrorSource] = useState(null);
   const [secondStepError, setSecondStepError] = useState(null);
   const [secondStepErrorSource, setSecondStepErrorSource] = useState(null);
-
-  useEffect(() => {
-    setFirstStepError(null);
-    setFirstStepErrorSource(null);
-    setSecondStepError(null);
-  }, [currentPage]);
+  const [firstStepData, setfirstStepData] = useState(
+    JSON.parse(localStorage.getItem("firstStepData")) || null
+  );
+  const [registerSuccess, setregisterSuccess] = useState(false);
 
   const [loading1, setloading1] = useState(false);
 
@@ -84,7 +82,9 @@ const AppContextProvider = ({ children }) => {
     try {
       setloading1(true);
       const response = await axios.post(`${baseUrl}/register/`, data);
-      console.log("Response data:", response.data);
+      setfirstStepData(response.data);
+      localStorage.setItem("firstStepData", JSON.stringify(response?.data));
+      // console.log("Response data:", response.data);
       navigate("/register/step=2");
     } catch (error) {
       console.log("error", error);
@@ -105,9 +105,17 @@ const AppContextProvider = ({ children }) => {
   async function handleRegisterSecondStep(data) {
     try {
       setloading1(true);
-      const response = await axios.put(`${baseUrl}/register/`, data);
-      navigate("/");
-      console.log("Response data:", response.data);
+      const response = await axios.put(
+        `${baseUrl}/register/${firstStepData?.id}/`,
+        data
+      );
+      localStorage.removeItem("firstStepData");
+      setregisterSuccess(true);
+      setTimeout(() => {
+        setregisterSuccess(false);
+      }, 5000);
+      navigate("/login");
+      // console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
       const errorArray = Object?.values(error?.response?.data || {});
@@ -127,18 +135,58 @@ const AppContextProvider = ({ children }) => {
   //========================================================================to handle Login
   const [loginError, setloginError] = useState(null);
   const [loginErrorSource, setloginErrorSource] = useState(null);
-  // async function loginUser(data) {
-  //   try {
-  //     setloading1(true);
-  //     const response = await axios.put(`${baseUrl}/register/`, data);
-  //     console.log("Response data:", response.data);
-  //   } catch (error) {
-  //     console.log("error", error);
-  //     setSecondStepError("An error occured!");
-  //   } finally {
-  //     setloading1(false);
-  //   }
-  // }
+  const [loginSuccess, setloginSuccess] = useState(false);
+  const [userDetails, setuserDetails] = useState(
+    JSON.parse(localStorage.getItem("userDetails")) || null
+  );
+
+  async function loginUser(data) {
+    try {
+      setloading1(true);
+      const response = await axios.post(`${baseUrl}/login/`, data);
+      // console.log("Response data:", response.data);
+      setuserDetails(response?.data);
+      localStorage.setItem("userDetails", JSON.stringify(response?.data));
+      setloginSuccess(true);
+      setTimeout(() => {
+        setloginSuccess(false);
+      }, 5000);
+      navigate("/");
+    } catch (error) {
+      console.log("error", error);
+      const errorArray = Object?.values(error?.response?.data || {});
+      const errorSourceArray = Object?.keys(error?.response?.data || {});
+      const networkError = [["An error occured!"]];
+      const errorRecieved =
+        error?.response?.status >= 500 || error?.message === "Network Error"
+          ? networkError
+          : errorArray;
+      setloginError(errorRecieved);
+      setloginErrorSource(errorSourceArray);
+    } finally {
+      setloading1(false);
+    }
+  }
+
+  useEffect(() => {
+    setFirstStepError(null);
+    setFirstStepErrorSource(null);
+    setSecondStepError(null);
+    setSecondStepError(null), setloginError(null);
+    setloginErrorSource(null);
+  }, [currentPage]);
+
+  const [logoutSuccess, setlogoutSuccess] = useState(false);
+
+  function logoutUser() {
+    localStorage.removeItem("userDetails");
+    setuserDetails(null);
+    setlogoutSuccess(true);
+    setTimeout(() => {
+      setlogoutSuccess(false);
+    }, 5000);
+    navigate("/");
+  }
 
   return (
     <AppContext.Provider
@@ -162,6 +210,13 @@ const AppContextProvider = ({ children }) => {
         secondStepErrorSource,
         loginError,
         loginErrorSource,
+        firstStepData,
+        registerSuccess,
+        loginSuccess,
+        loginUser,
+        userDetails,
+        logoutSuccess,
+        logoutUser,
       }}
     >
       {children}

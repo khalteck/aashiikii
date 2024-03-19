@@ -155,9 +155,8 @@ const Form1 = ({
           <FaEye size="25px" />
         </div>
       </div>
-
       {error && (
-        <p className="text-red-500 bg-red-500/30 p-3 border-border-red-500 text-[.85rem]">
+        <p className="text-red-500 bg-red-500/30 font-medium px-3 py-[5px] border-border-red-500 text-[.85rem]">
           All fields are required
         </p>
       )}

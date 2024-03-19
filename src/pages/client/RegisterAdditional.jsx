@@ -5,10 +5,17 @@ import { useAppContext } from "../../contexts/AppContext";
 import Form2 from "../../components/register/Form2";
 import { ClipLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
+import Toast from "../../components/common/toast/Toast";
 
 const Login = () => {
-  const { navigate, secondStepError, loading1, handleRegisterSecondStep } =
-    useAppContext();
+  const {
+    navigate,
+    secondStepError,
+    loading1,
+    handleRegisterSecondStep,
+    firstStepData,
+    registerSuccess,
+  } = useAppContext();
   const [showPassword, setshowPassword] = useState(false);
   function handlePassword() {
     setshowPassword((prev) => !prev);
@@ -18,6 +25,7 @@ const Login = () => {
 
   const [error, seterror] = useState(false);
 
+  console.log("registerSuccess", registerSuccess);
   //=========================================to handle register data
   const [formData, setFormData] = useState({
     phone_number: "",
@@ -26,6 +34,10 @@ const Login = () => {
     state: "",
     country: "",
     postal_code: "",
+    email: firstStepData?.email,
+    first_name: firstStepData?.first_name,
+    last_name: firstStepData?.last_name,
+    password: firstStepData?.password,
   });
 
   console.log("formData", formData);
@@ -61,17 +73,6 @@ const Login = () => {
       formData?.postal_code
     ) {
       await handleRegisterSecondStep(formData);
-      toast.success("Registered successfully!", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: "bounce",
-      });
     } else {
       seterror(true);
     }
@@ -85,7 +86,7 @@ const Login = () => {
         >
           <div className="w-full h-full absolute top-0 left-0 p-5 md:p-10 bg-gradient-to-t from-black/90 to-transparent flex flex-col"></div>
         </div>
-        <div className="w-full h-full bg-neutral-50 p-5 md:p-14 md:overflow-y-auto">
+        <div className="w-full h-full md:h-screen bg-neutral-50 p-5 md:p-14 md:overflow-y-auto">
           <img
             onClick={() => navigate("/")}
             alt=""
@@ -130,19 +131,6 @@ const Login = () => {
         </div>
       </div>
 
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition="Bounce"
-      />
       <ScrollToTopButton />
       <ScrollToTop />
     </>

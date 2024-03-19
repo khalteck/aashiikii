@@ -106,6 +106,21 @@
     }
   }
 
+  .toastslide {
+    animation: toastslide 0.6s ease-in-out;
+  }
+
+  @keyframes toastslide {
+    0% {
+      transform: translate(-50%, -100px);
+      -webkit-transform: translate(-50%, -100px); /* Safari and Chrome */
+    }
+    100% {
+      transform: translate(-50%, 0px);
+      -webkit-transform: translate(-50%, 0px); /* Safari and Chrome */
+    }
+  }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
