@@ -1,10 +1,10 @@
 import React from "react";
-import nav from "../../data/adminNav.json";
+import nav from "../../../data/adminNav.json";
 import { MdDashboard } from "react-icons/md";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { MdReviews } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../../contexts/AppContext";
 
 const SideBar = () => {
   const { navigate } = useAppContext();
@@ -17,7 +17,8 @@ const SideBar = () => {
         <img
           alt="logo"
           src="/images/logo-white-no-bg.png"
-          className="w-[200px] h-auto hidden md:block"
+          className="w-[200px] h-auto hidden md:block cursor-pointer"
+          onClick={() => navigate("/")}
         />
         <ul className="w-full flex flex-col gap-5 text-neutral-50 mt-10">
           {nav?.map((item, index) => {
@@ -27,7 +28,7 @@ const SideBar = () => {
                   onClick={() => {
                     navigate(item?.link);
                   }}
-                  className={`w-full p-3 text-[1rem] flex flex-col gap-3 bg-white/20 hover:bg-[#C2A284] cursor-pointer rounded-md `}
+                  className={`w-full p-3 text-[.85rem] flex flex-col gap-3 bg-white/20 hover:bg-[#C2A284] cursor-pointer rounded-md `}
                 >
                   <div className="w-full flex gap-3 font-medium uppercase">
                     {item?.name === "Dashboard" ? (
@@ -37,7 +38,7 @@ const SideBar = () => {
                         size="25px"
                         color="white"
                       />
-                    ) : item?.name === "Reviews" ? (
+                    ) : item?.name === "Contact & Reviews" ? (
                       <MdReviews size="25px" color="white" />
                     ) : (
                       <IoLogOut size="25px" color="white" />

@@ -1,6 +1,6 @@
 [
   { "name": "Dashboard", "link": "/admin", "nav": true },
   { "name": "Products", "link": "/admin/products", "nav": true },
-  { "name": "Reviews", "link": "/admin/reviews", "nav": true },
+  { "name": "Contact & Reviews", "link": "/admin/reviews", "nav": true },
   { "name": "Logout", "link": "", "nav": false }
 ]

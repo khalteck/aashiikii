@@ -1,5 +1,5 @@
-import Header from "../../components/admin/Header";
-import SideBar from "../../components/admin/SideBar";
+import Header from "../../components/admin/common/Header";
+import SideBar from "../../components/admin/common/SideBar";
 
 const Reviews = () => {
   return (

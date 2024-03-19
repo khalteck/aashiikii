@@ -1,0 +1,20 @@
+[
+  {
+    "name": "John Doe",
+    "email": "johndoe@gmail.com",
+    "message": "Hello, this is to tell you that your site design is really cool, love it! Who is the developer?",
+    "time": "2 mins ago"
+  },
+  {
+    "name": "Jane Doe",
+    "email": "janedoe@gmail.com",
+    "message": "Cool website!",
+    "time": "5 mins ago"
+  },
+  {
+    "name": "Jesse smith",
+    "email": "user@gmail.com",
+    "message": "Hi, do you have a black wedding dress?",
+    "time": "12 mins ago"
+  }
+]

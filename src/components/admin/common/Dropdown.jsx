@@ -1,5 +1,5 @@
 import { IoClose } from "react-icons/io5";
-import nav from "../../data/adminNav.json";
+import nav from "../../../data/adminNav.json";
 import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
@@ -24,7 +24,7 @@ const Dropdown = ({ handleMenu }) => {
     handleMenu();
   }
 
-  console.log("nav", nav);
+  // console.log("nav", nav);
 
   return (
     <div

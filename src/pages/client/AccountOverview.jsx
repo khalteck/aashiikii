@@ -18,6 +18,7 @@ const AccountOverview = () => {
     city: "",
     state: "",
     country: "",
+    country_code: "",
     postal_code: "",
     first_name: "John",
     last_name: "Doe",
@@ -72,7 +73,7 @@ const AccountOverview = () => {
         </div>
       </section>
 
-      <section className="w-full bg-neutral-50 px-5 md:px-[100px]">
+      <section className="w-full bg-neutral-50 px-5 md:px-[100px] pb-[80px]">
         <div className="w-full flex md:flex-row items-center md:items-start flex-col gap-5">
           <div className="w-full sm:max-w-[300px] md:w-[30%] md:min-w-[250px] md:max-w-full">
             <div className="w-fit h-fit relative">
@@ -87,6 +88,28 @@ const AccountOverview = () => {
 
           <div className="w-full md:w-full h-full p-4 md:p-7 flex justify-center md:justify-start flex-wrap gap-5 border border-[#F1E4D8]">
             <h1 className="text-[1.2rem] font-bold">Account Overview</h1>
+            <div className="w-full flex md:flex-row flex-col gap-6 mb-10">
+              <div className="relative w-full">
+                <div
+                  className={`text-[.75rem] px-1 absolute -top-2 bg-gradient-to-b from-neutral-50 to-[#F1E4D8]/50 left-5 text-neutral-950 `}
+                >
+                  Email
+                </div>
+                <div className="w-full px-3 py-4 border border-neutral-950/50 bg-[#F1E4D8]/50">
+                  johndoe@gmail.com
+                </div>
+              </div>
+              <div className="relative w-full">
+                <div
+                  className={`text-[.75rem] px-1 absolute -top-2 bg-gradient-to-b from-neutral-50 to-[#F1E4D8]/50 left-5 text-neutral-950 `}
+                >
+                  Username
+                </div>
+                <div className="w-full px-3 py-4 border border-neutral-950/50 bg-[#F1E4D8]/50">
+                  johndoe123
+                </div>
+              </div>
+            </div>
             {/* //form */}
             <Form formData={formData} handleChange={handleChange} />
           </div>

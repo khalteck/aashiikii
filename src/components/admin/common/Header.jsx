@@ -3,10 +3,10 @@ import { GoHomeFill } from "react-icons/go";
 import { FaUser } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../../contexts/AppContext";
 import { HiMenuAlt2 } from "react-icons/hi";
 import Dropdown from "./Dropdown";
-import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
+import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 
 const Header = () => {
   const { currentPage } = useAppContext();
@@ -34,9 +34,9 @@ const Header = () => {
         <div onClick={() => navigate("/")} className="cursor-pointer">
           <GoHomeFill color="black" size="30px" />
         </div>
-        <div>
+        {/* <div>
           <FaUser color="black" size="25px" />
-        </div>
+        </div> */}
       </div>
 
       {openMenu && <Dropdown handleMenu={handleMenu} />}

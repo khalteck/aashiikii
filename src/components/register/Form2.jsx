@@ -16,29 +16,39 @@ const Form2 = ({ handleChange, formData, secondStepError, error }) => {
       <h2 className="text-[1.75rem] md:text-[2em] font-[400] mt-10 md:mt-[50px] text-center">
         Fill in additional details
       </h2>
-      <div className="relative">
-        <div
-          className={`text-[.75rem] px-1 absolute bg-neutral-50 left-5 ${
-            secondStepErrorSource?.includes("phone_number")
-              ? "text-red-500"
-              : "text-neutral-950"
-          }`}
-        >
-          Phone number
-        </div>
+      <div className="w-full relative flex gap-3">
         <input
-          type="number"
-          id="phone_number"
+          type="text"
+          id="country_code"
+          className="w-[100px] h-[58px] px-3 py-4 mt-2 border bg-[#F1E4D8]/50 outline-none placeholder:text-neutral-950/30 border-neutral-950/50"
+          placeholder="+234"
           onChange={handleChange}
-          value={formData?.phone_number}
-          placeholder="Phone number.."
-          className={`w-full px-3 py-4 border mt-2 outline-none placeholder:text-neutral-950/30 ${
-            secondStepErrorSource?.includes("phone_number")
-              ? "border-red-500"
-              : "border-neutral-950/50"
-          } `}
-          required
+          value={formData?.country_code}
         />
+        <div className="relative w-full">
+          <div
+            className={`text-[.75rem] px-1 absolute bg-neutral-50 left-5 ${
+              secondStepErrorSource?.includes("phone_number")
+                ? "text-red-500"
+                : "text-neutral-950"
+            }`}
+          >
+            Phone number
+          </div>
+          <input
+            type="number"
+            id="phone_number"
+            onChange={handleChange}
+            value={formData?.phone_number}
+            placeholder="Phone number.."
+            className={`w-full px-3 py-4 border mt-2 outline-none placeholder:text-neutral-950/30 ${
+              secondStepErrorSource?.includes("phone_number")
+                ? "border-red-500"
+                : "border-neutral-950/50"
+            } `}
+            required
+          />
+        </div>
       </div>
 
       <div className="relative">

@@ -33,6 +33,7 @@ const Login = () => {
     city: "",
     state: "",
     country: "",
+    country_code: "",
     postal_code: "",
     email: firstStepData?.email,
     first_name: firstStepData?.first_name,
