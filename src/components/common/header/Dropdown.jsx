@@ -5,8 +5,10 @@ import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../../contexts/AppContext";
 
 const Dropdown = ({ handleMenu }) => {
+  const { userDetails } = useAppContext();
   const navigate = useNavigate();
 
   const [showList, setShowList] = useState(false);
@@ -35,6 +37,8 @@ const Dropdown = ({ handleMenu }) => {
     navigate(`/categories/${param}`);
     handleMenu();
   }
+
+  const permissions = userDetails?.user_data?.permissions;
 
   return (
     <div
@@ -135,6 +139,14 @@ const Dropdown = ({ handleMenu }) => {
                 </React.Fragment>
               );
             })}
+            {permissions?.is_admin && (
+              <li
+                onClick={() => navigate("/admin")}
+                className={`w-full pb-5 text-[1.5rem] flex flex-col gap-3 border-b border-neutral-50`}
+              >
+                ADMIN DASHBOARD
+              </li>
+            )}
           </ul>
         </div>
       )}

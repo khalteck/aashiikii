@@ -10,6 +10,7 @@ import { TbLogout } from "react-icons/tb";
 
 const TopStrip = () => {
   const { userDetails, logoutUser } = useAppContext();
+  // console.log("userDetails", userDetails);
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
 
@@ -20,6 +21,8 @@ const TopStrip = () => {
   function handleClick() {
     userDetails ? handleShowDropdown() : navigate("/login");
   }
+
+  const name = userDetails?.user_data?.first_name;
 
   return (
     <>
@@ -37,7 +40,7 @@ const TopStrip = () => {
             <>
               <FaUser color="black" size="20px" />
               <p className="cursor-pointer text-[.85rem] md:text-[1rem]">
-                Hi User
+                Hi {name}
               </p>
               <MdOutlineArrowDropDown color="black" size="30px" />
             </>

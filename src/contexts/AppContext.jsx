@@ -81,7 +81,7 @@ const AppContextProvider = ({ children }) => {
   async function handleRegisterFirstStep(data) {
     try {
       setloading1(true);
-      const response = await axios.post(`${baseUrl}/register/`, data);
+      const response = await axios.post(`${baseUrl}/api/register/`, data);
       setfirstStepData(response.data);
       localStorage.setItem("firstStepData", JSON.stringify(response?.data));
       // console.log("Response data:", response.data);
@@ -106,7 +106,7 @@ const AppContextProvider = ({ children }) => {
     try {
       setloading1(true);
       const response = await axios.put(
-        `${baseUrl}/register/${firstStepData?.id}/`,
+        `${baseUrl}/api/register/${firstStepData?.id}/`,
         data
       );
       localStorage.removeItem("firstStepData");
@@ -143,7 +143,7 @@ const AppContextProvider = ({ children }) => {
   async function loginUser(data) {
     try {
       setloading1(true);
-      const response = await axios.post(`${baseUrl}/login/`, data);
+      const response = await axios.post(`${baseUrl}/main/login/`, data);
       // console.log("Response data:", response.data);
       setuserDetails(response?.data);
       localStorage.setItem("userDetails", JSON.stringify(response?.data));

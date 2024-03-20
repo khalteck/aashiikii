@@ -1,9 +1,43 @@
 import { FaEye } from "react-icons/fa";
 import { MdArrowBack } from "react-icons/md";
 import { useAppContext } from "../../contexts/AppContext";
+import { useEffect, useState } from "react";
 
 const Form2 = ({ handleChange, formData, secondStepError, error }) => {
   const { navigate, secondStepErrorSource } = useAppContext();
+
+  const [countryCodes, setCountryCodes] = useState([]);
+
+  useEffect(() => {
+    async function fetchCountryCodes() {
+      try {
+        const response = await fetch("https://restcountries.com/v3.1/all");
+        if (!response.ok) {
+          throw new Error("Failed to fetch country codes");
+        }
+        const data = await response.json();
+
+        const codes = data
+          ?.map((x) => {
+            return {
+              code: x?.idd?.root + x?.idd?.suffixes?.[0],
+              country: x?.name?.common,
+              flag: x?.flag,
+            };
+          })
+          ?.filter((item) => !isNaN(item.code))
+          ?.sort((a, b) => {
+            return a.country.localeCompare(b.country);
+          });
+        setCountryCodes(codes); // Assuming data is an array of country codes
+      } catch (error) {
+        console.error("Error fetching country codes:", error);
+      }
+    }
+
+    fetchCountryCodes();
+  }, []);
+
   return (
     <form className="mt-8 flex flex-col gap-4 max-w-[700px] mx-auto">
       <div
@@ -17,14 +51,29 @@ const Form2 = ({ handleChange, formData, secondStepError, error }) => {
         Fill in additional details
       </h2>
       <div className="w-full relative flex gap-3">
-        <input
+        <select
+          id="country_code"
+          className="w-[100px] h-[58px] px-3 py-4 mt-2 border bg-[#F1E4D8]/50 outline-none placeholder:text-neutral-950/30 border-neutral-950/50"
+          onChange={handleChange}
+          value={formData?.country_code}
+        >
+          <option value="" hidden>
+            +234
+          </option>
+          {countryCodes?.map((code, index) => (
+            <option key={index} value={code?.code} className="text-[.85rem]">
+              {code?.code} - {code?.country}
+            </option>
+          ))}
+        </select>
+        {/* <input
           type="text"
           id="country_code"
           className="w-[100px] h-[58px] px-3 py-4 mt-2 border bg-[#F1E4D8]/50 outline-none placeholder:text-neutral-950/30 border-neutral-950/50"
           placeholder="+234"
           onChange={handleChange}
           value={formData?.country_code}
-        />
+        /> */}
         <div className="relative w-full">
           <div
             className={`text-[.75rem] px-1 absolute bg-neutral-50 left-5 ${
