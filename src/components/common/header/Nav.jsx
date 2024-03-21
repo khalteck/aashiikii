@@ -24,7 +24,8 @@ const Nav = () => {
     setShowChildren((prev) => (prev ? null : param));
   }
 
-  const permissions = userDetails?.user_data?.permissions;
+  const permissions = userDetails?.user_data?.permission;
+
   return (
     <>
       <ul className="w-full bg-neutral-950 text-white text-[.9rem] px-5 md:px-[100px] hidden md:flex gap-3 items-center pb-3">

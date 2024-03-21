@@ -1,7 +1,14 @@
+import { useEffect } from "react";
 import Header from "../../components/admin/common/Header";
 import SideBar from "../../components/admin/common/SideBar";
+import CreateProductForm from "../../components/admin/product/CreateProductForm";
+import { useAdminContext } from "../../contexts/AdminContext";
 
 const CreateProduct = () => {
+  const { categoryData, handleFetchCategory, loading1 } = useAdminContext();
+  useEffect(() => {
+    handleFetchCategory();
+  }, []);
   return (
     <>
       <Header />
@@ -16,10 +23,13 @@ const CreateProduct = () => {
           <div className="w-full mt-5 flex gap-5 flex-col md:flex-row">
             <div className="w-full md:max-w-[800px] h-fit border border-slate-800 rounded-md p-4">
               <h2 className="font-bold">Create Product Form</h2>
+              <p className="mt-2 opacity-50">
+                Product variations (Colors, size etc) can be added after
+                creating the product..
+                <br /> Click the edit icon on the product card!
+              </p>
               <div className="w-full flex flex-col gap-2 mt-4">
-                {/* {orderData?.map((item, index) => {
-                  return <RecentOrderCard key={index} item={item} />;
-                })} */}
+                <CreateProductForm categoryData={categoryData} />
               </div>
             </div>
           </div>{" "}

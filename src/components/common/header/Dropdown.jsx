@@ -38,7 +38,7 @@ const Dropdown = ({ handleMenu }) => {
     handleMenu();
   }
 
-  const permissions = userDetails?.user_data?.permissions;
+  const permissions = userDetails?.user_data?.permission;
 
   return (
     <div

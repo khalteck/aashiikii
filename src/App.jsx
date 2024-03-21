@@ -29,6 +29,8 @@ const Reviews = lazy(() => import("./pages/admin/Reviews"));
 const PageNotFound = lazy(() => import("./pages/common/404"));
 
 function App() {
+  const { userDetails } = useAppContext();
+  const permission = userDetails?.user_data?.permission;
   return (
     <>
       <ToastContainer />
@@ -50,11 +52,26 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           {/* admin */}
-          <Route path="/admin" element={<Dashboard />} />
-          <Route path="/admin/products" element={<Products />} />
-          <Route path="/admin/create-product" element={<CreateProduct />} />
-          <Route path="/admin/create-category" element={<CreateCategory />} />
-          <Route path="/admin/reviews" element={<Reviews />} />
+          <Route
+            path="/admin"
+            element={permission?.is_admin ? <Dashboard /> : <Login />}
+          />
+          <Route
+            path="/admin/products"
+            element={permission?.is_admin ? <Products /> : <Login />}
+          />
+          <Route
+            path="/admin/create-product"
+            element={permission?.is_admin ? <CreateProduct /> : <Login />}
+          />
+          <Route
+            path="/admin/create-category"
+            element={permission?.is_admin ? <CreateCategory /> : <Login />}
+          />
+          <Route
+            path="/admin/reviews"
+            element={permission?.is_admin ? <Reviews /> : <Login />}
+          />
 
           {/* page not found */}
           <Route path="*" element={<PageNotFound />} />

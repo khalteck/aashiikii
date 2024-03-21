@@ -12,9 +12,17 @@ import ReactPaginate from "react-paginate";
 import { useAppContext } from "../../contexts/AppContext";
 import { MdCategory } from "react-icons/md";
 import { GiClothes } from "react-icons/gi";
+import { IoMdEye } from "react-icons/io";
+import { ClipLoader } from "react-spinners";
+import { useAdminContext } from "../../contexts/AdminContext";
 
 const Products = () => {
   const { navigate } = useAppContext();
+  const { categoryData, handleFetchCategory, loading1 } = useAdminContext();
+
+  useEffect(() => {
+    handleFetchCategory();
+  }, []);
 
   const productData = products;
   const [productDataPag, setproductDataPag] = useState([]);
@@ -44,6 +52,11 @@ const Products = () => {
     setShowDrop((prev) => !prev);
   }
 
+  const handleViewClick = () => {
+    const section = document.getElementById("products");
+    section.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <Header />
@@ -62,13 +75,37 @@ const Products = () => {
         <section className="w-full min-h-screen px-5 md:pl-0 md:pr-[100px] pb-[50px]">
           <div className="w-full flex gap-7 md:flex-row flex-col justify-center md:items-center">
             <div className="w-full flex gap-3">
-              <div className="font-bold bg-slate-800/90 rounded-md p-4 text-white w-fit flex items-center gap-4">
-                <h2>Total Products</h2>
-                <div className="text-[1.5rem]">{products?.length}</div>
+              <div className="font-bold bg-slate-800/90 rounded-md p-4 text-white w-fit">
+                <div className="flex items-center gap-4">
+                  <h2>Total Products</h2>
+                  <div className="text-[1.2rem]">{products?.length}</div>
+                </div>
+                <button
+                  onClick={handleViewClick}
+                  className="px-2 py-1 bg-neutral-50 text-[.85rem] mt-auto text-slate-800 flex gap-2 items-center rounded-md"
+                >
+                  <IoMdEye size={"15px"} color="black" />
+                  View
+                </button>
               </div>
-              <div className="font-bold bg-slate-800/90 rounded-md p-4 text-white w-fit flex items-center gap-4">
-                <h2>Total Categories</h2>
-                <div className="text-[1.5rem]">10</div>
+              <div className="font-bold bg-slate-800/90 rounded-md p-4 text-white w-fit ">
+                <div className="flex items-center gap-4">
+                  <h2>Total Categories</h2>
+                  {loading1 ? (
+                    <div>
+                      <ClipLoader color={"#fff"} size={20} />
+                    </div>
+                  ) : (
+                    <div className="text-[1.2rem]">{categoryData?.length}</div>
+                  )}
+                </div>
+                <button
+                  onClick={() => navigate("/admin/create-category")}
+                  className="px-2 py-1 bg-neutral-50 text-[.85rem] mt-auto text-slate-800 flex gap-2 items-center rounded-md"
+                >
+                  <IoMdEye size={"15px"} color="black" />
+                  View
+                </button>
               </div>
             </div>
             <div className="relative">
@@ -105,7 +142,7 @@ const Products = () => {
               )}
             </div>
           </div>
-          <div className="w-full mt-8">
+          <div id="products" className="w-full mt-8">
             <div className="w-full h-fit border border-slate-800 rounded-md mt-5 p-4">
               <h2 className="font-bold text-[1.2rem] mb-3">Products</h2>
               <div className="w-full flex h-[50px]">

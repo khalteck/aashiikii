@@ -89,6 +89,21 @@
     }
   }
 
+  .dropslide2 {
+    animation: dropslide2 0.8s ease-in-out;
+  }
+
+  @keyframes dropslide2 {
+    0% {
+      transform: scale(0, 0);
+      -webkit-transform: scale(0, 0); /* Safari and Chrome */
+    }
+    100% {
+      transform: scale(1, 1);
+      -webkit-transform: scale(1, 1); /* Safari and Chrome */
+    }
+  }
+
   .cateslide {
     animation: cateslide 0.6s ease-in-out;
   }

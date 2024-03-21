@@ -5,9 +5,22 @@ import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { MdReviews } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
 import { useAppContext } from "../../../contexts/AppContext";
+import { useState } from "react";
+import LogoutModal from "../../common/modal/LogoutModal";
 
 const SideBar = () => {
-  const { navigate, currentPage } = useAppContext();
+  const {
+    navigate,
+    currentPage,
+    logoutUser,
+    showLogoutModal,
+    setShowLogoutModal,
+  } = useAppContext();
+
+  function handleModal() {
+    setShowLogoutModal((prev) => !prev);
+  }
+
   return (
     <>
       <div
@@ -26,7 +39,7 @@ const SideBar = () => {
               <React.Fragment key={index}>
                 <li
                   onClick={() => {
-                    navigate(item?.link);
+                    item?.nav ? navigate(item?.link) : handleModal();
                   }}
                   className={`w-full pl-4 pr-2 py-3 text-[.85rem] flex flex-col gap-3 bg-white/20 hover:bg-[#C2A284] cursor-pointer rounded-md relative`}
                 >
@@ -59,6 +72,14 @@ const SideBar = () => {
           })}
         </ul>
       </div>
+
+      {showLogoutModal && (
+        <LogoutModal
+          onClose={handleModal}
+          title={"Log Out"}
+          onLogout={logoutUser}
+        />
+      )}
     </>
   );
 };

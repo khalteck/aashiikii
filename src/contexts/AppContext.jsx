@@ -177,6 +177,7 @@ const AppContextProvider = ({ children }) => {
   }, [currentPage]);
 
   const [logoutSuccess, setlogoutSuccess] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   function logoutUser() {
     localStorage.removeItem("userDetails");
@@ -217,6 +218,8 @@ const AppContextProvider = ({ children }) => {
         userDetails,
         logoutSuccess,
         logoutUser,
+        setShowLogoutModal,
+        showLogoutModal,
       }}
     >
       {children}
