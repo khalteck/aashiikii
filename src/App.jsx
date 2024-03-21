@@ -41,7 +41,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/categories/:slug" element={<Categories />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/wishlist" element={<Wishlist />} />
+          {/* <Route path="/wishlist" element={<Wishlist />} /> */}
           <Route path="/cart" element={<Cart />} />
           <Route path="/products/:slug" element={<ProductDetails />} />
           <Route path="/register" element={<Register />} />
@@ -50,6 +50,12 @@ function App() {
           <Route path="/account-overview" element={<AccountOverview />} />
           <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/login" element={<Login />} />
+
+          {/* protected routes */}
+          <Route
+            path="/wishlist"
+            element={permission?.is_client ? <Wishlist /> : <Login />}
+          />
 
           {/* admin */}
           <Route
