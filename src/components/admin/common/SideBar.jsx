@@ -21,6 +21,9 @@ const SideBar = () => {
     setShowLogoutModal((prev) => !prev);
   }
 
+  const pageArr = currentPage?.split("admin/");
+  const pageName = pageArr[pageArr?.length - 1];
+
   return (
     <>
       <div
@@ -45,11 +48,11 @@ const SideBar = () => {
                 >
                   {currentPage
                     ?.toLowerCase()
-                    ?.includes(item?.name?.toLowerCase()) && (
-                    <div className="absolute w-2 h-full top-0 left-0 bg-[#C2A284] rounded-full"></div>
+                    ?.includes(item?.slug?.toLowerCase()) && (
+                    <div className="absolute w-2 h-[80%] translate-y-[-50%] top-[50%] left-0 bg-[#C2A284] rounded-full"></div>
                   )}
                   {currentPage === "/admin" && item?.home && (
-                    <div className="absolute w-2 h-full top-0 left-0 bg-[#C2A284] rounded-full"></div>
+                    <div className="absolute w-2 h-[80%] translate-y-[-50%] top-[50%] left-0 bg-[#C2A284] rounded-full"></div>
                   )}
                   <div className="w-full flex gap-3 font-medium uppercase">
                     {item?.name === "Dashboard" ? (

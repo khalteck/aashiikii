@@ -43,6 +43,7 @@ const CategoryForm = ({ setShowForm }) => {
       console.log("err", err);
     }
   }
+
   return (
     <form
       onClick={(e) => e.stopPropagation()}

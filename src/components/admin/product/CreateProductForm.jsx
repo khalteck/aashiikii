@@ -5,10 +5,17 @@ import { ClipLoader } from "react-spinners";
 import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 import ImageUpload from "./ImageUpload";
 import { useEffect } from "react";
+import { useAppContext } from "../../../contexts/AppContext";
 
 const CreateProductForm = ({ categoryData }) => {
-  const { loading1, addCategoryError, handleAddCategory, addCategorySuccess } =
-    useAdminContext();
+  const { navigate } = useAppContext();
+  const {
+    loading1,
+    loading2,
+    addCategoryError,
+    handleCreateProduct,
+    addCategorySuccess,
+  } = useAdminContext();
   const [error, seterror] = useState(false);
 
   //=========================================to handle register data
@@ -17,11 +24,23 @@ const CreateProductForm = ({ categoryData }) => {
   const [formData, setFormData] = useState({
     name: "",
     category: "",
-    subcategory: "",
+    // subcategory: "",
     image1: "",
     image2: "",
     stock_quantity: "",
   });
+
+  const [selectedCategory, setselectedCategory] = useState(null);
+
+  useEffect(() => {
+    const selectedCategoryRaw = categoryData?.filter(
+      (x) => x?.id === formData?.category
+    )[0];
+
+    if (selectedCategoryRaw?.subcategory?.length > 0) {
+      setselectedCategory(selectedCategoryRaw);
+    }
+  }, [formData]);
 
   useEffect(() => {
     setFormData((prev) => {
@@ -45,10 +64,14 @@ const CreateProductForm = ({ categoryData }) => {
   function handleChange(e) {
     const { value, id } = e.target;
 
+    const values =
+      id === "category" || id === "stock_quantity" || id === "subcategory"
+        ? Number(value)
+        : value;
     setFormData((prev) => {
       return {
         ...prev,
-        [id]: value,
+        [id]: values,
       };
     });
     seterror(false);
@@ -56,10 +79,15 @@ const CreateProductForm = ({ categoryData }) => {
 
   async function handleSubmit() {
     try {
-      if (formData?.name) {
+      if (
+        formData?.name &&
+        formData?.category &&
+        formData?.image1 &&
+        formData?.stock_quantity
+      ) {
         const data = { ...formData, name: formData?.name?.trim() };
-        await handleAddCategory(data);
-        // setShowForm(false);
+        await handleCreateProduct(data);
+        navigate("/admin/products");
       } else {
         seterror(true);
       }
@@ -76,7 +104,7 @@ const CreateProductForm = ({ categoryData }) => {
         <div
           className={`text-[.75rem] px-1 absolute bg-neutral-50 left-5 text-neutral-950`}
         >
-          Name
+          Name <span className="text-red-500">*</span>
         </div>
         <input
           type="text"
@@ -96,7 +124,7 @@ const CreateProductForm = ({ categoryData }) => {
           </div>
         )}
         <div className="text-[.75rem] px-1 absolute bg-neutral-50 left-5 text-neutral-950">
-          Category
+          Category <span className="text-red-500">*</span>
         </div>
         <select
           id="category"
@@ -110,7 +138,7 @@ const CreateProductForm = ({ categoryData }) => {
           </option>
           {categoryData?.map((x, ind) => {
             return (
-              <option key={ind} value={x?.name}>
+              <option key={ind} value={x?.id}>
                 {x?.name}
               </option>
             );
@@ -118,27 +146,32 @@ const CreateProductForm = ({ categoryData }) => {
         </select>
       </div>
 
-      <div className="relative w-full">
-        <div className="text-[.75rem] px-1 absolute bg-neutral-50 left-5 text-neutral-950">
-          Sub-category
+      {selectedCategory && (
+        <div className="relative w-full">
+          <div className="text-[.75rem] px-1 absolute bg-neutral-50 left-5 text-neutral-950">
+            Sub-category
+          </div>
+          <select
+            id="subcategory"
+            onChange={handleChange}
+            value={formData?.subcategory || ""}
+            placeholder="Sub-category.."
+            className="w-full px-3 py-4 border mt-2 outline-none bg-white placeholder:text-neutral-950/30 border-neutral-950/50"
+            required
+          >
+            <option value="" hidden>
+              Select Sub-category
+            </option>
+            {selectedCategory?.subcategory?.map((x, ind) => {
+              return (
+                <option key={ind} value={x?.id}>
+                  {x?.name}
+                </option>
+              );
+            })}
+          </select>
         </div>
-        <select
-          id="subcategory"
-          onChange={handleChange}
-          value={formData?.subcategory}
-          placeholder="Sub-category.."
-          className="w-full px-3 py-4 border mt-2 outline-none bg-white placeholder:text-neutral-950/30 border-neutral-950/50"
-          required
-        >
-          <option value="" hidden>
-            Select Sub-category
-          </option>
-          <option value="Sub-category 1">Sub-category 1</option>
-          <option value="Sub-category 2">Sub-category 2</option>
-          <option value="Sub-category 3">Sub-category 3</option>
-          {/* Add more options as needed */}
-        </select>
-      </div>
+      )}
 
       <ImageUpload images={images} setImages={setImages} />
 
@@ -146,7 +179,7 @@ const CreateProductForm = ({ categoryData }) => {
         <div
           className={`text-[.75rem] px-1 absolute bg-neutral-50 left-5 text-neutral-950`}
         >
-          Stock Quantity
+          Stock Quantity <span className="text-red-500">*</span>
         </div>
         <input
           type="number"
@@ -161,7 +194,7 @@ const CreateProductForm = ({ categoryData }) => {
 
       {error && (
         <p className="w-full text-red-500 bg-red-500/30 font-medium px-3 py-[5px] border-border-red-500 text-[.85rem]">
-          The name field is required
+          Fill the required fields
         </p>
       )}
 
@@ -179,7 +212,7 @@ const CreateProductForm = ({ categoryData }) => {
         disabled={loading1}
         className="w-fit px-8 py-3 text-white flex gap-3 items-center bg-slate-800/90 rounded-md whitespace-nowrap font-bold"
       >
-        {loading1 ? (
+        {loading2 ? (
           <>
             <ClipLoader color={"#ffffff"} size={20} />
             <p>Processing</p>

@@ -1,11 +1,24 @@
 [
-  { "name": "Dashboard", "link": "/admin", "nav": true, "home": true },
-  { "name": "Products", "link": "/admin/products", "nav": true, "home": false },
+  {
+    "name": "Dashboard",
+    "link": "/admin",
+    "nav": true,
+    "home": true,
+    "slug": "dashboard"
+  },
+  {
+    "name": "Products",
+    "link": "/admin/products",
+    "nav": true,
+    "home": false,
+    "slug": "products"
+  },
   {
     "name": "Contact & Reviews",
-    "link": "/admin/reviews",
+    "link": "/admin/contact",
     "nav": true,
-    "home": false
+    "home": false,
+    "slug": "contact"
   },
   { "name": "Logout", "link": "", "nav": false, "home": false }
 ]

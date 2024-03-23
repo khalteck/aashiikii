@@ -40,6 +40,9 @@ const CreateCategory = () => {
   useEffect(() => {
     handleFetchCategory();
   }, []);
+
+  console.log("categoryData", categoryData);
+
   return (
     <>
       <Header />
@@ -54,7 +57,7 @@ const CreateCategory = () => {
           <div className="w-full mt-5 flex gap-5 flex-col md:flex-row">
             <div className="w-full md:max-w-[800px] h-fit border border-slate-800 rounded-md p-4">
               <div className="flex gap-3 justify-between">
-                <h2 className="font-bold flex ite gap-3">
+                <h2 className="font-bold flex items-center gap-3">
                   Categories{" "}
                   {loading1 ? (
                     <div>

@@ -27,6 +27,8 @@ const Header = () => {
       <div className="w-fit flex md:mx-0 relative text-neutral-950 text-2xl font-bold">
         {currentPage === "/admin"
           ? "Dashboard"
+          : currentPage?.includes("edit")
+          ? "Edit Product"
           : capitalizeFirstLetter(pageName)}
       </div>
 

@@ -4,13 +4,22 @@ import { FaUsers } from "react-icons/fa";
 import TotalsCard from "../../components/admin/dashboard/TotalsCard";
 import RecentOrderCard from "../../components/admin/dashboard/RecentOrderCard";
 import ContactMessageCard from "../../components/admin/dashboard/ContactMessageCard";
-import contactData from "../../data/contact.json";
+// import contactData from "../../data/contact.json";
 import orderData from "../../data/orders.json";
+import { ClipLoader } from "react-spinners";
 
 import { useAppContext } from "../../contexts/AppContext";
 import Footer from "../../components/admin/common/Footer";
+import { useEffect } from "react";
+import { useAdminContext } from "../../contexts/AdminContext";
 
 const Dashboard = () => {
+  const { contactData, handleFetchContact, loading1 } = useAdminContext();
+
+  useEffect(() => {
+    handleFetchContact();
+  }, []);
+
   const { navigate } = useAppContext();
   const totals = [
     { title: "Users", value: 1000 },
@@ -45,20 +54,32 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="w-full border border-slate-800 rounded-md p-4">
-              <h2 className="font-bold">Recent Contact Messages</h2>
+              <h2 className="font-bold flex items-center gap-3">
+                Recent Contact Messages{" "}
+                {loading1 && (
+                  <div>
+                    <ClipLoader color={"#000"} size={20} />
+                  </div>
+                )}
+              </h2>
               <div className="w-full flex flex-col gap-2 mt-4">
-                {contactData?.map((item, index) => {
-                  return <ContactMessageCard key={index} item={item} />;
-                })}
+                {contactData
+                  ?.sort((a, b) => b?.id - a?.id)
+                  ?.slice(0, 5)
+                  ?.map((item, index) => {
+                    return <ContactMessageCard key={index} item={item} />;
+                  })}
               </div>
-              <div className="mt-5 flex justify-center">
-                <button
-                  onClick={() => navigate("/admin/reviews")}
-                  className="px-8 py-2 text-[.85rem] fonr-bold bg-slate-800 text-white rounded-md"
-                >
-                  View all
-                </button>
-              </div>
+              {contactData?.length > 1 && (
+                <div className="mt-5 flex justify-center">
+                  <button
+                    onClick={() => navigate("/admin/contact")}
+                    className="px-8 py-2 text-[.85rem] fonr-bold bg-slate-800 text-white rounded-md"
+                  >
+                    View all
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </section>

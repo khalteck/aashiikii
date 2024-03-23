@@ -49,10 +49,10 @@ function ImageUpload({ images, setImages }) {
       <div
         className={`text-[.75rem] px-1 absolute bg-neutral-50 left-5 -top-3 text-neutral-950`}
       >
-        Image(s)
+        Image(s) <span className="text-red-500">*</span>
       </div>
 
-      <p>Upload product images - maximum 5</p>
+      <p>Upload product images - 2 images (for now)</p>
 
       <div className="mt-4 flex flex-wrap gap-5">
         {previewImages?.map((image, ind) => (
@@ -69,7 +69,7 @@ function ImageUpload({ images, setImages }) {
             </button>
           </div>
         ))}
-        {imageLength < 5 && (
+        {imageLength < 2 && (
           <label
             htmlFor="imageUpload"
             className="w-[100px] h-[100px] px-3 py-4 rounded-md bg-slate-800/30 border outline-none placeholder:text-neutral-950/30 border-neutral-950/50 flex justify-center items-center cursor-pointer"
@@ -79,7 +79,7 @@ function ImageUpload({ images, setImages }) {
               id="imageUpload"
               className="hidden"
               onChange={handleImageChange}
-              multiple
+              // multiple
             />
             <HiPlus size={"30px"} color="black" />
           </label>

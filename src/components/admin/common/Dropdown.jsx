@@ -71,7 +71,7 @@ const Dropdown = ({ handleMenu }) => {
                             size="25px"
                             color="white"
                           />
-                        ) : item?.name === "Reviews" ? (
+                        ) : item?.name === "Contact & Reviews" ? (
                           <MdReviews size="25px" color="white" />
                         ) : (
                           <IoLogOut size="25px" color="white" />

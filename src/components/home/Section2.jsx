@@ -14,7 +14,7 @@ const Section2 = () => {
 
   return (
     <section className="w-full px-5 md:px-[100px] mb-[80px]">
-      <div className="w-full flex md:flex-row items-center md:items-start flex-col gap-5 mt-10">
+      <div className="w-full flex md:flex-row items-center md:items-start flex-col gap-5 md:mt-10">
         <div className="w-full sm:max-w-[300px] md:w-[30%] md:min-w-[250px] md:max-w-full">
           <div className="w-fit h-fit relative">
             <div className="absolute top-0 left-0 w-full h-full bg-black/50 flex flex-col gap-10 justify-center items-center text-white">

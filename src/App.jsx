@@ -23,6 +23,7 @@ const AccountOverview = lazy(() => import("./pages/client/AccountOverview"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 const Products = lazy(() => import("./pages/admin/Products"));
 const CreateProduct = lazy(() => import("./pages/admin/CreateProduct"));
+const EditProduct = lazy(() => import("./pages/admin/EditProduct"));
 const CreateCategory = lazy(() => import("./pages/admin/CreateCategory"));
 const Reviews = lazy(() => import("./pages/admin/Reviews"));
 
@@ -54,7 +55,13 @@ function App() {
           {/* protected routes */}
           <Route
             path="/wishlist"
-            element={permission?.is_client ? <Wishlist /> : <Login />}
+            element={
+              permission?.is_client || permission?.is_admin ? (
+                <Wishlist />
+              ) : (
+                <Login />
+              )
+            }
           />
 
           {/* admin */}
@@ -71,11 +78,15 @@ function App() {
             element={permission?.is_admin ? <CreateProduct /> : <Login />}
           />
           <Route
-            path="/admin/create-category"
+            path="/admin/edit-product/:id"
+            element={permission?.is_admin ? <EditProduct /> : <Login />}
+          />
+          <Route
+            path="/admin/manage-category"
             element={permission?.is_admin ? <CreateCategory /> : <Login />}
           />
           <Route
-            path="/admin/reviews"
+            path="/admin/contact"
             element={permission?.is_admin ? <Reviews /> : <Login />}
           />
 

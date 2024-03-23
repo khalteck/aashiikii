@@ -189,6 +189,27 @@ const AppContextProvider = ({ children }) => {
     navigate("/");
   }
 
+  //=====================================================to submit contact message
+  const [contactSuccess, setContactSuccess] = useState(false);
+  const [contactError, setContactError] = useState(null);
+
+  async function handleContact(data) {
+    try {
+      setloading1(true);
+      const response = await axios.post(`${baseUrl}/api/message/`, data);
+      setContactSuccess(true);
+      // setTimeout(() => {
+      //   setContactSuccess(false);
+      // }, 5000);
+      console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      setContactError(error?.response?.data);
+    } finally {
+      setloading1(false);
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -220,6 +241,10 @@ const AppContextProvider = ({ children }) => {
         logoutUser,
         setShowLogoutModal,
         showLogoutModal,
+        contactSuccess,
+        contactError,
+        handleContact,
+        setContactSuccess,
       }}
     >
       {children}

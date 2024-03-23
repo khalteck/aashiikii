@@ -3,7 +3,8 @@ import { useAppContext } from "../../../contexts/AppContext";
 import Toast from "./Toast";
 
 const ToastContainer = () => {
-  const { addCategorySuccess } = useAdminContext();
+  const { addCategorySuccess, createProductSuccess, productDeleteSuccess } =
+    useAdminContext();
   const { registerSuccess, loginSuccess, logoutSuccess } = useAppContext();
   return (
     <>
@@ -17,6 +18,12 @@ const ToastContainer = () => {
       {/* admin toasts */}
       {addCategorySuccess && (
         <Toast title={"Category created successfully!"} status={"success"} />
+      )}
+      {createProductSuccess && (
+        <Toast title={"Product created successfully!"} status={"success"} />
+      )}
+      {productDeleteSuccess && (
+        <Toast title={"Product deleted successfully!"} status={"success"} />
       )}
     </>
   );

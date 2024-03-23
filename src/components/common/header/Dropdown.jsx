@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../contexts/AppContext";
 
 const Dropdown = ({ handleMenu }) => {
-  const { userDetails } = useAppContext();
+  const { userDetails, cartData } = useAppContext();
   const navigate = useNavigate();
 
   const [showList, setShowList] = useState(false);
@@ -64,23 +64,23 @@ const Dropdown = ({ handleMenu }) => {
                         ? hamdleCategories()
                         : link(item?.link);
                     }}
-                    className={`w-full pb-5 text-[1.5rem] flex flex-col gap-3 ${
+                    className={`w-full pb-5 text-[1rem] flex flex-col gap-3 ${
                       item?.name === "Categories" && !showCategories
-                        ? "border-b border-neutral-50"
+                        ? "border-b border-neutral-50/50"
                         : item?.name !== "Categories"
-                        ? "border-b border-neutral-50"
+                        ? "border-b border-neutral-50/50"
                         : ""
                     }`}
                   >
-                    <div className="w-full flex gap-3 justify-between font-medium uppercase">
+                    <div className="w-full flex gap-3 justify-between font-light uppercase">
                       <p>{item?.name}</p>
                       {item?.name === "Categories" && (
                         <>
                           <div className="">
                             {showCategories ? (
-                              <FaMinus size="25px" color="white" />
+                              <FaMinus size="18px" color="white" />
                             ) : (
-                              <FaPlus size="25px" color="white" />
+                              <FaPlus size="18px" color="white" />
                             )}
                           </div>
                         </>
@@ -89,7 +89,7 @@ const Dropdown = ({ handleMenu }) => {
                     {item?.name === "Categories" && showCategories && (
                       <div
                         onClick={(e) => e.stopPropagation()}
-                        className="w-full h-[300px] overflow-y-auto cateslide border-b border-neutral-50 pb-3 px-2 flex flex-col gap-4 text-[.75rem] uppercase"
+                        className="w-full h-[300px] overflow-y-auto cateslide border-b border-neutral-50/50 pb-3 px-2 flex flex-col gap-4 text-[.75rem] uppercase"
                       >
                         {categories?.map((itm, ind) => {
                           return (
@@ -139,10 +139,28 @@ const Dropdown = ({ handleMenu }) => {
                 </React.Fragment>
               );
             })}
+            <li
+              onClick={() => {
+                navigate("/cart");
+                handleMenu();
+              }}
+              className={`w-full pb-5 text-[1rem] flex gap-2 border-b border-neutral-50/50 font-light`}
+            >
+              CART <span className="">({cartData?.length})</span>
+            </li>
+            <li
+              onClick={() => {
+                navigate("/wishlist");
+                handleMenu();
+              }}
+              className={`w-full pb-5 text-[1rem] flex flex-col gap-3 border-b border-neutral-50/50 font-light`}
+            >
+              WISHLIST
+            </li>
             {permissions?.is_admin && (
               <li
                 onClick={() => navigate("/admin")}
-                className={`w-full pb-5 text-[1.5rem] flex flex-col gap-3 border-b border-neutral-50`}
+                className={`w-full pb-5 text-[1rem] flex flex-col gap-3 border-b border-neutral-50/50 font-light`}
               >
                 ADMIN DASHBOARD
               </li>

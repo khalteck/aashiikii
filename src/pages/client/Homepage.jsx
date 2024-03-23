@@ -25,7 +25,7 @@ const Homepage = () => {
       <div className="w-full min-h-screen bg-neutral-50">
         <Section1 />
 
-        <div className="w-full h-[150px] flex justify-center items-center">
+        <div className="w-full h-[100px] md:h-[150px] flex justify-center items-center">
           <h1 className="font-bold text-[1.5rem] md:text-[1.75rem] text-center">
             POPULAR CATEGORIES
           </h1>
