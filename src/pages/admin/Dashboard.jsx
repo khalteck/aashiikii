@@ -12,6 +12,7 @@ import { useAppContext } from "../../contexts/AppContext";
 import Footer from "../../components/admin/common/Footer";
 import { useEffect } from "react";
 import { useAdminContext } from "../../contexts/AdminContext";
+import ScrollToTop from "../../ScrollToTop";
 
 const Dashboard = () => {
   const { contactData, handleFetchContact, loading1 } = useAdminContext();
@@ -70,6 +71,11 @@ const Dashboard = () => {
                     return <ContactMessageCard key={index} item={item} />;
                   })}
               </div>
+              {contactData?.length === 0 && (
+                <div className="w-full h-[100px] flex justify-center items-center border border-slate-950/20 rounded-lg opacity-65 text-sm mt-3">
+                  Nothing yet..
+                </div>
+              )}
               {contactData?.length > 1 && (
                 <div className="mt-5 flex justify-center">
                   <button
@@ -85,6 +91,8 @@ const Dashboard = () => {
         </section>
         <Footer />
       </main>
+
+      <ScrollToTop />
     </>
   );
 };

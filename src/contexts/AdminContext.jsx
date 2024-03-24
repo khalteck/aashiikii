@@ -169,6 +169,50 @@ const AdminContextProvider = ({ children }) => {
     }
   }
 
+  //======================================================================to edit product
+  const [editProductSuccess, seteditProductSuccess] = useState(false);
+  const [editProductError, seteditProductError] = useState(null);
+
+  async function handleEditProduct(data, id) {
+    try {
+      setLoading2(true);
+
+      const formData = new FormData();
+
+      Object.keys(data).forEach((key) => {
+        // If it's an image key, append the image file
+        if (key.startsWith("image") && data[key] instanceof File) {
+          formData.append(key, data[key]);
+        } else {
+          // If it's not an image key, append the data value directly
+          formData.append(key, data[key]);
+        }
+      });
+
+      const response = await axios.put(
+        `${baseUrl}/api/product/${id}/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Important for sending files
+          },
+        }
+      );
+
+      handleFetchProducts();
+      seteditProductSuccess(true);
+      setTimeout(() => {
+        seteditProductSuccess(false);
+      }, 5000);
+      console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      seteditProductError(error?.response?.data);
+    } finally {
+      setLoading2(false);
+    }
+  }
+
   //======================================================================to fetch products
   const [productData, setproductData] = useState([]);
 
@@ -213,7 +257,9 @@ const AdminContextProvider = ({ children }) => {
   async function handleSearchProducts(term) {
     try {
       setloading3(true);
-      const response = await axios.get(`${baseUrl}/main/product?${term}/`);
+      const response = await axios.get(
+        `${baseUrl}/main/product?search=${term}`
+      );
       setsearchData(response?.data);
       // console.log("Response data:", response.data);
     } catch (error) {
@@ -227,6 +273,48 @@ const AdminContextProvider = ({ children }) => {
   useEffect(() => {
     setsearchData([]);
   }, [currentPage]);
+
+  //============================================================================to add variations
+  const [addVariationSuccess, setaddVariationSuccess] = useState(false);
+  const [addVariationError, setaddVariationError] = useState(null);
+
+  async function handleAddVariation(data) {
+    try {
+      setloading3(true);
+      const response = await axios.post(
+        `${baseUrl}/api/product_variant/`,
+        data
+      );
+      handleFetchProducts();
+      setaddVariationSuccess(true);
+      setTimeout(() => {
+        setaddVariationSuccess(false);
+      }, 5000);
+      console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      setaddVariationError(error?.response?.data);
+    } finally {
+      setloading3(false);
+    }
+  }
+
+  //=====================================================================to fetch variations
+  // const [variationData, setvariationData] = useState([]);
+
+  // async function handleFetchVariation(id) {
+  //   try {
+  //     setloading1(true);
+  //     const response = await axios.get(`${baseUrl}/api/product_variant/${id}/`);
+  //     setvariationData(response?.data);
+  //     // console.log("Response data:", response.data);
+  //   } catch (error) {
+  //     console.log("error", error);
+  //     //   setaddCategoryError(error?.response?.data);
+  //   } finally {
+  //     setloading1(false);
+  //   }
+  // }
 
   return (
     <AdminContext.Provider
@@ -263,6 +351,12 @@ const AdminContextProvider = ({ children }) => {
         searchData,
         handleSearchProducts,
         setsearchData,
+        handleEditProduct,
+        editProductSuccess,
+        editProductError,
+        handleAddVariation,
+        addVariationSuccess,
+        addVariationError,
       }}
     >
       {children}

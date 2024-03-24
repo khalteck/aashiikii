@@ -29,7 +29,7 @@ const ProductImagesCont = ({ showImage, setShowImage }) => {
         className="bg-neutral-50 w-full sm:w-[550px] h-[80%] mx-auto overflow-y-auto relative dropslide p-4"
       >
         <h2 className="font-bold text-center mb-5">
-          View Images - {showImage?.name}
+          View Images ({images?.length}) - {showImage?.name}
         </h2>
         <div className="w-full h-[90%] overflow-x-auto no-scrollbar flex gap-4 p-3 snap-mandatory snap-x">
           {images?.map((itm, ind) => {
@@ -38,7 +38,7 @@ const ProductImagesCont = ({ showImage, setShowImage }) => {
                 key={ind}
                 alt=""
                 src={itm}
-                className="md:w-[80%] w-[90%] object-cover rounded-lg snap-center"
+                className="md:w-[80%] w-[90%] object-cover rounded-lg snap-center border border-slate-800/20"
               />
             );
           })}

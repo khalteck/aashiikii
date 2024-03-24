@@ -176,6 +176,7 @@ const AppContextProvider = ({ children }) => {
     setloginErrorSource(null);
   }, [currentPage]);
 
+  //=================================================================to log out user
   const [logoutSuccess, setlogoutSuccess] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 

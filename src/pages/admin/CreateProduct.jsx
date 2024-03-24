@@ -3,6 +3,7 @@ import Header from "../../components/admin/common/Header";
 import SideBar from "../../components/admin/common/SideBar";
 import CreateProductForm from "../../components/admin/product/CreateProductForm";
 import { useAdminContext } from "../../contexts/AdminContext";
+import ScrollToTop from "../../ScrollToTop";
 
 const CreateProduct = () => {
   const { categoryData, handleFetchCategory, loading1 } = useAdminContext();
@@ -35,6 +36,8 @@ const CreateProduct = () => {
           </div>{" "}
         </section>
       </main>
+
+      <ScrollToTop />
     </>
   );
 };

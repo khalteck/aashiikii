@@ -11,6 +11,8 @@ import { useAdminContext } from "../../contexts/AdminContext";
 import { useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import SubCategoryForm from "../../components/admin/product/SubCategoryForm";
+import ReactPaginate from "react-paginate";
+import ScrollToTop from "../../ScrollToTop";
 
 const CreateCategory = () => {
   const {
@@ -24,6 +26,35 @@ const CreateCategory = () => {
     setShowSubForm,
     setaddSubCategoryError,
   } = useAdminContext();
+
+  const [categoryDataPag, setcategoryDataPag] = useState([]);
+  useEffect(() => {
+    setcategoryDataPag(categoryData);
+  }, [categoryData]);
+
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const productPerPage = 5;
+  const pagesVisited = pageNumber * productPerPage;
+
+  const displayCategory = categoryDataPag
+    ?.sort((a, b) => b?.id - a?.id)
+    ?.slice(pagesVisited, pagesVisited + productPerPage)
+    ?.map((item, index) => {
+      return (
+        <CategoryCard
+          key={index}
+          item={item}
+          handleShowSubForm={handleShowSubForm}
+        />
+      );
+    });
+
+  const pageCount = Math.ceil(categoryDataPag?.length / productPerPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   function handleSHowForm() {
     setShowForm((prev) => !prev);
@@ -41,7 +72,7 @@ const CreateCategory = () => {
     handleFetchCategory();
   }, []);
 
-  console.log("categoryData", categoryData);
+  // console.log("categoryData", categoryData);
 
   return (
     <>
@@ -81,15 +112,21 @@ const CreateCategory = () => {
                 </button>
               </div>
               <div className="w-full flex flex-col gap-4 mt-4">
-                {categoryData?.map((item, index) => {
-                  return (
-                    <CategoryCard
-                      key={index}
-                      item={item}
-                      handleShowSubForm={handleShowSubForm}
-                    />
-                  );
-                })}
+                {displayCategory}
+              </div>
+
+              <div className="mt-4">
+                <ReactPaginate
+                  previousLabel={"<"}
+                  nextLabel={">"}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={pageCount}
+                  onPageChange={changePage}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"active"}
+                />
               </div>
             </div>
           </div>{" "}
@@ -105,7 +142,7 @@ const CreateCategory = () => {
             <IoClose color="black" size="20px" />
           </div>
           <div className="bg-neutral-50 w-full sm:w-[550px] h-fit mx-auto overflow-y-auto relative dropslide p-4">
-            <h2 className="font-bold text-center mb-5">Create Category Form</h2>
+            <h2 className="font-bold text-center mb-5">Create Category</h2>
             <CategoryForm setShowForm={setShowForm} />
           </div>
         </div>
@@ -120,9 +157,7 @@ const CreateCategory = () => {
             <IoClose color="black" size="20px" />
           </div>
           <div className="bg-neutral-50 w-full sm:w-[550px] h-fit mx-auto overflow-y-auto relative dropslide p-4">
-            <h2 className="font-bold text-center mb-3">
-              Create Sub-category Form
-            </h2>
+            <h2 className="font-bold text-center mb-3">Create Sub-category</h2>
             <p className="text-center mb-5">
               Sub-category for category:{" "}
               <span className="font-bold">{selectedCategory?.name}</span>
@@ -134,6 +169,7 @@ const CreateCategory = () => {
           </div>
         </div>
       )}
+      <ScrollToTop />
     </>
   );
 };

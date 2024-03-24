@@ -6,31 +6,56 @@ import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 import ImageUpload from "./ImageUpload";
 import { useEffect } from "react";
 import { useAppContext } from "../../../contexts/AppContext";
+import urlToImageFile from "../../../utils/urlToImageFile";
 
-const CreateProductForm = ({ categoryData }) => {
+const EditProductForm = ({ categoryData, currentProduct }) => {
   const { navigate } = useAppContext();
-  const {
-    loading1,
-    loading2,
-    addCategoryError,
-    handleCreateProduct,
-    addCategorySuccess,
-  } = useAdminContext();
+  const { loading1, loading2, addCategoryError, handleEditProduct } =
+    useAdminContext();
   const [error, seterror] = useState(false);
 
   //=========================================to handle register data
+  const [loadingImages, setloadingImages] = useState(false);
+
   const [images, setImages] = useState({});
+  const [oldImages, setOldImages] = useState(
+    getImageValues(currentProduct) || []
+  );
 
   const [formData, setFormData] = useState({
-    name: "",
-    category: "",
+    name: currentProduct?.name || "",
+    category: currentProduct?.category || "",
     // subcategory: "",
-    image1: "",
-    image2: "",
-    stock_quantity: "",
+    image1: currentProduct?.image1 || "",
+    image2: currentProduct?.image2 || "",
+    stock_quantity: currentProduct?.stock_quantity || "",
   });
 
+  useEffect(() => {
+    if (currentProduct) {
+      setFormData({
+        name: currentProduct?.name || "",
+        category: currentProduct?.category || "",
+        image1: currentProduct?.image1 || "",
+        image2: currentProduct?.image2 || "",
+        stock_quantity: currentProduct?.stock_quantity || "",
+      });
+      setOldImages(getImageValues(currentProduct));
+
+      const filteredFormData = Object.keys(currentProduct)
+        ?.filter((key) => key.includes("image"))
+        ?.reduce((acc, key) => {
+          acc[key] = currentProduct[key];
+          return acc;
+        }, {});
+
+      setImages(filteredFormData);
+    }
+  }, [currentProduct]);
+
   const [selectedCategory, setselectedCategory] = useState(null);
+
+  //   console.log("formData", formData);
 
   useEffect(() => {
     const selectedCategoryRaw = categoryData?.filter(
@@ -39,10 +64,8 @@ const CreateProductForm = ({ categoryData }) => {
 
     if (selectedCategoryRaw?.subcategory?.length > 0) {
       setselectedCategory(selectedCategoryRaw);
-    } else {
-      setselectedCategory(null);
     }
-  }, [formData]);
+  }, [formData, currentProduct]);
 
   useEffect(() => {
     setFormData((prev) => {
@@ -59,9 +82,9 @@ const CreateProductForm = ({ categoryData }) => {
         ...images,
       };
     });
-  }, [images]);
+  }, [images, currentProduct]);
 
-  console.log("formData", formData);
+  //   console.log("images", images);
 
   function handleChange(e) {
     const { value, id } = e.target;
@@ -79,6 +102,20 @@ const CreateProductForm = ({ categoryData }) => {
     seterror(false);
   }
 
+  async function convertImageUrlsToFiles(obj) {
+    const newObj = {};
+
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const imageUrl = obj[key];
+        const imageFile = await urlToImageFile(imageUrl);
+        newObj[key] = imageFile;
+      }
+    }
+
+    return newObj;
+  }
+
   async function handleSubmit() {
     try {
       if (
@@ -87,16 +124,42 @@ const CreateProductForm = ({ categoryData }) => {
         formData?.image1 &&
         formData?.stock_quantity
       ) {
-        const data = { ...formData, name: formData?.name?.trim() };
-        await handleCreateProduct(data);
+        setloadingImages(true);
+        const imageFiles = await convertImageUrlsToFiles(images);
+        const data = {
+          ...formData,
+          name: formData?.name?.trim(),
+          ...imageFiles,
+        };
+        await handleEditProduct(data, currentProduct?.id);
         navigate("/admin/products");
       } else {
         seterror(true);
       }
     } catch (err) {
       console.log("err", err);
+    } finally {
+      setloadingImages(false);
     }
   }
+
+  function getImageValues(obj) {
+    const imageValues = [];
+    for (const key in obj) {
+      if (
+        Object.prototype.hasOwnProperty.call(obj, key) &&
+        key.includes("image")
+      ) {
+        imageValues.push({ id: key, imageURL: obj[key] });
+      }
+    }
+    return imageValues;
+  }
+
+  //   const oldImages = getImageValues(currentProduct);
+
+  //   console.log("oldImages", oldImages);
+
   return (
     <form
       onClick={(e) => e.stopPropagation()}
@@ -175,7 +238,11 @@ const CreateProductForm = ({ categoryData }) => {
         </div>
       )}
 
-      <ImageUpload images={images} setImages={setImages} oldImages={[]} />
+      <ImageUpload
+        images={images}
+        setImages={setImages}
+        oldImages={oldImages}
+      />
 
       <div className="relative w-full">
         <div
@@ -211,7 +278,7 @@ const CreateProductForm = ({ categoryData }) => {
           e.preventDefault();
           handleSubmit();
         }}
-        disabled={loading1}
+        disabled={loading1 || loadingImages}
         className="w-fit px-8 py-3 text-white flex gap-3 items-center bg-slate-800/90 rounded-md whitespace-nowrap font-bold"
       >
         {loading2 ? (
@@ -222,7 +289,7 @@ const CreateProductForm = ({ categoryData }) => {
         ) : (
           <>
             <FiSend size={"20px"} color="white" />
-            <p>Create Product</p>
+            <p>Submit</p>
           </>
         )}
       </button>
@@ -230,4 +297,4 @@ const CreateProductForm = ({ categoryData }) => {
   );
 };
 
-export default CreateProductForm;
+export default EditProductForm;

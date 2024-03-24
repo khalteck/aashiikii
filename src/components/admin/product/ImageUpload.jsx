@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { HiPlus } from "react-icons/hi";
+import { useEffect } from "react";
+import { useAppContext } from "../../../contexts/AppContext";
 
-function ImageUpload({ images, setImages }) {
+function ImageUpload({ images, setImages, oldImages }) {
+  const { currentPage } = useAppContext();
   const [imageLength, setImageLength] = useState(0);
-  const [previewImages, setPreviewImages] = useState([]);
+  const [previewImages, setPreviewImages] = useState([...oldImages]);
+  useEffect(() => {
+    if (oldImages?.length > 0 && currentPage?.includes("edit")) {
+      setPreviewImages([...oldImages]);
+      setImageLength(oldImages?.length);
+    }
+  }, [oldImages]);
 
-  //   console.log("previewImages", previewImages);
+  // console.log("previewImages", previewImages);
 
   const handleImageChange = (event) => {
     const files = event.target.files;

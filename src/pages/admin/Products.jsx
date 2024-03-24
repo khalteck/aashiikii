@@ -17,6 +17,7 @@ import { ClipLoader } from "react-spinners";
 import { useAdminContext } from "../../contexts/AdminContext";
 import { IoClose } from "react-icons/io5";
 import ProductImagesCont from "../../components/admin/product/ProductImagesCont";
+import ScrollToTop from "../../ScrollToTop";
 
 const Products = () => {
   const { navigate } = useAppContext();
@@ -42,13 +43,23 @@ const Products = () => {
   const [showImage, setShowImage] = useState(null);
   const [searchClicked, setsearchClicked] = useState(false);
 
+  const [searchTerm, setSearchTerm] = useState("");
+  function handleChange(e) {
+    const value = e.target.value?.toLowerCase();
+    setSearchTerm(value);
+  }
+
   // const products = productData;
   const [productDataPag, setproductDataPag] = useState([]);
   useEffect(() => {
     searchClicked
       ? setproductDataPag(searchData)
       : setproductDataPag(productData);
-  }, [productData, searchData]);
+    if (searchTerm === "") {
+      setsearchClicked(false);
+      setsearchData([]);
+    }
+  }, [productData, searchClicked, searchTerm, loading3]);
 
   const [pageNumber, setPageNumber] = useState(0);
 
@@ -91,13 +102,7 @@ const Products = () => {
     section.scrollIntoView({ behavior: "smooth" });
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
-  function handleChange(e) {
-    const value = e.target.value?.toLowerCase();
-    setSearchTerm(value);
-  }
-
-  console.log("searchData", searchData);
+  // console.log("searchClicked", searchClicked);
 
   function handleSearch() {
     handleSearchProducts(searchTerm);
@@ -105,8 +110,9 @@ const Products = () => {
   }
 
   function handleClear() {
-    setsearchClicked(true);
+    setsearchClicked(false);
     setsearchData([]);
+    setSearchTerm("");
   }
 
   return (
@@ -125,13 +131,15 @@ const Products = () => {
 
           <div className="mt-7 opacity-70 border border-neutral-950/20 rounded-md p-5 text-sm">
             <p className="font-bold mb-2">Note</p>
-            For products tagged as 'Incomplete', variations have not been added
-            yet.
+            For products tagged as '
+            <span className="font-bold">Incomplete</span>', variations have not
+            been added yet.
             <br /> These products won't appear in the client area. Click 'Edit
             (pencil)' icon to add variations.
             <br />
             <br />
-            For products tagged as 'Complete', variations are already added.
+            For products tagged as '<span className="font-bold">Live</span>',
+            variations are already added.
             <br />
             These products will be displayed in the client area."
           </div>
@@ -241,12 +249,19 @@ const Products = () => {
                 </button>
               </form>
 
+              {searchClicked && (
+                <div className="text-sm opacity-85 mt-4">
+                  Showing 2 result(s)
+                </div>
+              )}
+
               {loading3 ? (
-                <div className="w-full mt-5 flex flex-col border border-black/20 p-5 rounded-md text-sm items-center justify-center opacity-50">
+                <div className="w-full mt-5 flex  border border-black/20 p-5 rounded-md text-sm items-center justify-center opacity-50">
                   Searching...
+                  <ClipLoader color={"#black"} size={20} />
                 </div>
               ) : (
-                <div className="mt-10 flex flex-wrap gap-3">
+                <div className="mt-7 flex flex-wrap gap-3">
                   {productData?.length ? (
                     displayProducts
                   ) : (
@@ -281,6 +296,8 @@ const Products = () => {
       {showImage && (
         <ProductImagesCont showImage={showImage} setShowImage={setShowImage} />
       )}
+
+      <ScrollToTop />
     </>
   );
 };
