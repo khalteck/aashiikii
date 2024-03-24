@@ -299,22 +299,22 @@ const AdminContextProvider = ({ children }) => {
     }
   }
 
-  //=====================================================================to fetch variations
-  // const [variationData, setvariationData] = useState([]);
-
-  // async function handleFetchVariation(id) {
-  //   try {
-  //     setloading1(true);
-  //     const response = await axios.get(`${baseUrl}/api/product_variant/${id}/`);
-  //     setvariationData(response?.data);
-  //     // console.log("Response data:", response.data);
-  //   } catch (error) {
-  //     console.log("error", error);
-  //     //   setaddCategoryError(error?.response?.data);
-  //   } finally {
-  //     setloading1(false);
-  //   }
-  // }
+  //=========================================================================to delete sub-category
+  async function handleDeleteVariation(id) {
+    try {
+      setLoading2(true);
+      const response = await axios.delete(
+        `${baseUrl}/api/product_variant/${id}`
+      );
+      handleFetchProducts();
+      console.log("Response data:", response);
+    } catch (error) {
+      console.log("error", error);
+      //   setaddCategoryError(error?.response?.data);
+    } finally {
+      setLoading2(false);
+    }
+  }
 
   return (
     <AdminContext.Provider
@@ -357,6 +357,7 @@ const AdminContextProvider = ({ children }) => {
         handleAddVariation,
         addVariationSuccess,
         addVariationError,
+        handleDeleteVariation,
       }}
     >
       {children}

@@ -1,9 +1,12 @@
+import { useAppContext } from "../../contexts/AppContext";
 import categories from "../../data/categories.json";
 import { useParams } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 const Section1 = () => {
-  const { slug } = useParams();
-  const currentCategory = categories?.filter((x) => x?.slug === slug)[0];
+  const { categoryData, loading1 } = useAppContext();
+  const { id } = useParams();
+  const currentCategory = categoryData?.filter((x) => x?.id === Number(id))[0];
 
   const handleShopNowClick = () => {
     const section2 = document.getElementById("section2");
@@ -16,7 +19,13 @@ const Section1 = () => {
         <div className="w-full md:w-[600px]">
           <div className={`w-fit h-fit mx-auto p-5 bg-black/70 `}>
             <div className="w-full p-5 max-w-[400px] md:w-[500px] h-[150px] md:h-[200px] flex flex-col gap-3 justify-center items-center text-white text-[1.75rem] md:text-[2rem] font-bold text-center">
-              <p>{currentCategory?.name}</p>
+              {loading1 ? (
+                <div className="w-full h-fit bg-transparent flex justify-center items-center">
+                  <ClipLoader color={"#fff"} size={20} />
+                </div>
+              ) : (
+                <p>{currentCategory?.name}</p>
+              )}
               <button
                 className="px-5 py-2 bg-[#F1E4D8] text-[.9rem] text-black"
                 onClick={handleShopNowClick}

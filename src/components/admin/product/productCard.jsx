@@ -40,9 +40,16 @@ const ProductCard = ({ item, myCategory, mySubcategory, setShowImage }) => {
           />
           <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-b from-transparent to-slate-800/70 flex justify-end items-end p-4">
             <div
-              className={`absolute top-0 left-0 bg-white px-2 py-1 text-[.85rem] font-medium text-red-500 rounded-br-md`}
+              className={`absolute top-0 left-0 bg-white px-2 py-1 text-[.85rem] font-medium flex justify-center items-center gap-1 ${
+                item?.variation ? "text-green-600" : "text-red-500"
+              } rounded-br-md`}
             >
-              Incomplete
+              <div
+                className={`w-2 h-2 rounded-full ${
+                  item?.variation ? "bg-green-600" : "bg-red-500"
+                }`}
+              ></div>
+              <p>{item?.variation ? "Live" : "Incomplete"}</p>
             </div>
             <div className="text-[.85rem] px-2 py-[2px] rounded-lg bg-white font-bold">
               NGN {item?.price}

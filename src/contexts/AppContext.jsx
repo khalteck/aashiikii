@@ -211,6 +211,23 @@ const AppContextProvider = ({ children }) => {
     }
   }
 
+  //======================================================================to fetch products
+  const [categoryData, setcategoryData] = useState([]);
+
+  async function handleFetchCategory() {
+    try {
+      setloading1(true);
+      const response = await axios.get(`${baseUrl}/api/category/`);
+      setcategoryData(response?.data);
+      console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      //   setaddCategoryError(error?.response?.data);
+    } finally {
+      setloading1(false);
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -246,6 +263,8 @@ const AppContextProvider = ({ children }) => {
         contactError,
         handleContact,
         setContactSuccess,
+        categoryData,
+        handleFetchCategory,
       }}
     >
       {children}

@@ -4,9 +4,10 @@ import categories from "../../../data/categories.json";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../contexts/AppContext";
+import { ClipLoader } from "react-spinners";
 
 const Nav = () => {
-  const { currentPage, userDetails } = useAppContext();
+  const { currentPage, userDetails, categoryData, loading1 } = useAppContext();
   const navigate = useNavigate();
   const [hover, setHover] = useState(false);
 
@@ -92,20 +93,25 @@ const Nav = () => {
               : "h-[300px] bottom-[-300px]"
           }`}
         >
-          {categories?.map((itm, ind) => {
+          {loading1 && (
+            <div className="w-full h-full bg-transparent flex justify-center items-center">
+              <ClipLoader color={"#fff"} size={20} />
+            </div>
+          )}
+          {categoryData?.map((itm, ind) => {
             return (
               <div
                 key={ind}
                 onClick={() => {
-                  itm?.child?.length > 0
+                  itm?.subcategory?.length > 0
                     ? handleChild(itm)
-                    : navigate(`/categories/${itm?.slug}`);
+                    : navigate(`/categories/${itm?.id}`);
                 }}
                 className="w-1/2 text-white/70 px-3 cursor-pointer hover:text-white text-[.85rem]"
               >
                 <div className="w-full flex justify-between">
                   <p>{itm?.name}</p>
-                  {itm?.child?.length > 0 && (
+                  {itm?.subcategory?.length > 0 && (
                     <div>
                       {showChildren?.name === itm?.name ? (
                         <FaMinus
@@ -123,20 +129,21 @@ const Nav = () => {
                     </div>
                   )}
                 </div>
-                {itm?.child?.length > 0 && showChildren?.name === itm?.name && (
-                  <div className="w-[90%] mx-auto h-fit mt-2 px-3 border-l border-neutral-100/50 flex flex-col gap-2">
-                    {itm?.child?.map((x, idx) => {
-                      return (
-                        <div
-                          key={idx}
-                          className="hover:text-white/70 text-white"
-                        >
-                          {x?.name}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
+                {itm?.subcategory?.length > 0 &&
+                  showChildren?.name === itm?.name && (
+                    <div className="w-[90%] mx-auto h-fit mt-2 px-3 border-l border-neutral-100/50 flex flex-col gap-2">
+                      {itm?.subcategory?.map((x, idx) => {
+                        return (
+                          <div
+                            key={idx}
+                            className="hover:text-white/70 text-white"
+                          >
+                            {x?.name}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
               </div>
             );
           })}

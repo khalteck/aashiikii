@@ -27,7 +27,7 @@ const EditProduct = () => {
     (item) => item?.id === Number(id)
   )[0];
 
-  console.log("currentProduct", currentProduct);
+  // console.log("currentProduct", currentProduct);
 
   return (
     <>
@@ -42,6 +42,14 @@ const EditProduct = () => {
         <section className="w-full min-h-screen px-5 md:pl-0 md:pr-[100px] pb-[50px]">
           <div className="w-full mt-5 flex gap-5 flex-col">
             <h2 className="font-bold">Edit Product - {currentProduct?.name}</h2>
+
+            <div className="w-full md:max-w-[800px] h-fit border border-slate-800 rounded-md p-4 mb-4">
+              <h2 className="font-bold">Product Variations</h2>
+              <div className="w-full flex flex-col gap-2 mt-4">
+                <VariationForm currentProduct={currentProduct} />
+              </div>
+            </div>
+
             <div className="w-full md:max-w-[800px] h-fit border border-slate-800 rounded-md p-4">
               <h2 className="font-bold">Basic Details</h2>
               <div className="w-full flex flex-col gap-2 mt-4">
@@ -49,13 +57,6 @@ const EditProduct = () => {
                   categoryData={categoryData}
                   currentProduct={currentProduct}
                 />
-              </div>
-            </div>
-
-            <div className="w-full md:max-w-[800px] h-fit border border-slate-800 rounded-md p-4 mt-4">
-              <h2 className="font-bold">Product Variations</h2>
-              <div className="w-full flex flex-col gap-2 mt-4">
-                <VariationForm currentProduct={currentProduct} />
               </div>
             </div>
           </div>

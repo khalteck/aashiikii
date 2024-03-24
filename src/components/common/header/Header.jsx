@@ -11,7 +11,11 @@ import { IoClose } from "react-icons/io5";
 import SearchTray from "./SearchTray";
 
 const Header = () => {
-  const { openSearch, setOpenSearch } = useAppContext();
+  const { openSearch, setOpenSearch, handleFetchCategory } = useAppContext();
+
+  useEffect(() => {
+    handleFetchCategory();
+  }, []);
 
   const [openMenu, setOpenMenu] = useState(false);
   function handleMenu() {

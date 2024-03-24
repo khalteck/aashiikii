@@ -7,7 +7,7 @@ import { ClipLoader } from "react-spinners";
 import { IoClose } from "react-icons/io5";
 
 const VariationForm = ({ currentProduct }) => {
-  const { handleAddVariation, loading3 } = useAdminContext();
+  const { handleAddVariation, loading3, loading1 } = useAdminContext();
   const [error, seterror] = useState(false);
 
   const [showForm, setShowForm] = useState(false);
@@ -62,11 +62,17 @@ const VariationForm = ({ currentProduct }) => {
   }
   return (
     <div className="w-full flex flex-col gap-3">
+      {loading1 && (
+        <div className="w-full p-5 flex justify-center items-center border border-slate-800/30 rounded-md">
+          <ClipLoader color={"#000"} size={20} />
+        </div>
+      )}
+
       {!showForm && (
         <div className="flex gap-4 flex-wrap">
-          <VariationCard />
-          <VariationCard />
-          <VariationCard />
+          {currentProduct?.variation?.map((item, index) => {
+            return <VariationCard key={index} item={item} />;
+          })}
           <div
             onClick={toggleForm}
             className="w-[160px] h-[100px] bg-slate-800/30 shadow-md rounded-lg p-3 border border-slate-800/20 cursor-pointer flex gap-1 justify-center items-center text-sm relative"
@@ -80,6 +86,10 @@ const VariationForm = ({ currentProduct }) => {
       )}
       {showForm && (
         <form className="w-full flex flex-col gap-3 cateslide">
+          <div className="mt-7 opacity-70 border border-neutral-950/20 rounded-md p-5 text-sm">
+            <p className="font-bold mb-2">Note</p>
+            Please carefully observe the color input for any potential errors.
+          </div>
           <div className="relative w-full">
             <div
               className={`text-[.75rem] px-1 absolute bg-neutral-50 left-5 text-neutral-950`}
