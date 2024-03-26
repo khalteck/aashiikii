@@ -9,6 +9,7 @@ const ToastContainer = () => {
     productDeleteSuccess,
     editProductSuccess,
     addVariationSuccess,
+    addToWishlistSuccess,
   } = useAdminContext();
   const { registerSuccess, loginSuccess, logoutSuccess } = useAppContext();
   return (
@@ -35,6 +36,9 @@ const ToastContainer = () => {
       )}
       {addVariationSuccess && (
         <Toast title={"Variation added successfully!"} status={"success"} />
+      )}
+      {addToWishlistSuccess && (
+        <Toast title={"Product added to wishlist!"} status={"success"} />
       )}
     </>
   );

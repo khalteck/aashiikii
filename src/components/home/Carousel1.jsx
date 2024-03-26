@@ -9,7 +9,7 @@ import ProductCard from "../common/ProductCard";
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa";
 
-const Carousel1 = ({ array }) => {
+const Carousel1 = ({ array, currentCategory }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const swiperRef = useRef(null);
 
@@ -59,7 +59,7 @@ const Carousel1 = ({ array }) => {
         {array?.map((item, index) => {
           return (
             <SwiperSlide key={index} className="">
-              <ProductCard item={item} />
+              <ProductCard item={item} currentCategory={currentCategory} />
             </SwiperSlide>
           );
         })}

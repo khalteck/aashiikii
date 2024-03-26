@@ -88,7 +88,7 @@ function ImageUpload({ images, setImages, oldImages }) {
               id="imageUpload"
               className="hidden"
               onChange={handleImageChange}
-              // multiple
+              multiple
             />
             <HiPlus size={"30px"} color="black" />
           </label>

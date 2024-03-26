@@ -7,7 +7,13 @@ import { useAppContext } from "../../../contexts/AppContext";
 import { ClipLoader } from "react-spinners";
 
 const Nav = () => {
-  const { currentPage, userDetails, categoryData, loading1 } = useAppContext();
+  const {
+    currentPage,
+    userDetails,
+    categoryData,
+    loading1,
+    handleFetchCategory,
+  } = useAppContext();
   const navigate = useNavigate();
   const [hover, setHover] = useState(false);
 
@@ -93,7 +99,20 @@ const Nav = () => {
               : "h-[300px] bottom-[-300px]"
           }`}
         >
-          {loading1 && (
+          {categoryData?.length === 0 && !loading1 && (
+            <div className="w-full h-full flex flex-col justify-center items-center text-sm text-white bg-transparent">
+              <p>An error occured</p>
+              <button
+                onClick={() => {
+                  handleFetchCategory();
+                }}
+                className="bg-neutral-100 px-3 py-1 text-black rounded-md mt-3 hover:bg-neutral-300"
+              >
+                Reload
+              </button>
+            </div>
+          )}
+          {loading1 && categoryData?.length === 0 && (
             <div className="w-full h-full bg-transparent flex justify-center items-center">
               <ClipLoader color={"#fff"} size={20} />
             </div>

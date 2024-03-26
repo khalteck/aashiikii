@@ -219,6 +219,83 @@ const AppContextProvider = ({ children }) => {
       setloading1(true);
       const response = await axios.get(`${baseUrl}/api/category/`);
       setcategoryData(response?.data);
+      // console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      //   setaddCategoryError(error?.response?.data);
+    } finally {
+      setloading1(false);
+    }
+  }
+
+  //======================================================================to fetch products
+  const [allProductData, setallProductData] = useState([]);
+
+  async function handleFetchProduct() {
+    try {
+      setloading1(true);
+      const response = await axios.get(`${baseUrl}/api/product/`);
+      const data = response?.data?.filter((itm) => itm?.variation);
+      setallProductData(data);
+      // console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      //   setaddCategoryError(error?.response?.data);
+    } finally {
+      setloading1(false);
+    }
+  }
+
+  //======================================================================to search products
+  const [searchData, setsearchData] = useState([]);
+  const [loading3, setloading3] = useState(false);
+
+  async function handleSearchProducts(term) {
+    try {
+      setloading3(true);
+      const response = await axios.get(
+        `${baseUrl}/main/product?search=${term}`
+      );
+      setsearchData(response?.data);
+      // console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      //   setaddCategoryError(error?.response?.data);
+    } finally {
+      setloading3(false);
+    }
+  }
+
+  //=====================================================to add to wishlist
+  const [addToWishlistSuccess, setaddToWishlistSuccess] = useState(false);
+  const [addToWishlistError, setaddToWishlistError] = useState(null);
+
+  async function handleAddToWishlist(data) {
+    try {
+      setloading3(true);
+      const response = await axios.post(`${baseUrl}/api/wishlist/`, data);
+      setaddToWishlistSuccess(true);
+      setTimeout(() => {
+        setaddToWishlistSuccess(false);
+      }, 5000);
+      console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      setaddToWishlistError(error?.response?.data);
+    } finally {
+      setloading3(false);
+    }
+  }
+
+  //======================================================================to fetch wishlist
+  const [wishlistData, setwishlistData] = useState([]);
+
+  async function handleFetchWishlist() {
+    try {
+      setloading1(true);
+      const response = await axios.get(`${baseUrl}/api/wishlist/`);
+      const data = response?.data?.filter((itm) => itm?.variation);
+      setwishlistData(data);
       console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
@@ -265,6 +342,16 @@ const AppContextProvider = ({ children }) => {
         setContactSuccess,
         categoryData,
         handleFetchCategory,
+        allProductData,
+        handleFetchProduct,
+        searchData,
+        handleSearchProducts,
+        loading3,
+        addToWishlistSuccess,
+        addToWishlistError,
+        handleAddToWishlist,
+        handleFetchWishlist,
+        wishlistData,
       }}
     >
       {children}

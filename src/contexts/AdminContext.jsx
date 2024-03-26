@@ -32,7 +32,7 @@ const AdminContextProvider = ({ children }) => {
         setaddCategorySuccess(false);
       }, 5000);
       handleFetchCategory();
-      console.log("Response data:", response.data);
+      // console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
       setaddCategoryError(error?.response?.data);
@@ -65,7 +65,7 @@ const AdminContextProvider = ({ children }) => {
       setLoading2(true);
       const response = await axios.delete(`${baseUrl}/api/category/${id}/`);
       handleFetchCategory();
-      console.log("Response data:", response);
+      // console.log("Response data:", response);
     } catch (error) {
       console.log("error", error);
       //   setaddCategoryError(error?.response?.data);
@@ -89,7 +89,7 @@ const AdminContextProvider = ({ children }) => {
       setTimeout(() => {
         setaddSUbCategorySuccess(false);
       }, 5000);
-      console.log("Response data:", response.data);
+      // console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
       setaddSubCategoryError(error?.response?.data);
@@ -104,7 +104,7 @@ const AdminContextProvider = ({ children }) => {
       setLoading2(true);
       const response = await axios.delete(`${baseUrl}/api/subcategory/${id}/`);
       handleFetchCategory();
-      console.log("Response data:", response);
+      // console.log("Response data:", response);
     } catch (error) {
       console.log("error", error);
       //   setaddCategoryError(error?.response?.data);
@@ -132,6 +132,8 @@ const AdminContextProvider = ({ children }) => {
   //======================================================================to create product
   const [createProductSuccess, setcreateProductSuccess] = useState(false);
   const [createProductError, setcreateProductError] = useState(null);
+  const [createProductErrorSource, setcreateProductErrorSource] =
+    useState(null);
 
   async function handleCreateProduct(data) {
     try {
@@ -160,10 +162,20 @@ const AdminContextProvider = ({ children }) => {
       setTimeout(() => {
         setcreateProductSuccess(false);
       }, 5000);
-      console.log("Response data:", response.data);
+      // console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
-      setcreateProductError(error?.response?.data);
+
+      const errorArray = Object?.values(error?.response?.data || {});
+      const errorSourceArray = Object?.keys(error?.response?.data || {});
+      const networkError = [["An error occured!"]];
+      const errorRecieved =
+        error?.response?.status >= 500 || error?.message === "Network Error"
+          ? networkError
+          : errorArray;
+      setcreateProductError(errorRecieved);
+      setcreateProductErrorSource(errorSourceArray);
+      return errorRecieved;
     } finally {
       setLoading2(false);
     }
@@ -204,7 +216,7 @@ const AdminContextProvider = ({ children }) => {
       setTimeout(() => {
         seteditProductSuccess(false);
       }, 5000);
-      console.log("Response data:", response.data);
+      // console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
       seteditProductError(error?.response?.data);
@@ -241,7 +253,7 @@ const AdminContextProvider = ({ children }) => {
       setTimeout(() => {
         setProductDeleteSuccess(false);
       }, 5000);
-      console.log("Response data:", response);
+      // console.log("Response data:", response);
     } catch (error) {
       console.log("error", error);
       //   setaddCategoryError(error?.response?.data);
@@ -272,6 +284,7 @@ const AdminContextProvider = ({ children }) => {
 
   useEffect(() => {
     setsearchData([]);
+    setcreateProductError(null);
   }, [currentPage]);
 
   //============================================================================to add variations
@@ -290,7 +303,7 @@ const AdminContextProvider = ({ children }) => {
       setTimeout(() => {
         setaddVariationSuccess(false);
       }, 5000);
-      console.log("Response data:", response.data);
+      // console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
       setaddVariationError(error?.response?.data);
@@ -307,7 +320,7 @@ const AdminContextProvider = ({ children }) => {
         `${baseUrl}/api/product_variant/${id}`
       );
       handleFetchProducts();
-      console.log("Response data:", response);
+      // console.log("Response data:", response);
     } catch (error) {
       console.log("error", error);
       //   setaddCategoryError(error?.response?.data);
@@ -358,6 +371,7 @@ const AdminContextProvider = ({ children }) => {
         addVariationSuccess,
         addVariationError,
         handleDeleteVariation,
+        createProductErrorSource,
       }}
     >
       {children}

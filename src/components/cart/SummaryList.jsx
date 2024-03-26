@@ -1,7 +1,8 @@
+import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 import ColorNameConverter from "../common/ColorNameConverter";
 
 const SummaryList = ({ item }) => {
-  const price = item?.itemData?.price * item?.quantity;
+  const price = item?.price * item?.quantity;
 
   return (
     <div className="w-full flex gap-3 items-center justify-between">
@@ -10,8 +11,8 @@ const SummaryList = ({ item }) => {
         <div className="flex flex-col gap-2">
           <p>{item?.itemData?.name}</p>
           <div className="font-bold text-neutral-950/70">
-            {" "}
-            {<ColorNameConverter hexCode={item?.color} />}
+            {capitalizeFirstLetter(item?.color?.name)}
+            {/* {<ColorNameConverter hexCode={item?.color} />} */}
           </div>
           <p className="font-bold text-neutral-950/70">Sixe: {item?.size}</p>
         </div>

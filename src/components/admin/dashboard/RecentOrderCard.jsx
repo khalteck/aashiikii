@@ -13,7 +13,9 @@ const RecentOrderCard = ({ item }) => {
         </div>
       </div>
       <div>
-        <p className="font-bold text-end">${item?.price}</p>
+        <p className="font-bold text-end">
+          NGN {item?.price?.toLocaleString()}
+        </p>
         <p className="opacity-70 text-[.85rem]">{item?.time}</p>
       </div>
     </div>

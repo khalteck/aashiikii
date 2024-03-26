@@ -16,7 +16,7 @@ const Cart = () => {
 
   const totalPriceArray = [];
   cartData?.map((item) => {
-    const price = item?.itemData?.price * item?.quantity;
+    const price = item?.price * item?.quantity;
     totalPriceArray?.push(price);
   });
 

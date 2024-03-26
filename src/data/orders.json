@@ -2,31 +2,31 @@
   {
     "name": "John Doe",
     "email": "johndoe@gmail.com",
-    "price": 300,
+    "price": 5000,
     "time": "2 mins ago"
   },
   {
     "name": "Jane Doe",
     "email": "janedoe@gmail.com",
-    "price": 100,
+    "price": 10000,
     "time": "12 mins ago"
   },
   {
     "name": "Jesse king",
     "email": "jesse@gmail.com",
-    "price": 50,
+    "price": 5000,
     "time": "22 mins ago"
   },
   {
     "name": "Micah Peter",
     "email": "micah@gmail.com",
-    "price": 15,
+    "price": 1500,
     "time": "28 mins ago"
   },
   {
     "name": "Anna Smith",
     "email": "anna@gmail.com",
-    "price": 25,
+    "price": 2500,
     "time": "35 mins ago"
   }
 ]

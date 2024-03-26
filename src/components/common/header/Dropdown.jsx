@@ -6,9 +6,11 @@ import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../contexts/AppContext";
+import { ClipLoader } from "react-spinners";
 
 const Dropdown = ({ handleMenu }) => {
-  const { userDetails, cartData } = useAppContext();
+  const { userDetails, cartData, categoryData, loading1, handleFetchCategory } =
+    useAppContext();
   const navigate = useNavigate();
 
   const [showList, setShowList] = useState(false);
@@ -91,7 +93,25 @@ const Dropdown = ({ handleMenu }) => {
                         onClick={(e) => e.stopPropagation()}
                         className="w-full h-[300px] overflow-y-auto cateslide border-b border-neutral-50/50 pb-3 px-2 flex flex-col gap-4 text-[.75rem] uppercase"
                       >
-                        {categories?.map((itm, ind) => {
+                        {categoryData?.length === 0 && !loading1 && (
+                          <div className="w-full h-full flex flex-col justify-center items-center text-sm text-white bg-transparent">
+                            <p>An error occured</p>
+                            <button
+                              onClick={() => {
+                                handleFetchCategory();
+                              }}
+                              className="bg-neutral-100 px-3 py-1 text-black rounded-md mt-3 hover:bg-neutral-300"
+                            >
+                              Reload
+                            </button>
+                          </div>
+                        )}
+                        {loading1 && categoryData?.length === 0 && (
+                          <div className="w-full h-full bg-transparent flex justify-center items-center">
+                            <ClipLoader color={"#fff"} size={20} />
+                          </div>
+                        )}
+                        {categoryData?.map((itm, ind) => {
                           return (
                             <div
                               key={ind}

@@ -8,19 +8,40 @@ import ScrollToTopButton from "../../components/common/ScrollToTopButton";
 import { useAppContext } from "../../contexts/AppContext";
 import Description from "../../components/productDetails/Description";
 import { FaEye } from "react-icons/fa";
+import { ClipLoader } from "react-spinners";
 
 const ProductDetails = () => {
-  const { currentPage } = useAppContext();
-  const { slug } = useParams();
-  const currentProduct = products?.filter((x) => x?.slug === slug)[0];
+  const {
+    currentPage,
+    allProductData,
+    categoryData,
+    handleFetchProduct,
+    loading1,
+  } = useAppContext();
+  const { id } = useParams();
+  const currentProduct = allProductData?.filter((x) => x?.id === Number(id))[0];
 
   //======================================================to handle image display
   const [index, setIndex] = useState(0);
-  const [image, setImage] = useState(currentProduct?.image?.[index]);
+  const [image, setImage] = useState(currentProduct?.image1);
 
   useEffect(() => {
-    setImage(currentProduct?.image[index]);
-  }, [index, currentPage]);
+    const string = `image${index + 1}`;
+    setImage(currentProduct?.[string]);
+  }, [index, currentPage, currentProduct]);
+
+  useEffect(() => {
+    handleFetchProduct();
+  }, []);
+
+  const filteredData = Object.keys(currentProduct || {})
+    ?.filter((key) => key.includes("image"))
+    ?.reduce((acc, key) => {
+      acc[key] = currentProduct[key];
+      return acc;
+    }, {});
+
+  const images = Object.values(filteredData);
 
   return (
     <>
@@ -38,7 +59,7 @@ const ProductDetails = () => {
           {/* details */}
           <div className="w-full md:w-1/2 min-h-[400px] flex gap-2">
             <div className="w-[30%] h-full overflow-y-auto flex flex-col gap-4">
-              {currentProduct?.image?.map((img, ind) => {
+              {images?.map((img, ind) => {
                 return (
                   <div
                     key={ind}
@@ -60,11 +81,19 @@ const ProductDetails = () => {
               })}
             </div>
             <div className="w-[70%] flex justify-center border border-neutral-950/30 relative">
-              <img
-                src={image}
-                alt="product image"
-                className="w-full md:min-w-[200px] object-cover h-auto"
-              />
+              {loading1 && !currentProduct && (
+                <div className="w-full md:min-w-[200px] h-[400px] flex gap-2 justify-center items-center">
+                  <p>Loading</p>
+                  <ClipLoader color={"#000000"} size={20} />
+                </div>
+              )}
+              {currentProduct && (
+                <img
+                  src={image}
+                  alt="product image"
+                  className="w-full md:min-w-[200px] object-cover h-auto"
+                />
+              )}
             </div>
           </div>
 

@@ -6,9 +6,10 @@ import { useAdminContext } from "../../../contexts/AdminContext";
 
 const VariationCard = ({ item }) => {
   const { loading2, handleDeleteVariation } = useAdminContext();
+
   function getColor(str) {
     var ctx = document.createElement("canvas").getContext("2d");
-    ctx.fillStyle = str;
+    ctx.fillStyle = str?.toLowerCase();
     return ctx.fillStyle;
   }
 

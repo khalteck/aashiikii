@@ -3,23 +3,30 @@ import { IoClose } from "react-icons/io5";
 import SearchCard from "./SearchCard";
 import { useState } from "react";
 import products from "../../../data/product.json";
+import { useAdminContext } from "../../../contexts/AdminContext";
+import { useAppContext } from "../../../contexts/AppContext";
+import { ClipLoader } from "react-spinners";
 
 const SearchTray = ({ toggleSearch, showList }) => {
+  const { handleSearchProducts, searchData, loading3, categoryData } =
+    useAppContext();
+
   const [productsData, setProductsData] = useState(products);
   const [searchTerm, setsearchTerm] = useState("");
   const [searchResults, setsearchResults] = useState([]);
 
-  function handleSerchChange(e) {
+  async function handleSerchChange(e) {
     const value = e.target.value?.toLowerCase();
     setsearchTerm(value);
 
     if (value?.length >= 3) {
-      const results = productsData?.filter(
-        (item) =>
-          item?.name?.toLowerCase()?.includes(value) ||
-          item?.category?.toLowerCase()?.includes(value)
-      );
-      setsearchResults(results);
+      await handleSearchProducts(value);
+      // const results = productsData?.filter(
+      //   (item) =>
+      //     item?.name?.toLowerCase()?.includes(value) ||
+      //     item?.category?.toLowerCase()?.includes(value)
+      // );
+      setsearchResults(searchData);
     } else {
       setsearchResults([]);
     }
@@ -57,13 +64,22 @@ const SearchTray = ({ toggleSearch, showList }) => {
 
             {searchTerm?.length >= 3 ? (
               <div className="mt-3 flex flex-col gap-3 p-4">
-                {searchResults?.length > 0 ? (
-                  <p>
-                    <span className="font-bold">{searchResults?.length}</span>{" "}
-                    Search Result(s)..
-                  </p>
+                {loading3 ? (
+                  <div className="w-full py-4 flex gap-2 items-center justify-center text-sm">
+                    <p>Loading</p>
+                    <ClipLoader color={"#000000"} size={20} />
+                  </div>
                 ) : (
-                  <p>No Result found..</p>
+                  <>
+                    {searchData?.length > 0 ? (
+                      <p>
+                        <span className="font-bold">{searchData?.length}</span>{" "}
+                        Search Result(s)..
+                      </p>
+                    ) : (
+                      <p>No Result found..</p>
+                    )}
+                  </>
                 )}
               </div>
             ) : (
@@ -72,10 +88,15 @@ const SearchTray = ({ toggleSearch, showList }) => {
               </div>
             )}
 
-            {searchResults?.length > 0 && (
+            {searchData?.length > 0 && (
               <div className="w-full flex flex-col border-t border-neutral-950/20">
-                {searchResults?.map((itm, idx) => {
-                  return <SearchCard key={idx} item={itm} />;
+                {searchData?.map((itm, idx) => {
+                  const category = categoryData?.filter(
+                    (x) => x?.id === itm?.category
+                  )[0];
+                  return (
+                    <SearchCard key={idx} item={itm} category={category} />
+                  );
                 })}
               </div>
             )}

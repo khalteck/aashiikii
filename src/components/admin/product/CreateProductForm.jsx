@@ -15,6 +15,8 @@ const CreateProductForm = ({ categoryData }) => {
     addCategoryError,
     handleCreateProduct,
     addCategorySuccess,
+    createProductSuccess,
+    createProductError,
   } = useAdminContext();
   const [error, seterror] = useState(false);
 
@@ -61,7 +63,7 @@ const CreateProductForm = ({ categoryData }) => {
     });
   }, [images]);
 
-  console.log("formData", formData);
+  // console.log("formData", formData);
 
   function handleChange(e) {
     const { value, id } = e.target;
@@ -85,11 +87,12 @@ const CreateProductForm = ({ categoryData }) => {
         formData?.name &&
         formData?.category &&
         formData?.image1 &&
+        formData?.image2 &&
         formData?.stock_quantity
       ) {
         const data = { ...formData, name: formData?.name?.trim() };
-        await handleCreateProduct(data);
-        navigate("/admin/products");
+        const errorRecieved = await handleCreateProduct(data);
+        !errorRecieved && navigate("/admin/products");
       } else {
         seterror(true);
       }
@@ -196,14 +199,23 @@ const CreateProductForm = ({ categoryData }) => {
 
       {error && (
         <p className="w-full text-red-500 bg-red-500/30 font-medium px-3 py-[5px] border-border-red-500 text-[.85rem]">
-          Fill the required fields
+          Fill the required fields, at least 2 images
         </p>
       )}
 
-      {addCategoryError && (
-        <p className="w-full text-red-500 bg-red-500/30 font-medium px-3 py-[5px] border-border-red-500 text-[.85rem]">
-          {addCategoryError?.name?.[0]}
-        </p>
+      {createProductError && (
+        <div className="w-full flex flex-col gap-2">
+          {createProductError?.map((err, ind) => {
+            return (
+              <p
+                key={ind}
+                className="text-red-500 bg-red-500/30 font-medium px-3 py-[5px] border-border-red-500 text-[.85rem]"
+              >
+                {capitalizeFirstLetter(err[0])}
+              </p>
+            );
+          })}
+        </div>
       )}
 
       <button

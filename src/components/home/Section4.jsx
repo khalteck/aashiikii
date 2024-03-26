@@ -3,14 +3,23 @@ import Carousel1 from "./Carousel1";
 import products from "../../data/product.json";
 import categories from "../../data/categories.json";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../contexts/AppContext";
+import ProductSkeleton from "./ProductSkeleton";
 
 const Section4 = () => {
+  const { allProductData, loading1, categoryData } = useAppContext();
+
   const navigate = useNavigate();
 
-  const currentCategory = categories[2];
-  const categoryDresses = products?.filter(
-    (x) => x?.category === currentCategory?.name
-  );
+  const currentCategory = categoryData?.filter(
+    (x) => x?.name?.toLowerCase() === "shirts and tops"
+  )[0];
+
+  const categoryProduct = allProductData
+    ?.filter((item) => {
+      return item?.category === currentCategory?.id;
+    })
+    ?.slice(0, 6);
 
   return (
     <section className="w-full px-5 md:px-[100px] my-[80px]">
@@ -34,14 +43,38 @@ const Section4 = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-full hidden md:flex justify-center md:justify-start flex-wrap gap-5">
+        {categoryProduct?.length === 0 && loading1 && <ProductSkeleton />}
+
+        {categoryProduct?.length > 0 && !loading1 && (
+          <div className="w-full md:w-full hidden md:flex justify-center md:justify-start flex-wrap gap-5">
+            {categoryProduct?.map((item, index) => {
+              return (
+                <ProductCard
+                  key={index}
+                  item={item}
+                  currentCategory={currentCategory}
+                />
+              );
+            })}
+          </div>
+        )}
+        {categoryProduct?.length > 0 && !loading1 && (
+          <div className="w-full md:w-full md:hidden flex justify-center md:justify-start flex-wrap gap-5">
+            <Carousel1
+              array={categoryProduct}
+              currentCategory={currentCategory}
+            />
+          </div>
+        )}
+
+        {/* <div className="w-full md:w-full hidden md:flex justify-center md:justify-start flex-wrap gap-5">
           {categoryDresses?.map((item, index) => {
             return <ProductCard key={index} item={item} />;
           })}
         </div>
         <div className="w-full md:w-full md:hidden flex justify-center md:justify-start flex-wrap gap-5">
           <Carousel1 array={categoryDresses} />
-        </div>
+        </div> */}
       </div>
     </section>
   );

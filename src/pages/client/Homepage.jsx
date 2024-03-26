@@ -16,9 +16,16 @@ import Section6 from "../../components/home/Section6";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/header/Header";
 import ScrollToTopButton from "../../components/common/ScrollToTopButton";
+import { useAppContext } from "../../contexts/AppContext";
+import { useEffect } from "react";
 
 const Homepage = () => {
-  //   const [hoverProduct, setHoverProduct] = useState(null);
+  const { handleFetchProduct, allProductData } = useAppContext();
+
+  useEffect(() => {
+    handleFetchProduct();
+  }, []);
+
   return (
     <>
       <Header />

@@ -29,12 +29,12 @@ const CustomSelect = ({
 
   return (
     <div className="flex gap-3">
-      <div className="flex gap-3 items-center">
+      <div className="flex flex-col gap-2">
         <p className="text-[1.2rem]">Qty</p>
         <select
           value={selectedQuantity}
           onChange={handleSelectChange}
-          className="w-[80px] p-3 border border-neutral-950 outline-none bg-transparent"
+          className="w-[80px] px-3 py-[15px] border border-neutral-950 outline-none bg-transparent text-sm"
         >
           <option value="DEFAULT" hidden>
             1
@@ -55,7 +55,7 @@ const CustomSelect = ({
           value={customValue}
           onChange={handleCustomInputChange}
           placeholder="Enter Qty"
-          className="w-[100px] px-3 py-2 border border-neutral-950 outline-none bg-transparent placeholder:text-[.85rem]"
+          className="w-[100px] h-fit px-3 py-3 border border-neutral-950 outline-none bg-transparent placeholder:text-[.85rem] mt-auto"
         />
       )}
     </div>

@@ -44,7 +44,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           {/* <Route path="/wishlist" element={<Wishlist />} /> */}
           <Route path="/cart" element={<Cart />} />
-          <Route path="/products/:slug" element={<ProductDetails />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/register" element={<Register />} />
           <Route path="/register/step=2" element={<RegisterAdditional />} />
           <Route path="/login" element={<Login />} />

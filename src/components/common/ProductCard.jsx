@@ -2,11 +2,27 @@ import { useState } from "react";
 import { FaHeart } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../contexts/AppContext";
+import { ClipLoader } from "react-spinners";
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item, currentCategory }) => {
+  const { handleAddToWishlist, userDetails, loading3, wishlistData } =
+    useAppContext();
   const navigate = useNavigate();
 
   const [hoverProduct, setHoverProduct] = useState(false);
+  const [selectedProduct, setselectedProduct] = useState(null);
+
+  const wishlist = {
+    user: userDetails?.user_data?.id,
+    items: [item?.id],
+  };
+
+  async function handleAdd() {
+    console.log("added!");
+    await handleAddToWishlist(wishlist);
+    setselectedProduct(null);
+  }
 
   return (
     <div
@@ -16,7 +32,7 @@ const ProductCard = ({ item }) => {
     >
       <div className="w-full h-fit relative">
         {!hoverProduct && (
-          <div className="w-[80px] h-[80px] absolute top-0 right-0 cursor-pointer bg-[#fecaca]/10 flex justify-center items-center">
+          <div className="w-[80px] h-[80px] absolute top-0 right-0 cursor-pointer bg-transparent flex justify-center items-center z-[100]">
             <FaHeart size="20px" color="white" />
           </div>
         )}
@@ -26,17 +42,28 @@ const ProductCard = ({ item }) => {
         >
           <img
             alt="product-image"
-            src={item?.image[0]}
+            src={item?.image1}
+            loading="lazy"
             className="w-full h-[450px] sm:h-[400px] object-cover object-top border-[#F1E4D8]"
           />
         </div>
         {hoverProduct && (
           <div className="quickview w-full h-[120px] bg-transparent absolute bottom-0 left-0 p-8 flex gap-4">
-            <div className="w-[80px] max-h-[60px] cursor-pointer bg-[#F1E4D8] flex justify-center items-center">
-              <FaHeart size="20px" color={item?.wishlist ? "red" : "white"} />
+            <div
+              // onClick={() => {
+              //   handleAdd();
+              //   setselectedProduct(item);
+              // }}
+              className="w-[80px] max-h-[60px] cursor-pointer bg-[#F1E4D8] flex justify-center items-center"
+            >
+              {loading3 && selectedProduct?.id === item?.id ? (
+                <ClipLoader color={"#000000"} size={20} />
+              ) : (
+                <FaHeart size="20px" color={item?.wishlist ? "red" : "white"} />
+              )}
             </div>
             <div
-              onClick={() => navigate(`/products/${item?.slug}`)}
+              onClick={() => navigate(`/products/${item?.id}`)}
               className="w-full max-h-[60px] bg-white flex justify-center items-center gap-[5%] cursor-pointer hover:bg-neutral-100"
             >
               <FaPlus size="20px" color="black" />
@@ -45,7 +72,7 @@ const ProductCard = ({ item }) => {
           </div>
         )}
       </div>
-      <p className="uppercase opacity-60">{item?.category}</p>
+      <p className="opacity-60">{currentCategory?.name}</p>
       <p
         onClick={() => setHoverProduct(true)}
         className="font-bold text-[1.25rem] cursor-pointer hover:underline"
@@ -53,7 +80,7 @@ const ProductCard = ({ item }) => {
         {item?.name}
       </p>
       <p className="text-[#C2A284] font-bold">
-        NGN {item?.price?.toLocaleString()}
+        NGN {item?.variation[0]?.price?.toLocaleString()}
       </p>
     </div>
   );

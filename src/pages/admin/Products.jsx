@@ -90,6 +90,7 @@ const Products = () => {
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
+    handleViewClick();
   };
 
   const [showDrop, setShowDrop] = useState(false);
@@ -251,7 +252,7 @@ const Products = () => {
 
               {searchClicked && (
                 <div className="text-sm opacity-85 mt-4">
-                  Showing 2 result(s)
+                  Showing {searchData?.length} result(s)
                 </div>
               )}
 
