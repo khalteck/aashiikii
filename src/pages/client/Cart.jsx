@@ -25,7 +25,7 @@ const Cart = () => {
   const total = totalPriceArray?.reduce((acc, curr) => acc + curr, 0);
   const totalAfterTax = total + tax;
 
-  console.log("total", total);
+  // console.log("total", total);
 
   return (
     <>

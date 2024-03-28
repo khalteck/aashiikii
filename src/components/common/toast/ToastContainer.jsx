@@ -9,9 +9,14 @@ const ToastContainer = () => {
     productDeleteSuccess,
     editProductSuccess,
     addVariationSuccess,
-    addToWishlistSuccess,
   } = useAdminContext();
-  const { registerSuccess, loginSuccess, logoutSuccess } = useAppContext();
+  const {
+    registerSuccess,
+    loginSuccess,
+    logoutSuccess,
+    addToWishlistSuccess,
+    removeWishlistSuccess,
+  } = useAppContext();
   return (
     <>
       {/* client toasts */}
@@ -20,6 +25,12 @@ const ToastContainer = () => {
       )}
       {loginSuccess && <Toast title={"Login success!"} status={"success"} />}
       {logoutSuccess && <Toast title={"Logged Out!"} status={"success"} />}
+      {addToWishlistSuccess && (
+        <Toast title={"Product added to wishlist!"} status={"success"} />
+      )}
+      {removeWishlistSuccess && (
+        <Toast title={"Product removed from wishlist!"} status={"success"} />
+      )}
 
       {/* admin toasts */}
       {addCategorySuccess && (
@@ -36,9 +47,6 @@ const ToastContainer = () => {
       )}
       {addVariationSuccess && (
         <Toast title={"Variation added successfully!"} status={"success"} />
-      )}
-      {addToWishlistSuccess && (
-        <Toast title={"Product added to wishlist!"} status={"success"} />
       )}
     </>
   );

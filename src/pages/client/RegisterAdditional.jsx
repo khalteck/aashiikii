@@ -71,7 +71,8 @@ const Login = () => {
       formData?.city &&
       formData?.state &&
       formData?.country &&
-      formData?.postal_code
+      formData?.postal_code &&
+      formData?.country_code
     ) {
       await handleRegisterSecondStep(formData);
     } else {

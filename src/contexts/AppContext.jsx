@@ -102,20 +102,18 @@ const AppContextProvider = ({ children }) => {
     }
   }
 
-  async function handleRegisterSecondStep(data) {
+  async function handleRegisterSecondStep(data, settings) {
     try {
       setloading1(true);
-      const response = await axios.put(
-        `${baseUrl}/api/register/${firstStepData?.id}/`,
-        data
-      );
+      const id = firstStepData?.id || userDetails?.user_data?.id;
+      const response = await axios.put(`${baseUrl}/api/register/${id}/`, data);
       localStorage.removeItem("firstStepData");
       setregisterSuccess(true);
       setTimeout(() => {
         setregisterSuccess(false);
       }, 5000);
-      navigate("/login");
-      // console.log("Response data:", response.data);
+      !settings && navigate("/login");
+      console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
       const errorArray = Object?.values(error?.response?.data || {});
@@ -188,6 +186,7 @@ const AppContextProvider = ({ children }) => {
       setlogoutSuccess(false);
     }, 5000);
     navigate("/");
+    setwishlistData([]);
   }
 
   //=====================================================to submit contact message
@@ -253,6 +252,7 @@ const AppContextProvider = ({ children }) => {
   async function handleSearchProducts(term) {
     try {
       setloading3(true);
+      setsearchData([]);
       const response = await axios.get(
         `${baseUrl}/main/product?search=${term}`
       );
@@ -270,7 +270,7 @@ const AppContextProvider = ({ children }) => {
   const [addToWishlistSuccess, setaddToWishlistSuccess] = useState(false);
   const [addToWishlistError, setaddToWishlistError] = useState(null);
 
-  async function handleAddToWishlist(data) {
+  async function handleCreateWishlist(data, id) {
     try {
       setloading3(true);
       const response = await axios.post(`${baseUrl}/api/wishlist/`, data);
@@ -278,7 +278,7 @@ const AppContextProvider = ({ children }) => {
       setTimeout(() => {
         setaddToWishlistSuccess(false);
       }, 5000);
-      console.log("Response data:", response.data);
+      // console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
       setaddToWishlistError(error?.response?.data);
@@ -287,21 +287,64 @@ const AppContextProvider = ({ children }) => {
     }
   }
 
+  async function handleAddToWishlist(data, id) {
+    try {
+      setloading3(true);
+      const response = await axios.put(`${baseUrl}/api/wishlist/${id}/`, data);
+      handleFetchWishlist(id);
+      setaddToWishlistSuccess(true);
+      setTimeout(() => {
+        setaddToWishlistSuccess(false);
+      }, 5000);
+      // console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      setaddToWishlistError(error?.response?.data);
+    } finally {
+      setloading3(false);
+    }
+  }
+
+  //=====================================================to remove from wishlist
+  const [removeWishlistSuccess, setremoveWishlistSuccess] = useState(false);
+  const [removeWishlistError, setremoveWishlistError] = useState(null);
+
+  async function handleRemoveWishlist(data, id) {
+    const user_id = userDetails?.user_data?.id;
+    try {
+      setloading3(true);
+      const response = await axios.delete(
+        `${baseUrl}/api/wishlist/${user_id}/?item=${id}`,
+        data
+      );
+      setremoveWishlistSuccess(true);
+      setTimeout(() => {
+        setremoveWishlistSuccess(false);
+      }, 5000);
+      console.log("Response data:", response.data);
+    } catch (error) {
+      console.log("error", error);
+      setremoveWishlistError(error?.response?.data);
+    } finally {
+      handleFetchWishlist(user_id);
+      setloading3(false);
+    }
+  }
+
   //======================================================================to fetch wishlist
   const [wishlistData, setwishlistData] = useState([]);
 
-  async function handleFetchWishlist() {
+  async function handleFetchWishlist(id) {
     try {
-      setloading1(true);
-      const response = await axios.get(`${baseUrl}/api/wishlist/`);
-      const data = response?.data?.filter((itm) => itm?.variation);
-      setwishlistData(data);
-      console.log("Response data:", response.data);
+      setloading3(true);
+      const response = await axios.get(`${baseUrl}/api/wishlist/${id}`);
+      setwishlistData(response?.data);
+      // console.log("Response data:", response.data);
     } catch (error) {
       console.log("error", error);
       //   setaddCategoryError(error?.response?.data);
     } finally {
-      setloading1(false);
+      setloading3(false);
     }
   }
 
@@ -345,6 +388,7 @@ const AppContextProvider = ({ children }) => {
         allProductData,
         handleFetchProduct,
         searchData,
+        setsearchData,
         handleSearchProducts,
         loading3,
         addToWishlistSuccess,
@@ -352,6 +396,10 @@ const AppContextProvider = ({ children }) => {
         handleAddToWishlist,
         handleFetchWishlist,
         wishlistData,
+        handleRemoveWishlist,
+        removeWishlistSuccess,
+        removeWishlistError,
+        handleCreateWishlist,
       }}
     >
       {children}

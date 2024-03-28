@@ -6,36 +6,46 @@ import products from "../../../data/product.json";
 import { useAdminContext } from "../../../contexts/AdminContext";
 import { useAppContext } from "../../../contexts/AppContext";
 import { ClipLoader } from "react-spinners";
+import { useEffect } from "react";
 
 const SearchTray = ({ toggleSearch, showList }) => {
-  const { handleSearchProducts, searchData, loading3, categoryData } =
-    useAppContext();
+  const {
+    handleSearchProducts,
+    searchData,
+    loading3,
+    categoryData,
+    setsearchData,
+  } = useAppContext();
 
-  const [productsData, setProductsData] = useState(products);
+  // console.log("searchData", searchData);
+
+  // const [productsData, setProductsData] = useState(products);
   const [searchTerm, setsearchTerm] = useState("");
-  const [searchResults, setsearchResults] = useState([]);
 
-  async function handleSerchChange(e) {
+  async function handleSearchChange(e) {
     const value = e.target.value?.toLowerCase();
     setsearchTerm(value);
-
-    if (value?.length >= 3) {
-      await handleSearchProducts(value);
-      // const results = productsData?.filter(
-      //   (item) =>
-      //     item?.name?.toLowerCase()?.includes(value) ||
-      //     item?.category?.toLowerCase()?.includes(value)
-      // );
-      setsearchResults(searchData);
-    } else {
-      setsearchResults([]);
-    }
   }
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchTerm?.length > 3) {
+        handleSearchProducts(searchTerm);
+      }
+    }, 2000);
+
+    if (searchTerm?.length < 4) {
+      setsearchData([]);
+    }
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm]);
 
   return (
     <div
       onClick={() => {
         toggleSearch();
+        setsearchData([]);
         setsearchTerm("");
       }}
       className="w-full h-screen bg-neutral-800/80 fixed top-0 left-0 py-[100px] px-5 z-[100] blurry bgslide"
@@ -58,7 +68,7 @@ const SearchTray = ({ toggleSearch, showList }) => {
                 className="bg-white w-full text-black p-3 md:p-4 outline-none rounded-none text-[.95rem] placeholder:text-black/50"
                 placeholder="SEARCH.."
                 value={searchTerm}
-                onChange={handleSerchChange}
+                onChange={handleSearchChange}
               />
             </div>
 
@@ -66,17 +76,18 @@ const SearchTray = ({ toggleSearch, showList }) => {
               <div className="mt-3 flex flex-col gap-3 p-4">
                 {loading3 ? (
                   <div className="w-full py-4 flex gap-2 items-center justify-center text-sm">
-                    <p>Loading</p>
+                    <p>Searching</p>
                     <ClipLoader color={"#000000"} size={20} />
                   </div>
                 ) : (
                   <>
-                    {searchData?.length > 0 ? (
+                    {searchData?.length > 0 && !loading3 && (
                       <p>
                         <span className="font-bold">{searchData?.length}</span>{" "}
                         Search Result(s)..
                       </p>
-                    ) : (
+                    )}
+                    {searchData?.length === 0 && !loading3 && (
                       <p>No Result found..</p>
                     )}
                   </>

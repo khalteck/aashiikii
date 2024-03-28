@@ -5,6 +5,7 @@ import categories from "../../data/categories.json";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../contexts/AppContext";
 import ProductSkeleton from "./ProductSkeleton";
+import { ClipLoader } from "react-spinners";
 
 const Section4 = () => {
   const { allProductData, loading1, categoryData } = useAppContext();
@@ -44,6 +45,15 @@ const Section4 = () => {
         </div>
 
         {categoryProduct?.length === 0 && loading1 && <ProductSkeleton />}
+
+        {categoryProduct?.length === 0 && !loading1 && (
+          <div className="w-full md:w-full h-[300px] md:h-[400px] border border-neutral-950/20 rounded-lg flex flex-col justify-center items-center flex-wrap gap-5">
+            <>
+              <ClipLoader color={"#000000"} size={50} />
+              <p>Loading</p>
+            </>
+          </div>
+        )}
 
         {categoryProduct?.length > 0 && !loading1 && (
           <div className="w-full md:w-full hidden md:flex justify-center md:justify-start flex-wrap gap-5">

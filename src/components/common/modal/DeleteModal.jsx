@@ -3,7 +3,14 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { TiCancel } from "react-icons/ti";
 import { ClipLoader } from "react-spinners";
 
-const DeleteModal = ({ onClose, title, body, onAction, loading }) => {
+const DeleteModal = ({
+  onClose,
+  title,
+  body,
+  onAction,
+  loading,
+  actionText,
+}) => {
   return (
     <div
       onClick={onClose}
@@ -28,12 +35,12 @@ const DeleteModal = ({ onClose, title, body, onAction, loading }) => {
             {loading ? (
               <>
                 <ClipLoader color={"#ffffff"} size={20} />
-                <p>Deleting</p>
+                <p>{actionText ? "Removing" : "Deleting"}</p>
               </>
             ) : (
               <>
                 <RiDeleteBin6Line color="white" size="20px" />
-                <p>Delete</p>
+                <p>{actionText || "Delete"}</p>
               </>
             )}
           </button>

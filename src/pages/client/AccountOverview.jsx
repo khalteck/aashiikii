@@ -7,21 +7,27 @@ import Section1 from "../../components/categories/Section1";
 import Section2 from "../../components/categories/Section2";
 import ScrollToTopButton from "../../components/common/ScrollToTopButton";
 import Form from "../../components/accountOverview/Form";
+import { useAppContext } from "../../contexts/AppContext";
 
 const AccountOverview = () => {
+  const { userDetails, handleRegisterSecondStep } = useAppContext();
   const [error, seterror] = useState(false);
+
+  const user = userDetails?.user_data;
+
+  console.log("user", user);
 
   //=========================================to handle register data
   const [formData, setFormData] = useState({
-    phone_number: "",
-    address: "",
-    city: "",
-    state: "",
-    country: "",
-    country_code: "",
-    postal_code: "",
-    first_name: "John",
-    last_name: "Doe",
+    phone_number: user?.phone_number || "",
+    address: user?.address || "",
+    city: user?.city || "",
+    state: user?.state || "",
+    country: user?.country || "",
+    country_code: user?.country_code || "",
+    postal_code: user?.postal_code || "",
+    first_name: user?.first_name || "",
+    last_name: user?.last_name || "",
   });
 
   console.log("formData", formData);
@@ -53,9 +59,10 @@ const AccountOverview = () => {
       formData?.city &&
       formData?.state &&
       formData?.country &&
-      formData?.postal_code
+      formData?.postal_code &&
+      formData?.country_code
     ) {
-      await handleRegisterSecondStep(formData);
+      await handleRegisterSecondStep(formData, "settings");
     } else {
       seterror(true);
     }
@@ -96,7 +103,7 @@ const AccountOverview = () => {
                   Email
                 </div>
                 <div className="w-full px-3 py-4 border border-neutral-950/50 bg-[#F1E4D8]/50">
-                  johndoe@gmail.com
+                  {user?.email}
                 </div>
               </div>
               <div className="relative w-full">
@@ -106,12 +113,17 @@ const AccountOverview = () => {
                   Username
                 </div>
                 <div className="w-full px-3 py-4 border border-neutral-950/50 bg-[#F1E4D8]/50">
-                  johndoe123
+                  {user?.username || user?.email}
                 </div>
               </div>
             </div>
             {/* //form */}
-            <Form formData={formData} handleChange={handleChange} />
+            <Form
+              formData={formData}
+              handleChange={handleChange}
+              error={error}
+              handleSubmit={handleSubmit}
+            />
           </div>
         </div>
       </section>

@@ -16,11 +16,14 @@ const Header = () => {
     setOpenSearch,
     handleFetchCategory,
     handleFetchWishlist,
+    userDetails,
   } = useAppContext();
 
   useEffect(() => {
     handleFetchCategory();
-    handleFetchWishlist();
+    if (userDetails?.access) {
+      handleFetchWishlist(userDetails?.user_data?.id);
+    }
   }, []);
 
   const [openMenu, setOpenMenu] = useState(false);

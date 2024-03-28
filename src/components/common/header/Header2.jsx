@@ -5,10 +5,25 @@ import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../contexts/AppContext";
 import SearchTray from "./SearchTray";
 import { useEffect, useState } from "react";
+import UserDropdown from "./UserDropdown";
 
 const Header2 = () => {
   const navigate = useNavigate();
-  const { setOpenSearch, openSearch } = useAppContext();
+  const {
+    setOpenSearch,
+    openSearch,
+    userDetails,
+    handleFetchWishlist,
+    handleFetchCategory,
+    logoutUser,
+  } = useAppContext();
+
+  useEffect(() => {
+    handleFetchCategory();
+    if (userDetails?.access) {
+      handleFetchWishlist(userDetails?.user_data?.id);
+    }
+  }, []);
 
   const [showList, setShowList] = useState(false);
   useEffect(() => {
@@ -20,6 +35,11 @@ const Header2 = () => {
   function toggleSearch() {
     setShowList(false);
     setOpenSearch((prev) => !prev);
+  }
+
+  const [show, setShow] = useState(false);
+  function handleShowDropdown() {
+    setShow((prev) => !prev);
   }
 
   return (
@@ -43,7 +63,7 @@ const Header2 = () => {
         <div onClick={() => navigate("/")} className="cursor-pointer">
           <GoHomeFill color="white" size="30px" />
         </div>
-        <div>
+        <div onClick={handleShowDropdown} className="cursor-pointer">
           <FaUser color="white" size="25px" />
         </div>
       </div>
@@ -51,6 +71,8 @@ const Header2 = () => {
       {openSearch && (
         <SearchTray toggleSearch={toggleSearch} showList={showList} />
       )}
+
+      {show && <UserDropdown setShow={setShow} logoutUser={logoutUser} />}
     </div>
   );
 };

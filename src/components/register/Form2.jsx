@@ -66,14 +66,7 @@ const Form2 = ({ handleChange, formData, secondStepError, error }) => {
             </option>
           ))}
         </select>
-        {/* <input
-          type="text"
-          id="country_code"
-          className="w-[100px] h-[58px] px-3 py-4 mt-2 border bg-[#F1E4D8]/50 outline-none placeholder:text-neutral-950/30 border-neutral-950/50"
-          placeholder="+234"
-          onChange={handleChange}
-          value={formData?.country_code}
-        /> */}
+
         <div className="relative w-full">
           <div
             className={`text-[.75rem] px-1 absolute bg-neutral-50 left-5 ${
